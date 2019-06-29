@@ -29,7 +29,7 @@ import de.greenrobot.event.ThreadMode;
 import la.xiong.androidquick.ui.mvp.BaseContract;
 import la.xiong.androidquick.tool.StringUtil;
 import la.xiong.androidquick.ui.dialog.dialogactivity.CommonDialog;
-import la.xiong.androidquick.eventbus.EventCenter;
+import la.xiong.androidquick.bean.eventbus.EventCenter;
 import la.xiong.androidquick.ui.viewstatus.VaryViewHelperController;
 
 /**

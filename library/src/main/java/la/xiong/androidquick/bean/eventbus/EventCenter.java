@@ -1,4 +1,4 @@
-package la.xiong.androidquick.eventbus;
+package la.xiong.androidquick.bean.eventbus;
 
 /**
  * @author  ddnosh
