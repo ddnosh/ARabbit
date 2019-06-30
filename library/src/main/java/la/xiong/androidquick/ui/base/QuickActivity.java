@@ -17,12 +17,11 @@ package la.xiong.androidquick.ui.base;
 
 import android.content.Context;
 import android.content.Intent;
-import android.databinding.DataBindingUtil;
-import android.databinding.ViewDataBinding;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
@@ -32,37 +31,26 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.trello.rxlifecycle2.LifecycleTransformer;
-import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
-import de.greenrobot.event.EventBus;
-import de.greenrobot.event.Subscribe;
-import de.greenrobot.event.ThreadMode;
 import la.xiong.androidquick.R;
-import la.xiong.androidquick.bean.eventbus.EventCenter;
-import la.xiong.androidquick.manager.QuickAppManager;
-import la.xiong.androidquick.tool.StringUtil;
-import la.xiong.androidquick.tool.immersion.StatusBarUtil;
+import la.xiong.androidquick.manager.QuickActivityManager;
+import la.xiong.androidquick.util.StringUtil;
+import la.xiong.androidquick.util.immersion.StatusBarUtil;
 import la.xiong.androidquick.ui.dialog.dialogactivity.CommonDialog;
 import la.xiong.androidquick.ui.dialog.dialogactivity.LoadingDialog;
-import la.xiong.androidquick.ui.mvp.BaseContract;
 import la.xiong.androidquick.ui.permission.EasyPermissions;
-import la.xiong.androidquick.ui.receiver.NetStateReceiver;
 import la.xiong.androidquick.ui.viewstatus.VaryViewHelperController;
 
 /**
  * @author ddnosh
  * @website http://blog.csdn.net/ddnosh
  */
-public abstract class QuickActivity extends RxAppCompatActivity implements EasyPermissions.PermissionWithDialogCallbacks, BaseContract.BaseView {
+public abstract class QuickActivity extends AppCompatActivity implements EasyPermissions.PermissionWithDialogCallbacks {
 
     /**
      * log tag
@@ -94,17 +82,6 @@ public abstract class QuickActivity extends RxAppCompatActivity implements EasyP
     }
 
     /**
-     * butterknife 8+ support
-     */
-    private Unbinder mUnbinder;
-
-    /**
-     * databinding
-     */
-    private View mainView;
-    protected ViewDataBinding binding;
-
-    /**
      * default toolbar
      */
     protected TextView tvTitle;
@@ -123,7 +100,7 @@ public abstract class QuickActivity extends RxAppCompatActivity implements EasyP
         initCreate();
         mContext = this;
         // activity manager
-        QuickAppManager.getInstance().addActivity(this);
+        QuickActivityManager.getInstance().addActivity(this);
         // animation
         if (toggleOverridePendingTransition()) {
             switch (getOverridePendingTransitionMode()) {
@@ -152,8 +129,6 @@ public abstract class QuickActivity extends RxAppCompatActivity implements EasyP
         if (null != extras) {
             getBundleExtras(extras);
         }
-        // eventbus
-        EventBus.getDefault().register(this);
         // screen info
         DisplayMetrics displayMetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
@@ -163,14 +138,7 @@ public abstract class QuickActivity extends RxAppCompatActivity implements EasyP
         int layoutId = getContentViewLayoutID();
         if (layoutId != 0) {
             try {
-                // databinding support
-                binding = DataBindingUtil.setContentView(this, layoutId);
-                if (binding != null) {
-                    mainView = binding.getRoot();
-                } else {
-                    setContentView(layoutId);
-                }
-
+                setContentView(layoutId);
             } catch (NoClassDefFoundError e) {
                 setContentView(layoutId);
             }
@@ -184,9 +152,6 @@ public abstract class QuickActivity extends RxAppCompatActivity implements EasyP
         if (!StatusBarUtil.setStatusBarDarkTheme(this, true)) {
             StatusBarUtil.setStatusBarColor(this, 0x55000000);
         }
-
-        // network status
-        NetStateReceiver.registerNetworkStateReceiver(mContext);
 
         initViewsAndEvents(savedInstanceState);
     }
@@ -216,13 +181,14 @@ public abstract class QuickActivity extends RxAppCompatActivity implements EasyP
         } else {
             super.setContentView(layoutResID);
         }
-        mUnbinder = ButterKnife.bind(this);
+
         if (null != getLoadingTargetView()) {
             mVaryViewHelperController = new VaryViewHelperController(getLoadingTargetView());
         }
     }
 
     protected abstract void initCreate();
+
     protected abstract void initDestroy();
 
     protected abstract boolean isLoadDefaultTitleBar();
@@ -274,7 +240,7 @@ public abstract class QuickActivity extends RxAppCompatActivity implements EasyP
     @Override
     public void finish() {
         super.finish();
-        QuickAppManager.getInstance().removeActivity(this);
+        QuickActivityManager.getInstance().removeActivity(this);
         if (toggleOverridePendingTransition()) {
             switch (getOverridePendingTransitionMode()) {
                 case LEFT:
@@ -303,11 +269,6 @@ public abstract class QuickActivity extends RxAppCompatActivity implements EasyP
     protected void onDestroy() {
         super.onDestroy();
         initDestroy();
-        if (mUnbinder != null) {
-            mUnbinder.unbind();
-        }
-        NetStateReceiver.unRegisterNetworkStateReceiver(mContext);
-        EventBus.getDefault().unregister(this);
         dismissLoadingDialog();
     }
 
@@ -324,13 +285,6 @@ public abstract class QuickActivity extends RxAppCompatActivity implements EasyP
      * @return id of layout resource
      */
     protected abstract int getContentViewLayoutID();
-
-    /**
-     * when event coming
-     *
-     * @param eventCenter
-     */
-    protected abstract void onEventComing(EventCenter eventCenter);
 
     /**
      * get loading target view
@@ -382,6 +336,7 @@ public abstract class QuickActivity extends RxAppCompatActivity implements EasyP
 
     /**
      * startActivity with  flag
+     *
      * @param clazz
      * @param flag
      */
@@ -407,6 +362,7 @@ public abstract class QuickActivity extends RxAppCompatActivity implements EasyP
 
     /**
      * startActivity with bundle and flag
+     *
      * @param clazz
      * @param bundle
      * @param flag
@@ -558,13 +514,6 @@ public abstract class QuickActivity extends RxAppCompatActivity implements EasyP
             throw new IllegalArgumentException("You must return a right target view for loading");
         }
         mVaryViewHelperController.restore();
-    }
-
-    @Subscribe(threadMode = ThreadMode.MainThread)
-    public void onEventBus(EventCenter eventCenter) {
-        if (null != eventCenter) {
-            onEventComing(eventCenter);
-        }
     }
 
     /**
@@ -723,35 +672,5 @@ public abstract class QuickActivity extends RxAppCompatActivity implements EasyP
 
     public CommonDialog.Builder getDialogBuilder(Context context) {
         return new CommonDialog.Builder(context);
-    }
-
-    @Override
-    public void showLoading() {
-
-    }
-
-    @Override
-    public void showSuccess() {
-
-    }
-
-    @Override
-    public void showFail() {
-
-    }
-
-    @Override
-    public void showRetry() {
-
-    }
-
-    @Override
-    public void showMessage(String message) {
-
-    }
-
-    @Override
-    public <T> LifecycleTransformer<T> bindToLife() {
-        return this.<T>bindToLifecycle();
     }
 }

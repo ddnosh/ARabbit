@@ -9,10 +9,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-
-import la.xiong.androidquick.R;
-
 /**
  * @author  ddnosh
  * @website http://blog.csdn.net/ddnosh
@@ -66,16 +62,6 @@ public class CommonViewHolder extends RecyclerView.ViewHolder {
     public CommonViewHolder setImageResource(int viewId, int resId) {
         ImageView view = getView(viewId);
         view.setImageResource(resId);
-        return this;
-    }
-
-    public CommonViewHolder setImageResourceWithGlide(int viewId, String url) {
-        ImageView view = getView(viewId);
-        Glide.with(mContext)
-                .load(url)
-                .placeholder(R.drawable.image_loading)
-                .crossFade()
-                .into(view);
         return this;
     }
 

@@ -17,10 +17,6 @@ android {
         versionName rootProject.ext.android.versionName
     }
 
-    dataBinding {
-        enabled = true
-    }
-
     buildTypes {
         release {
             minifyEnabled false
@@ -44,33 +40,15 @@ dependencies {
     api rootProject.ext.dependencies["appcompatv4"]
     api rootProject.ext.dependencies["appcompatv7"]
     api rootProject.ext.dependencies["design"]
-    //eventbus
-    api 'de.greenrobot:eventbus:3.0.0-beta1'
-    //butterknife
-    api "com.jakewharton:butterknife:8.4.0"
-    annotationProcessor "com.jakewharton:butterknife-compiler:8.4.0"
-    //retrofit+okhttp
-    api 'com.squareup.retrofit2:retrofit:2.5.0'
-    api 'com.squareup.retrofit2:adapter-rxjava2:2.5.0'
-    api 'com.squareup.okhttp3:okhttp:3.12.1'
-    api 'com.squareup.okhttp3:logging-interceptor:3.12.1'
-    api 'com.squareup.retrofit2:converter-gson:2.5.0'
-    api 'com.jakewharton.rxbinding:rxbinding:0.2.0'
-    //gson
-    api 'com.google.code.gson:gson:2.4'
-    //glide
-    api 'com.github.bumptech.glide:glide:3.7.0'
-    //rxlifecycle
-    api 'com.trello.rxlifecycle2:rxlifecycle-components:2.1.0'
 }
 
 publish {
     userOrg = 'ddnosh'
     groupId = 'la.xiong.androidquick'
-    artifactId = 'AndroidQuick'
-    version = '1.2.4'
+    artifactId = 'AndroidQuick-Simple'
+    version = '1.0.0'
     description = 'AndroidQuick is a code library helps developers make an app easier.'
-    website = "https://github.com/ddnosh/AndroidQuick"
+    website = "https://github.com/ddnosh/QuickLib"
 }
 
 tasks.withType(Javadoc) {//防止编码问题

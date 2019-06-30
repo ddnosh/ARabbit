@@ -7,8 +7,7 @@ import android.view.ViewGroup;
 
 import java.util.List;
 
-import la.xiong.androidquick.tool.LogUtil;
-import la.xiong.androidquick.ui.adapter.CommonViewHolder;
+import la.xiong.androidquick.util.LogUtil;
 
 /**
  * @author  ddnosh

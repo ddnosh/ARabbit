@@ -3,8 +3,6 @@ package la.xiong.androidquick.ui.base;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.databinding.DataBindingUtil;
-import android.databinding.ViewDataBinding;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -16,27 +14,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.trello.rxlifecycle2.LifecycleTransformer;
-import com.trello.rxlifecycle2.components.support.RxFragment;
-
 import java.lang.reflect.Field;
 
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
-import de.greenrobot.event.EventBus;
-import de.greenrobot.event.Subscribe;
-import de.greenrobot.event.ThreadMode;
-import la.xiong.androidquick.ui.mvp.BaseContract;
-import la.xiong.androidquick.tool.StringUtil;
+import la.xiong.androidquick.util.StringUtil;
 import la.xiong.androidquick.ui.dialog.dialogactivity.CommonDialog;
-import la.xiong.androidquick.bean.eventbus.EventCenter;
 import la.xiong.androidquick.ui.viewstatus.VaryViewHelperController;
 
 /**
- * @author  ddnosh
+ * @author ddnosh
  * @website http://blog.csdn.net/ddnosh
  */
-public abstract class QuickFragment extends RxFragment implements BaseContract.BaseView {
+public abstract class QuickFragment extends Fragment {
 
     /**
      * Log tag
@@ -61,15 +49,9 @@ public abstract class QuickFragment extends RxFragment implements BaseContract.B
     private VaryViewHelperController mVaryViewHelperController = null;
 
     /**
-     * butterknife 8+ support
-     */
-    private Unbinder mUnbinder;
-
-    /**
      * databinding
      */
     public View mainLayout;
-    protected ViewDataBinding binding;
 
     @Override
     public void onAttach(Activity activity) {
@@ -81,23 +63,13 @@ public abstract class QuickFragment extends RxFragment implements BaseContract.B
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initCreate();
-        EventBus.getDefault().register(this);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         int layoutId = getContentViewLayoutID();
         if (layoutId != 0) {
-            try {
-                binding= DataBindingUtil.inflate(inflater,layoutId, container, false);
-                if (binding != null) {
-                    mainLayout = binding.getRoot();
-                } else {
-                    mainLayout=inflater.inflate(layoutId, container, false);
-                }
-            }catch (NoClassDefFoundError e){
-                mainLayout=inflater.inflate(layoutId, container, false);
-            }
+            mainLayout = inflater.inflate(layoutId, container, false);
             mainLayout.setClickable(true);
             return mainLayout;
         } else {
@@ -108,7 +80,6 @@ public abstract class QuickFragment extends RxFragment implements BaseContract.B
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mUnbinder = ButterKnife.bind(this, view);
 
         if (null != getLoadingTargetView()) {
             mVaryViewHelperController = new VaryViewHelperController(getLoadingTargetView());
@@ -133,10 +104,6 @@ public abstract class QuickFragment extends RxFragment implements BaseContract.B
     public void onDestroy() {
         super.onDestroy();
         initDestroy();
-        if (mUnbinder != null) {
-            mUnbinder.unbind();
-        }
-        EventBus.getDefault().unregister(this);
     }
 
     @Override
@@ -210,6 +177,7 @@ public abstract class QuickFragment extends RxFragment implements BaseContract.B
     }
 
     protected abstract void initCreate();
+
     protected abstract void initDestroy();
 
     /**
@@ -250,13 +218,6 @@ public abstract class QuickFragment extends RxFragment implements BaseContract.B
      * @return id of layout resource
      */
     protected abstract int getContentViewLayoutID();
-
-    /**
-     * when event comming
-     *
-     * @param eventCenter
-     */
-    protected abstract void onEventComing(EventCenter eventCenter);
 
     /**
      * get the support fragment manager
@@ -400,19 +361,6 @@ public abstract class QuickFragment extends RxFragment implements BaseContract.B
         }
     }
 
-    public void onEventMainThread(EventCenter eventCenter) {
-        if (null != eventCenter) {
-            onEventComing(eventCenter);
-        }
-    }
-
-    @Subscribe(threadMode = ThreadMode.MainThread)
-    public void onEventBus(EventCenter eventCenter) {
-        if (null != eventCenter) {
-            onEventComing(eventCenter);
-        }
-    }
-
     /**
      * ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
      * Android6.0权限控制
@@ -458,35 +406,5 @@ public abstract class QuickFragment extends RxFragment implements BaseContract.B
             return ((QuickActivity) getActivity()).getDialogBuilder(context);
         }
         throw new IllegalStateException("CommonDialog can only be used in a class which extends QuickActivity!");
-    }
-
-    @Override
-    public void showLoading() {
-
-    }
-
-    @Override
-    public void showSuccess() {
-
-    }
-
-    @Override
-    public void showFail() {
-
-    }
-
-    @Override
-    public void showRetry() {
-
-    }
-
-    @Override
-    public void showMessage(String message) {
-
-    }
-
-    @Override
-    public <T> LifecycleTransformer<T> bindToLife() {
-        return bindToLifecycle();
     }
 }

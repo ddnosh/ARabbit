@@ -8,7 +8,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import la.xiong.androidquick.R;
-import la.xiong.androidquick.tool.StringUtil;
+import la.xiong.androidquick.util.StringUtil;
 
 /**
  * @author  ddnosh

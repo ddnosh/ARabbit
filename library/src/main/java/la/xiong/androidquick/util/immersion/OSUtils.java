@@ -1,4 +1,4 @@
-package la.xiong.androidquick.tool.immersion;
+package la.xiong.androidquick.util.immersion;
 
 import android.os.Build;
 import android.text.TextUtils;

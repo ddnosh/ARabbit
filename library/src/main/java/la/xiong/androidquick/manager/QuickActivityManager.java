@@ -9,22 +9,22 @@ import java.util.List;
  * @author  ddnosh
  * @website http://blog.csdn.net/ddnosh
  */
-public class QuickAppManager {
+public class QuickActivityManager {
 
-    private static final String TAG = "QuickAppManager";
+    private static final String TAG = "QuickActivityManager";
 
-    private static QuickAppManager instance = null;
+    private static QuickActivityManager instance = null;
     private List<Activity> mActivities = new LinkedList<Activity>();
 
-    private QuickAppManager() {
+    private QuickActivityManager() {
 
     }
 
-    public static QuickAppManager getInstance() {
+    public static QuickActivityManager getInstance() {
         if (null == instance) {
-            synchronized (QuickAppManager.class) {
+            synchronized (QuickActivityManager.class) {
                 if (null == instance) {
-                    instance = new QuickAppManager();
+                    instance = new QuickActivityManager();
                 }
             }
         }

@@ -1,10 +1,9 @@
-package la.xiong.androidquick.tool;
+package la.xiong.androidquick.util;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import android.os.Build;
 
 /**
  * @author  ddnosh

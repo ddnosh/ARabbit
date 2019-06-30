@@ -19,7 +19,8 @@ import android.widget.TextView;
 import la.xiong.androidquick.R;
 
 /**
- * Created by YoKeyword on 16/6/3.
+ * @author  ddnosh
+ * @website http://blog.csdn.net/ddnosh
  */
 public class BottomBarTab extends FrameLayout {
     private ImageView mIcon;

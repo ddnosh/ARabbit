@@ -16,9 +16,9 @@ import android.widget.LinearLayout;
 import java.util.ArrayList;
 import java.util.List;
 
-
 /**
- * Created by YoKeyword on 16/6/3.
+ * @author  ddnosh
+ * @website http://blog.csdn.net/ddnosh
  */
 public class BottomBar extends LinearLayout {
     private static final int TRANSLATE_DURATION_MILLIS = 200;

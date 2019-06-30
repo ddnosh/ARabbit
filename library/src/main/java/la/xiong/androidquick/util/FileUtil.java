@@ -1,4 +1,4 @@
-package la.xiong.androidquick.tool;
+package la.xiong.androidquick.util;
 
 import android.content.Context;
 import android.content.Intent;

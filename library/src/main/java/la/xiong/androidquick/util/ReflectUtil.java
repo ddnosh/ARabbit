@@ -1,4 +1,4 @@
-package la.xiong.androidquick.tool;
+package la.xiong.androidquick.util;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
