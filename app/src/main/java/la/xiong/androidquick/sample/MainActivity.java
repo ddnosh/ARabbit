@@ -1,4 +1,4 @@
-package la.xiong.androidquick;
+package la.xiong.androidquick.sample;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

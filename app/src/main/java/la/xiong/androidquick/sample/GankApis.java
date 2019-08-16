@@ -1,8 +1,9 @@
-package la.xiong.androidquick;
+package la.xiong.androidquick.sample;
 
 import java.util.List;
 
 import io.reactivex.Observable;
+import la.xiong.androidquick.sample.GankRes;
 import retrofit2.http.GET;
 
 /**

@@ -1,4 +1,4 @@
-package la.xiong.androidquick;
+package la.xiong.androidquick.sample;
 
 import la.xiong.androidquick.module.network.retrofit.RetrofitManager;
 
