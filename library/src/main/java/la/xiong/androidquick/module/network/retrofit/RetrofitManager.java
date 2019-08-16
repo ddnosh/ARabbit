@@ -11,22 +11,31 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
- * @author  ddnosh
+ * @author ddnosh
  * @website http://blog.csdn.net/ddnosh
  */
 public class RetrofitManager {
 
-    private static final String TAG = "RetrofitManager";
-    private static Retrofit singleton;
-    private static OkHttpClient okHttpClient = null;
-    private static String BASE_URL = "http://127.0.0.1";
+    private final String TAG = "RetrofitManager";
+    private Retrofit singleton;
+    private OkHttpClient okHttpClient = null;
+    private String BASE_URL = "http://127.0.0.1";
 
-    private void init() {
-        initOkHttp();
+    public static RetrofitManager mInstance;
+
+    public static RetrofitManager getInstance() {
+        if (mInstance == null) {
+            synchronized (RetrofitManager.class) {
+                if (mInstance == null) {
+                    mInstance = new RetrofitManager();
+                }
+            }
+        }
+        return mInstance;
     }
 
     public RetrofitManager() {
-        init();
+        initOkHttp();
     }
 
     private void initOkHttp() {
@@ -47,18 +56,17 @@ public class RetrofitManager {
         LogUtil.i(TAG, "initOkHttp:getNoSSLSocketFactory");
     }
 
-    public static void initBaseUrl(String url) {
+    public void initBaseUrl(String url) {
         BASE_URL = url;
         LogUtil.i(TAG, " base_url ->" + BASE_URL);
     }
 
     /**
-     * @param context Context
      * @param clazz   interface
      * @param <T>     interface实例化
      * @return
      */
-    public static <T> T createApi(Context context, Class<T> clazz) {
+    public <T> T createApi(Class<T> clazz) {
         if (singleton == null) {
             synchronized (RetrofitManager.class) {
                 if (singleton == null) {
