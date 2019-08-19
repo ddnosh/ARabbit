@@ -10,7 +10,7 @@ ext {
 
     dependencies = [
             //support
-            appcompatv4             : 'com.android.support:support-v4:24.2.0',
+            appcompatv4             : 'com.android.support:support-v4:28.0.0',
             appcompatv7             : 'com.android.support:appcompat-v7:28.0.0',
             design                  : 'com.android.support:design:28.0.0'
     ]
