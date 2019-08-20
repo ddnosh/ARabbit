@@ -2,6 +2,7 @@ package la.xiong.androidquick.sample;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 
 import java.util.List;
 
@@ -56,5 +57,9 @@ public class MainActivity extends AppCompatActivity {
                         LogUtil.i(TAG, listGankRes.getResults().toString());
                     }
                 });
+    }
+
+    public void clickLog(View view) {
+        AndroidQuick.logProcessor().loadD("this is tiny log");
     }
 }
