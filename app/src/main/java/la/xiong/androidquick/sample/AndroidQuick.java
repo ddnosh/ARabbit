@@ -15,6 +15,10 @@ public class AndroidQuick {
 
     //配置生效
     public static void launch() {
+        //log
+        if (mILogProcessor == null) {
+            mILogProcessor = new DefaultLogProcessor();
+        }
         mILogProcessor.init(mLogConfig);
     }
 
