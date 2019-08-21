@@ -58,8 +58,4 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
     }
-
-    public void clickLog(View view) {
-        AndroidQuick.logProcessor().loadD("this is tiny log");
-    }
 }
