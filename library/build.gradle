@@ -63,9 +63,9 @@ dependencies {
 
 publish {
     userOrg = 'ddnosh'
-    groupId = 'la.xiong.androidquick'
+    groupId = 'com.androidwind.androidquick'
     artifactId = 'AndroidQuick'
-    version = '1.2.6'
+    version = '2.0.0'
     description = 'AndroidQuick is a code library helps developers make an app easier.'
     website = "https://github.com/ddnosh/AndroidQuick"
 }
