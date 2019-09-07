@@ -1,4 +1,4 @@
-package com.androidwind.androidquick.module.network.retrofit;
+package com.androidwind.androidquick.module.retrofit;
 
 /**
  * @author  ddnosh

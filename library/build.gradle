@@ -56,17 +56,18 @@ dependencies {
     //gson
     api 'com.google.code.gson:gson:2.4'
     //glide
-    api 'com.github.bumptech.glide:glide:3.7.0'
+    api 'com.github.bumptech.glide:glide:4.9.0'
+    api 'jp.wasabeef:glide-transformations:4.0.0@aar'
     //rxlifecycle
     api 'com.trello.rxlifecycle2:rxlifecycle-components:2.1.0'
 }
 
 publish {
     userOrg = 'ddnosh'
-    groupId = 'com.androidwind.androidquick'
-    artifactId = 'AndroidQuick'
-    version = '2.0.0'
-    description = 'AndroidQuick is a code library helps developers make an app easier.'
+    groupId = 'com.androidwind'
+    artifactId = 'androidquick'
+    version = '2.0.1'
+    description = 'AndroidQuick is a code library contains quicker kits.'
     website = "https://github.com/ddnosh/AndroidQuick"
 }
 

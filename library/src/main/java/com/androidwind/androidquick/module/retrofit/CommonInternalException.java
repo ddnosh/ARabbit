@@ -1,4 +1,4 @@
-package com.androidwind.androidquick.module.network.retrofit;
+package com.androidwind.androidquick.module.retrofit;
 
 import com.androidwind.androidquick.constant.Constant;
 

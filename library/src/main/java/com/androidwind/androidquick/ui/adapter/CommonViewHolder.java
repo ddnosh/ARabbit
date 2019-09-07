@@ -74,7 +74,6 @@ public class CommonViewHolder extends RecyclerView.ViewHolder {
         Glide.with(mContext)
                 .load(url)
                 .placeholder(R.drawable.image_loading)
-                .crossFade()
                 .into(view);
         return this;
     }

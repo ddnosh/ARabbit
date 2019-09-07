@@ -229,14 +229,10 @@ public class FileUtil {
     }
 
 
-    public static void insertCardRerousce(String sourcefile, String targetfile) {
-        File sourceFile = new File(sourcefile);
-        File targetFile = new File(targetfile);
-        try {
-            copyFile(sourceFile, targetFile);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public static void insertCardRerousce(String srcFile, String tarFile) {
+        File sourceFile = new File(srcFile);
+        File targetFile = new File(tarFile);
+        copyFile(sourceFile, targetFile);
     }
 
     // 遍历接收一个文件路径，然后把文件子目录中的所有文件遍历并输出来
@@ -254,31 +250,33 @@ public class FileUtil {
     }
 
     // 复制文件
-    public static void copyFile(File sourceFile, File targetFile)
-            throws IOException {
-        // 新建文件输入流并对它进行缓冲
-        FileInputStream input = new FileInputStream(sourceFile);
-        BufferedInputStream inBuff = new BufferedInputStream(input);
-
-        // 新建文件输出流并对它进行缓冲
-        FileOutputStream output = new FileOutputStream(targetFile);
-
-        BufferedOutputStream outBuff = new BufferedOutputStream(output);
-
-        // 缓冲数组
-        byte[] b = new byte[1024 * 5];
-        int len;
-        while ((len = inBuff.read(b)) != -1) {
-            outBuff.write(b, 0, len);
+    public static boolean copyFile(File source, File target) {
+        FileOutputStream outputStream = null;
+        FileInputStream inputStream = null;
+        try {
+            inputStream = new FileInputStream(source);
+            outputStream = new FileOutputStream(target);
+            byte[] bytes = new byte[1024];
+            int read;
+            while ((read = inputStream.read(bytes)) != -1) {
+                outputStream.write(bytes, 0, read);
+            }
+            outputStream.flush();
+            return true;
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            return false;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            try {
+                outputStream.close();
+                inputStream.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
-        // 刷新此缓冲的输出流
-        outBuff.flush();
-
-        //关闭流
-        inBuff.close();
-        outBuff.close();
-        output.close();
-        input.close();
     }
 
     public static String getMd5Str(String path) {

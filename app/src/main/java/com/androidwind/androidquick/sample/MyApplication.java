@@ -1,6 +1,6 @@
 package com.androidwind.androidquick.sample;
 
-import com.androidwind.androidquick.module.network.retrofit.RetrofitManager;
+import com.androidwind.androidquick.module.retrofit.RetrofitManager;
 
 /**
  * @author ddnosh

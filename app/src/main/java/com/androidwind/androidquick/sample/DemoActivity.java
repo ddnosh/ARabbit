@@ -2,9 +2,11 @@ package com.androidwind.androidquick.sample;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 
-import com.androidwind.androidquick.module.network.retrofit.RetrofitManager;
-import com.androidwind.androidquick.module.network.retrofit.exeception.ApiException;
+import com.androidwind.androidquick.module.glide.GlideManager;
+import com.androidwind.androidquick.module.retrofit.RetrofitManager;
+import com.androidwind.androidquick.module.retrofit.exeception.ApiException;
 import com.androidwind.androidquick.module.rxjava.BaseObserver;
 import com.androidwind.androidquick.util.LogUtil;
 import com.androidwind.androidquick.util.ToastUtil;
@@ -19,8 +21,6 @@ import io.reactivex.schedulers.Schedulers;
  * @website http://blog.csdn.net/ddnosh
  */
 public class DemoActivity extends BaseActivity {
-
-    RetrofitManager mRetrofitManager;
 
     @Override
     protected void getBundleExtras(Bundle extras) {
@@ -51,12 +51,11 @@ public class DemoActivity extends BaseActivity {
         //             }
         //         });
 
-        mRetrofitManager = new RetrofitManager();
-        mRetrofitManager.initBaseUrl("http://gank.io/api/");
+        RetrofitManager.getInstance().initBaseUrl("http://gank.io/api/");
     }
 
-    public void Open(View v) {
-        mRetrofitManager.createApi(GankApis.class)
+    public void OpenNetwork(View v) {
+        RetrofitManager.getInstance().createApi(GankApis.class)
                 .getHistoryDate()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -74,5 +73,10 @@ public class DemoActivity extends BaseActivity {
                         ToastUtil.showToast("Success!");
                     }
                 });
+    }
+
+    public void OpenImage(View v) {
+        GlideManager
+                .loadNet("https://hbimg.huabanimg.com/ca0077ed805df7a1566d68a74cae73c59994929b73f68-nkFwhw_fw658", (ImageView)findViewById(R.id.imageView));
     }
 }

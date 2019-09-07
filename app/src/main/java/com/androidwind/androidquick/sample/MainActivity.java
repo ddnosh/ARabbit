@@ -4,8 +4,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
-import com.androidwind.androidquick.module.network.retrofit.RetrofitManager;
-import com.androidwind.androidquick.module.network.retrofit.exeception.ApiException;
+import com.androidwind.androidquick.module.retrofit.RetrofitManager;
+import com.androidwind.androidquick.module.retrofit.exeception.ApiException;
 import com.androidwind.androidquick.module.rxjava.BaseObserver;
 import com.androidwind.androidquick.sample.GankApis;
 import com.androidwind.androidquick.sample.GankRes;

@@ -1,4 +1,4 @@
-package com.androidwind.androidquick.module.network.retrofit;
+package com.androidwind.androidquick.module.retrofit;
 
 import java.security.SecureRandom;
 import java.security.cert.X509Certificate;
