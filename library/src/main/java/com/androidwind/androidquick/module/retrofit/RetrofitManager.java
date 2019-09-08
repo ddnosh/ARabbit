@@ -2,6 +2,7 @@ package com.androidwind.androidquick.module.retrofit;
 
 import com.androidwind.androidquick.BuildConfig;
 import com.androidwind.androidquick.util.LogUtil;
+
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
@@ -14,30 +15,37 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public class RetrofitManager {
 
-    private final String TAG = "RetrofitManager";
+    private static final String TAG = "RetrofitManager";
 
-    private Retrofit singleton;
+    private Retrofit retrofit;
     private Retrofit.Builder retrofitBuilder;
     private OkHttpClient okHttpClient;
     private OkHttpClient.Builder okHttpClientBuilder;
 
-    private String BASE_URL;
+    private static String BASE_URL = "https://api.github.com";
 
-    public static RetrofitManager mInstance;
+    private static RetrofitManager mInstance;
 
     public static RetrofitManager getInstance() {
         if (mInstance == null) {
             synchronized (RetrofitManager.class) {
                 if (mInstance == null) {
-                    mInstance = new RetrofitManager();
+                    mInstance = new RetrofitManager(BASE_URL);
                 }
             }
         }
         return mInstance;
     }
 
-    public RetrofitManager() {
+    public RetrofitManager(String baseUrl) {
+        BASE_URL = baseUrl;
         initOkHttp();
+        LogUtil.i(TAG, "RetrofitManager ->" + BASE_URL);
+    }
+
+    public static void initBaseUrl(String url) {
+        BASE_URL = url;
+        LogUtil.i(TAG, "initBaseUrl ->" + BASE_URL);
     }
 
     private void initOkHttp() {
@@ -58,41 +66,30 @@ public class RetrofitManager {
         LogUtil.i(TAG, "initOkHttp:getNoSSLSocketFactory");
     }
 
-    /**
-     * @param clazz   interface
-     * @param <T>     interface实例化
-     * @return
-     */
     public <T> T createApi(Class<T> clazz) {
-        if (singleton == null) {
+        if (retrofit == null) {
             synchronized (RetrofitManager.class) {
-                if (singleton == null) {
+                if (retrofit == null) {
+                    //Retrofit
                     retrofitBuilder = new Retrofit.Builder();
                     retrofitBuilder.baseUrl(BASE_URL)
                             .client(okHttpClient)
                             .addConverterFactory(GsonConverterFactory.create())//定义转化器,用Gson将服务器返回的Json格式解析成实体
-                            .addCallAdapterFactory(RxJava2CallAdapterFactory.create());//关联Rxjava
-                    singleton = retrofitBuilder.build();
+                            .addCallAdapterFactory(RxJava2CallAdapterFactory.create());//关联RxJava
+                    retrofit = retrofitBuilder.build();
                 }
             }
         }
-        return singleton.create(clazz);
+        LogUtil.i(TAG, "initRetrofit");
+        return retrofit.create(clazz);
     }
 
-    /*
-        初始化url
-     */
-    public void initBaseUrl(String url) {
-        BASE_URL = url;
-        LogUtil.i(TAG, " base_url ->" + BASE_URL);
+    public Retrofit getRetrofit() {
+        return retrofit;
     }
 
-    public Retrofit getSingleton() {
-        return singleton;
-    }
-
-    public void setSingleton(Retrofit singleton) {
-        this.singleton = singleton;
+    public void setRetrofit(Retrofit retrofit) {
+        this.retrofit = retrofit;
     }
 
     public Retrofit.Builder getRetrofitBuilder() {

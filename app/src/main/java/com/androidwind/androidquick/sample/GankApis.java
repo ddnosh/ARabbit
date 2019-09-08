@@ -14,4 +14,6 @@ public interface GankApis {
     @GET("day/history")
     Observable<GankRes<List<String>>> getHistoryDate();
 
+    @GET("https://api.bintray.com/packages/ddnosh/maven/androidquick/images/download.svg")
+    Observable<String> getSdkVersion();
 }

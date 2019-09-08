@@ -19,7 +19,7 @@ public class MyApplication extends android.support.multidex.MultiDexApplication 
         }
 
         //init retrofit url
-        RetrofitManager.getInstance().initBaseUrl("http://gank.io/api/");
+        RetrofitManager.initBaseUrl("http://gank.io/api/");
     }
 
     public static synchronized MyApplication getInstance() {
