@@ -1,6 +1,6 @@
 # QuickBase
-QuickBase是提供给[AndroidQuick](https://github.com/ddnosh/AndroidQuick)快速开发代码库使用的一个SDK库。  
-所以为了达到快速开发的目的，QuickBase也会集成一些开源框架。
+QuickBase一个用于Android快速的SDK库。
+因为是快速开发，所以会集成一些常用的开源框架，以便用于快速开发目的。
 
 # 开源框架
 - [ButterKnife](https://github.com/JakeWharton/butterknife)
@@ -8,4 +8,9 @@ QuickBase是提供给[AndroidQuick](https://github.com/ddnosh/AndroidQuick)快�
 - [EventBus](https://github.com/greenrobot/EventBus)
 - [Retrofit](https://github.com/square/retrofit)
 - [gson](https://github.com/google/gson)
-- [RxLifecycle](https://github.com/trello/RxLifecycle) - > 同时自动引入RxJava2
+- [RxLifecycle](https://github.com/trello/RxLifecycle) - > 同时自动引入[RxJava2](https://github.com/ReactiveX/RxJava)
+
+# 使用QuickBase的项目
+- [AndroidQuick](https://github.com/ddnosh/AndroidQuick)
+- [QuickGank](https://github.com/ddnosh/QuickGank)
+- [QuickGank-Kotlin](https://github.com/ddnosh/QuickGank-Kotlin)
