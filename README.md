@@ -1,4 +1,6 @@
 # QuickBase
+[![Download](https://api.bintray.com/packages/ddnosh/maven/androidquick/images/download.svg) ](https://bintray.com/ddnosh/maven/androidquick/_latestVersion)  
+
 QuickBase一个用于Android快速的SDK库。  
 因为是快速开发，所以会集成一些常用的开源框架，以便用于快速开发目的。  
 功能简单点的模块比如task、log等可以直接源码引入。
