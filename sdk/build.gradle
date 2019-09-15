@@ -66,9 +66,9 @@ publish {
     userOrg = 'ddnosh'
     groupId = 'com.androidwind'
     artifactId = 'androidquick'
-    version = '2.0.2'
+    version = '2.0.3'
     description = 'AndroidQuick is a code library contains quicker kits.'
-    website = "https://github.com/ddnosh/AndroidQuick"
+    website = "https://github.com/ddnosh/QuickBase"
 }
 
 tasks.withType(Javadoc) {//防止编码问题
