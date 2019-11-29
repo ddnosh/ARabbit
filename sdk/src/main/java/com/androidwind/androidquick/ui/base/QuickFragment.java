@@ -275,8 +275,8 @@ public abstract class QuickFragment extends RxFragment implements BaseContract.B
     /**
      * startActivityForResult
      *
-     * @param clazz
-     * @param requestCode
+     * @param clazz         类名.class，获取类型类
+     * @param requestCode   请求码
      */
     protected void readyGoForResult(Class<?> clazz, int requestCode) {
         Intent intent = getGoIntent(clazz);

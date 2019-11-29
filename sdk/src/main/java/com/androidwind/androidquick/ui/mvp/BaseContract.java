@@ -19,4 +19,8 @@ public interface BaseContract {
     interface BaseView {
         <T> LifecycleTransformer<T> bindToLife();
     }
+
+    interface BaseModel {
+
+    }
 }
