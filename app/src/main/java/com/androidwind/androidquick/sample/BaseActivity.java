@@ -1,7 +1,6 @@
 package com.androidwind.androidquick.sample;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.view.View;
 
 import com.androidwind.androidquick.eventbus.EventCenter;

@@ -7,6 +7,8 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.webkit.CookieManager;
 import android.webkit.CookieSyncManager;
@@ -37,6 +39,7 @@ public class FileUtil {
 
     public static final String DIR = ".AndroidQuick";
     public static final String CUSPATH = Environment.getExternalStorageDirectory().getPath() + File.separator + DIR + File.separator;
+    private final static String HTTP_CACHE_DIR_NAME = "http_response";
 
     /**
      * 获取sd卡状态
@@ -1312,5 +1315,32 @@ public class FileUtil {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * 获取网络请求缓存文件夹
+     * @param context 上下文
+     * @return 网络请求缓存文件夹
+     */
+    @Nullable
+    public static File getHttpImageCacheDir(@NonNull Context context) {
+        return getCacheDir(context, HTTP_CACHE_DIR_NAME);
+    }
+
+    /**
+     * 获取缓存文件夹
+     *
+     * @param context 上下文
+     * @param dirName 文件夹名称
+     * @return 缓存文件夹
+     */
+    @Nullable
+    public static File getCacheDir(@NonNull Context context, @NonNull String dirName) {
+        File rootDir = context.getExternalCacheDir();
+        File cacheFile = new File(rootDir, dirName);
+        if (!cacheFile.exists()) {
+            cacheFile.mkdir();
+        }
+        return cacheFile;
     }
 }
