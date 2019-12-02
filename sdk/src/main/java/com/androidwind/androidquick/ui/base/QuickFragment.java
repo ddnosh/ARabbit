@@ -11,7 +11,6 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,7 +28,7 @@ import de.greenrobot.event.ThreadMode;
 import com.androidwind.androidquick.ui.mvp.BaseContract;
 import com.androidwind.androidquick.util.StringUtil;
 import com.androidwind.androidquick.ui.dialog.dialogactivity.CommonDialog;
-import com.androidwind.androidquick.eventbus.EventCenter;
+import com.androidwind.androidquick.module.asynchronize.eventbus.EventCenter;
 import com.androidwind.androidquick.ui.viewstatus.VaryViewHelperController;
 
 /**

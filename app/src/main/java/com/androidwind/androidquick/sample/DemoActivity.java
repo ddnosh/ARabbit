@@ -43,7 +43,7 @@ public class DemoActivity extends BaseActivity {
 
     public void OpenNetwork(View v) {
         //使用sdk自带的RetrofitManager, 返回Json字符串格式
-        RetrofitManager.INSTANCE.getRetrofit(AppConfig.GITHUB_API_URL).create(GankApis.class)
+        RetrofitManager.INSTANCE.getRetrofit(AppConfig.GANK_API_URL).create(GankApis.class)
                 .getHistoryDate()
                 .compose(RxUtil.<GankRes<List<String>>>applySchedulers())
                 .compose(this.<GankRes<List<String>>>bindToLifecycle())

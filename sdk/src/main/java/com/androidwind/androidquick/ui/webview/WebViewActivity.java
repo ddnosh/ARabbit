@@ -12,11 +12,9 @@ import android.widget.ProgressBar;
 
 import com.androidwind.androidquick.R;
 import com.androidwind.androidquick.constant.Constant;
-import com.androidwind.androidquick.eventbus.EventCenter;
+import com.androidwind.androidquick.module.asynchronize.eventbus.EventCenter;
 import com.androidwind.androidquick.ui.base.QuickActivity;
 import com.androidwind.androidquick.util.StringUtil;
-
-import butterknife.BindView;
 
 /**
  * @author ddnosh

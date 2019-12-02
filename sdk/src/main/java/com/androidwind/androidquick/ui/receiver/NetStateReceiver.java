@@ -8,7 +8,7 @@ import android.content.IntentFilter;
 import de.greenrobot.event.EventBus;
 import com.androidwind.androidquick.util.LogUtil;
 import com.androidwind.androidquick.util.NetUtil;
-import com.androidwind.androidquick.eventbus.EventCenter;
+import com.androidwind.androidquick.module.asynchronize.eventbus.EventCenter;
 
 /**
  * @author  ddnosh

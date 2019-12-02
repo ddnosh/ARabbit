@@ -31,12 +31,6 @@ android {
 
 }
 
-allprojects {
-    repositories {
-        jcenter()
-    }
-}
-
 dependencies {
     api rootProject.ext.dependencies["appcompatv4"]
     api rootProject.ext.dependencies["appcompatv7"]
@@ -67,8 +61,8 @@ publish {
     userOrg = 'ddnosh'
     groupId = 'com.androidwind'
     artifactId = 'androidquick'
-    version = '2.0.4'
-    description = 'AndroidQuick is a code library contains quicker kits.'
+    publishVersion = '2.0.5'
+    desc = 'AndroidQuick is a code library contains quicker kits.'
     website = "https://github.com/ddnosh/QuickBase"
 }
 
@@ -84,6 +78,7 @@ task sourcesJar(type: Jar) {
 }
 
 task javadoc(type: Javadoc) {
+    failOnError false
     source = android.sourceSets.main.java.srcDirs
     classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
 }
@@ -93,7 +88,31 @@ task javadocJar(type: Jar, dependsOn: javadoc) {
     from javadoc.destinationDir
 }
 
+tasks.withType(Javadoc).all {
+    enabled = false
+}
+
 artifacts {
     archives javadocJar
     archives sourcesJar
 }
+
+//打包任务
+task makeJar(type: Copy) {
+    //删除旧的jar包
+    delete 'build/libs/quickbase.jar'
+    //从哪里打包class文件
+    from('build/intermediates/packaged-classes/debug/')
+    //打包到jar后的目录结构
+    into('build/libs/')
+    //包含的jar包
+    include('classes.jar')
+    //去掉不需要打包的目录和文件
+    exclude('BuildConfig.class', 'R.class')
+    //去掉R$开头的文件
+    exclude { it.name.startsWith('R$'); }
+    //重命名jar包为tinytask
+    rename ('classes.jar', 'quickbase.jar')
+}
+
+makeJar.dependsOn(build)

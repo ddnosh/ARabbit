@@ -1,4 +1,4 @@
-package com.androidwind.androidquick.eventbus;
+package com.androidwind.androidquick.module.asynchronize.eventbus;
 
 /**
  * @author  ddnosh
