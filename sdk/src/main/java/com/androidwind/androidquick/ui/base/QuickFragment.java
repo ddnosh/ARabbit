@@ -15,9 +15,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.trello.rxlifecycle2.LifecycleTransformer;
-import com.trello.rxlifecycle2.components.support.RxFragment;
-
 import java.lang.reflect.Field;
 
 import butterknife.ButterKnife;
@@ -35,7 +32,7 @@ import com.androidwind.androidquick.ui.viewstatus.VaryViewHelperController;
  * @author  ddnosh
  * @website http://blog.csdn.net/ddnosh
  */
-public abstract class QuickFragment extends RxFragment implements BaseContract.BaseView {
+public abstract class QuickFragment extends Fragment implements BaseContract.BaseView {
 
     protected static String TAG = "QuickFragment";
 
@@ -68,7 +65,9 @@ public abstract class QuickFragment extends RxFragment implements BaseContract.B
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EventBus.getDefault().register(this);
+        if (isBindEventBus()) {
+            EventBus.getDefault().register(this);
+        }
     }
 
     @Override
@@ -115,7 +114,9 @@ public abstract class QuickFragment extends RxFragment implements BaseContract.B
         if (mUnbinder != null) {
             mUnbinder.unbind();
         }
-        EventBus.getDefault().unregister(this);
+        if (isBindEventBus()) {
+            EventBus.getDefault().unregister(this);
+        }
     }
 
     @Override
@@ -188,6 +189,12 @@ public abstract class QuickFragment extends RxFragment implements BaseContract.B
         }
     }
 
+    /**
+     * bind eventbus
+     *
+     * @return
+     */
+    protected abstract boolean isBindEventBus();
     /**
      * when fragment is visible for the first time, here we can do some initialized work or refresh data only once
      */
@@ -436,8 +443,4 @@ public abstract class QuickFragment extends RxFragment implements BaseContract.B
         throw new IllegalStateException("CommonDialog can only be used in a class which extends QuickActivity!");
     }
 
-    @Override
-    public <T> LifecycleTransformer<T> bindToLife() {
-        return bindToLifecycle();
-    }
 }

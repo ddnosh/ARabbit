@@ -123,6 +123,11 @@ public class WebViewActivity extends QuickActivity {
         return true;
     }
 
+    @Override
+    protected boolean isBindEventBus() {
+        return false;
+    }
+
     //系统自带监听方法<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     @Override
     public void onBackPressed() {

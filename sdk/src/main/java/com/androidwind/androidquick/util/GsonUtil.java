@@ -12,9 +12,9 @@ import org.json.JSONObject;
  * @author  ddnosh
  * @website http://blog.csdn.net/ddnosh
  */
-public class GsonHelper {
+public class GsonUtil {
 
-    private static final String TAG = "GsonHelper";
+    private static final String TAG = "GsonUtil";
 
     private static Gson gson = null;
     static {

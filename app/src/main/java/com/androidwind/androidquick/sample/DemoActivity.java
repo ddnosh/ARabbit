@@ -1,5 +1,6 @@
 package com.androidwind.androidquick.sample;
 
+import android.arch.lifecycle.Lifecycle;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -9,11 +10,11 @@ import com.androidwind.androidquick.module.retrofit.exeception.ApiException;
 import com.androidwind.androidquick.module.rxjava.BaseObserver;
 import com.androidwind.androidquick.sample.http.RetrofitManager;
 import com.androidwind.androidquick.util.LogUtil;
-import com.androidwind.androidquick.util.RxUtil;
 import com.androidwind.androidquick.util.ToastUtil;
+import com.trello.lifecycle2.android.lifecycle.AndroidLifecycle;
+import com.trello.rxlifecycle2.LifecycleProvider;
 
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
@@ -38,7 +39,7 @@ public class DemoActivity extends BaseActivity {
 
     @Override
     protected void initViewsAndEvents(Bundle savedInstanceState) {
-
+        super.initViewsAndEvents(savedInstanceState);
     }
 
     public void OpenNetwork(View v) {
@@ -46,7 +47,7 @@ public class DemoActivity extends BaseActivity {
         RetrofitManager.INSTANCE.getRetrofit(AppConfig.GANK_API_URL).create(GankApis.class)
                 .getHistoryDate()
                 .compose(RxUtil.<GankRes<List<String>>>applySchedulers())
-                .compose(this.<GankRes<List<String>>>bindToLifecycle())
+                .compose(lifecycleProvider.<GankRes<List<String>>>bindUntilEvent(Lifecycle.Event.ON_DESTROY))
                 .subscribe(new BaseObserver<GankRes<List<String>>>() {
 
                     @Override
@@ -74,7 +75,7 @@ public class DemoActivity extends BaseActivity {
         retrofit.create(GankApis.class)
                 .getSdkVersion()
                 .compose(RxUtil.<String>applySchedulers())
-                .compose(this.<String>bindToLifecycle())
+                .compose(lifecycleProvider.<String>bindUntilEvent(Lifecycle.Event.ON_DESTROY))
                 .subscribe(new BaseObserver<String>() {
 
                                @Override

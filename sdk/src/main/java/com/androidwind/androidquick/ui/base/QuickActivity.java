@@ -23,6 +23,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -32,8 +33,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.androidwind.androidquick.R;
-import com.trello.rxlifecycle2.LifecycleTransformer;
-import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -62,7 +61,7 @@ import com.androidwind.androidquick.ui.viewstatus.VaryViewHelperController;
  * @author ddnosh
  * @website http://blog.csdn.net/ddnosh
  */
-public abstract class QuickActivity extends RxAppCompatActivity implements EasyPermissions.PermissionWithDialogCallbacks, BaseContract.BaseView {
+public abstract class QuickActivity extends AppCompatActivity implements EasyPermissions.PermissionWithDialogCallbacks, BaseContract.BaseView {
 
     protected static String TAG = "QuickActivity";
 
@@ -139,7 +138,9 @@ public abstract class QuickActivity extends RxAppCompatActivity implements EasyP
             getBundleExtras(extras);
         }
         // eventbus
-        EventBus.getDefault().register(this);
+        if (isBindEventBus()) {
+            EventBus.getDefault().register(this);
+        }
         // layout
         int layoutId = getContentViewLayoutID();
         if (layoutId != 0) {
@@ -200,8 +201,6 @@ public abstract class QuickActivity extends RxAppCompatActivity implements EasyP
             mVaryViewHelperController = new VaryViewHelperController(setDefaultVaryViewRoot());
         }
     }
-
-    protected abstract boolean isLoadDefaultTitleBar();
 
     protected View getContentView(int layoutResID, LinearLayout contentView) {
         return null;
@@ -282,9 +281,25 @@ public abstract class QuickActivity extends RxAppCompatActivity implements EasyP
             mUnbinder.unbind();
         }
         NetStateReceiver.unRegisterNetworkStateReceiver(mContext);
-        EventBus.getDefault().unregister(this);
+        if (isBindEventBus()) {
+            EventBus.getDefault().unregister(this);
+        }
         dismissLoadingDialog();
     }
+
+    /**
+     * default title bar
+     *
+     * @return
+     */
+    protected abstract boolean isLoadDefaultTitleBar();
+
+    /**
+     * bind eventbus
+     *
+     * @return
+     */
+    protected abstract boolean isBindEventBus();
 
     /**
      * get bundle data
@@ -695,8 +710,4 @@ public abstract class QuickActivity extends RxAppCompatActivity implements EasyP
         return new CommonDialog.Builder(context);
     }
 
-    @Override
-    public <T> LifecycleTransformer<T> bindToLife() {
-        return this.<T>bindToLifecycle();
-    }
 }

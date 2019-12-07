@@ -1,7 +1,5 @@
 package com.androidwind.androidquick.ui.mvp;
 
-import com.trello.rxlifecycle2.LifecycleTransformer;
-
 /**
  * @author ddnosh
  * @website http://blog.csdn.net/ddnosh
@@ -17,7 +15,7 @@ public interface BaseContract {
 
 
     interface BaseView {
-        <T> LifecycleTransformer<T> bindToLife();
+
     }
 
     interface BaseModel {

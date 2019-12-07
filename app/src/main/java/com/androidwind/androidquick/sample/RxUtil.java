@@ -1,4 +1,4 @@
-package com.androidwind.androidquick.util;
+package com.androidwind.androidquick.sample;
 
 import io.reactivex.Observable;
 import io.reactivex.ObservableSource;
@@ -19,7 +19,6 @@ public class RxUtil {
                     .observeOn(AndroidSchedulers.mainThread());
         }
     };
-
 
     /**
      * RxJava线程封装
