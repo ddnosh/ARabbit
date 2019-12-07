@@ -1,9 +1,26 @@
 # QuickBase
 [![Download](https://api.bintray.com/packages/ddnosh/maven/androidquick/images/download.svg) ](https://bintray.com/ddnosh/maven/androidquick/_latestVersion)  
 
-QuickBase一个用于Android快速的SDK库。  
-因为是快速开发，所以会集成一些常用的开源框架，以便用于快速开发目的。  
-功能简单点的模块比如task、log等可以直接源码引入。
+QuickBase是一个用于Android快速开发的SDK库。   
+因为是SDK，所以QuickBase提供基本功能库，尽量剥离强制性引用第三方库。  
+目前QuickBase引用的第三方库如下：  
+``` xml
+//异步分发：eventbus  
+api 'de.greenrobot:eventbus:3.0.0-beta1'  
+//IOC：butterknife  
+api "com.jakewharton:butterknife:8.4.0"  
+annotationProcessor "com.jakewharton:butterknife-compiler:8.4.0"  
+//网络：retrofit+okhttp  
+api 'com.squareup.retrofit2:retrofit:2.5.0'  
+api 'com.squareup.retrofit2:adapter-rxjava2:2.5.0'  
+api 'com.squareup.okhttp3:okhttp:3.12.1'  
+api 'com.squareup.okhttp3:logging-interceptor:3.12.1'  
+//解析：gson  
+api 'com.google.code.gson:gson:2.4'  
+//图片：glide  
+api 'com.github.bumptech.glide:glide:4.9.0'  
+api 'jp.wasabeef:glide-transformations:4.0.0@aar'  
+```
 
 # SDK功能
 1. constant：存放常量；
@@ -30,8 +47,7 @@ QuickBase一个用于Android快速的SDK库。
 - [Glide](https://github.com/bumptech/glide)
 - [EventBus](https://github.com/greenrobot/EventBus)
 - [Retrofit](https://github.com/square/retrofit)
-- [gson](https://github.com/google/gson)
-- [RxLifecycle](https://github.com/trello/RxLifecycle) - > 同时自动引入[RxJava2](https://github.com/ReactiveX/RxJava)
+- [Gson](https://github.com/google/gson)
 
 # 使用QuickBase的项目
 - [AndroidQuick](https://github.com/ddnosh/AndroidQuick)
