@@ -11,8 +11,6 @@ import com.androidwind.androidquick.module.rxjava.BaseObserver;
 import com.androidwind.androidquick.sample.http.RetrofitManager;
 import com.androidwind.androidquick.util.LogUtil;
 import com.androidwind.androidquick.util.ToastUtil;
-import com.trello.lifecycle2.android.lifecycle.AndroidLifecycle;
-import com.trello.rxlifecycle2.LifecycleProvider;
 
 import java.util.List;
 
