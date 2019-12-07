@@ -52,7 +52,6 @@ import com.androidwind.androidquick.util.StringUtil;
 import com.androidwind.androidquick.util.immersion.StatusBarUtil;
 import com.androidwind.androidquick.ui.dialog.dialogactivity.CommonDialog;
 import com.androidwind.androidquick.ui.dialog.dialogactivity.LoadingDialog;
-import com.androidwind.androidquick.ui.mvp.BaseContract;
 import com.androidwind.androidquick.ui.permission.EasyPermissions;
 import com.androidwind.androidquick.ui.receiver.NetStateReceiver;
 import com.androidwind.androidquick.ui.viewstatus.VaryViewHelperController;
@@ -61,7 +60,7 @@ import com.androidwind.androidquick.ui.viewstatus.VaryViewHelperController;
  * @author ddnosh
  * @website http://blog.csdn.net/ddnosh
  */
-public abstract class QuickActivity extends AppCompatActivity implements EasyPermissions.PermissionWithDialogCallbacks, BaseContract.BaseView {
+public abstract class QuickActivity extends AppCompatActivity implements EasyPermissions.PermissionWithDialogCallbacks{
 
     protected static String TAG = "QuickActivity";
 

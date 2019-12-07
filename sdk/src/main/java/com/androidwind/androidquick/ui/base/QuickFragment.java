@@ -22,7 +22,6 @@ import butterknife.Unbinder;
 import de.greenrobot.event.EventBus;
 import de.greenrobot.event.Subscribe;
 import de.greenrobot.event.ThreadMode;
-import com.androidwind.androidquick.ui.mvp.BaseContract;
 import com.androidwind.androidquick.util.StringUtil;
 import com.androidwind.androidquick.ui.dialog.dialogactivity.CommonDialog;
 import com.androidwind.androidquick.module.asynchronize.eventbus.EventCenter;
@@ -32,7 +31,7 @@ import com.androidwind.androidquick.ui.viewstatus.VaryViewHelperController;
  * @author  ddnosh
  * @website http://blog.csdn.net/ddnosh
  */
-public abstract class QuickFragment extends Fragment implements BaseContract.BaseView {
+public abstract class QuickFragment extends Fragment {
 
     protected static String TAG = "QuickFragment";
 
