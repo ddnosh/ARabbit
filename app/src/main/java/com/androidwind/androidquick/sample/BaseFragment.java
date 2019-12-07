@@ -40,6 +40,11 @@ public abstract class BaseFragment extends QuickFragment {
     }
 
     @Override
+    protected boolean isBindEventBus() {
+        return false;
+    }
+
+    @Override
     protected void onEventComing(EventCenter eventCenter) {
 
     }

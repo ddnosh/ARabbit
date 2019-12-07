@@ -7,6 +7,7 @@ import android.os.Bundle;
  * @website http://blog.csdn.net/ddnosh
  */
 public class DemoFragment extends BaseFragment {
+
     @Override
     protected void initViewsAndEvents(Bundle savedInstanceState) {
 
