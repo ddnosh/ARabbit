@@ -4,8 +4,6 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
-import android.support.annotation.DrawableRes;
-import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.TypedValue;
@@ -17,6 +15,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.androidwind.androidquick.R;
+
+import androidx.annotation.DrawableRes;
+import androidx.core.content.ContextCompat;
 
 /**
  * Created by YoKeyword on 16/6/3.

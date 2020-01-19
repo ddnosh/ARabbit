@@ -1,10 +1,12 @@
 package com.androidwind.androidquick.sample;
 
+import androidx.multidex.MultiDexApplication;
+
 /**
  * @author ddnosh
  * @website http://blog.csdn.net/ddnosh
  */
-public class MyApplication extends android.support.multidex.MultiDexApplication {
+public class MyApplication extends MultiDexApplication {
 
     private static MyApplication INSTANCE;
 

@@ -1,6 +1,5 @@
 package com.androidwind.androidquick.sample;
 
-import android.arch.lifecycle.Lifecycle;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -10,6 +9,8 @@ import com.androidwind.androidquick.ui.base.QuickActivity;
 import com.androidwind.androidquick.util.LogUtil;
 import com.trello.lifecycle2.android.lifecycle.AndroidLifecycle;
 import com.trello.rxlifecycle2.LifecycleProvider;
+
+import androidx.lifecycle.Lifecycle;
 
 /**
  * 通用抽象方法的实现集合
@@ -54,7 +55,7 @@ public abstract class BaseActivity extends QuickActivity {
 
     @Override
     protected boolean isLoadDefaultTitleBar() {
-        return false;
+        return true;
     }
 
     @Override

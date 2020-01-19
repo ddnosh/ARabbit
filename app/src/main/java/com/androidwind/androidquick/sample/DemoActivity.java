@@ -1,6 +1,5 @@
 package com.androidwind.androidquick.sample;
 
-import android.arch.lifecycle.Lifecycle;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -14,6 +13,7 @@ import com.androidwind.androidquick.util.ToastUtil;
 
 import java.util.List;
 
+import androidx.lifecycle.Lifecycle;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;

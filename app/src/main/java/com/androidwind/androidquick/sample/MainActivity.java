@@ -1,5 +1,6 @@
 package com.androidwind.androidquick.sample;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 
@@ -22,6 +23,8 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void initViewsAndEvents(Bundle savedInstanceState) {
         ToastUtil.register(getApplicationContext());
+        getToolbar().setTitle("首页");
+        getToolbar().setTitleTextColor(Color.parseColor("#ffffff"));
     }
 
     public void OpenActivity(View v) {

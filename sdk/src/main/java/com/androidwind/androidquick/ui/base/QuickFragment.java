@@ -3,29 +3,30 @@ package com.androidwind.androidquick.ui.base;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.databinding.DataBindingUtil;
-import android.databinding.ViewDataBinding;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import java.lang.reflect.Field;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.databinding.DataBindingUtil;
+import androidx.databinding.ViewDataBinding;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
-import de.greenrobot.event.EventBus;
-import de.greenrobot.event.Subscribe;
-import de.greenrobot.event.ThreadMode;
 import com.androidwind.androidquick.util.StringUtil;
 import com.androidwind.androidquick.ui.dialog.dialogactivity.CommonDialog;
 import com.androidwind.androidquick.module.asynchronize.eventbus.EventCenter;
 import com.androidwind.androidquick.ui.viewstatus.VaryViewHelperController;
+import com.google.android.material.snackbar.Snackbar;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 /**
  * @author  ddnosh
@@ -122,16 +123,17 @@ public abstract class QuickFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         // for bug ---> java.lang.IllegalStateException: Activity has been destroyed
-        try {
-            Field childFragmentManager = Fragment.class.getDeclaredField("mChildFragmentManager");
-            childFragmentManager.setAccessible(true);
-            childFragmentManager.set(this, null);
-
-        } catch (NoSuchFieldException e) {
-            throw new RuntimeException(e);
-        } catch (IllegalAccessException e) {
-            throw new RuntimeException(e);
-        }
+        // not necessary for androidx any more
+        // try {
+        //     Field childFragmentManager = Fragment.class.getDeclaredField("mChildFragmentManager");
+        //     childFragmentManager.setAccessible(true);
+        //     childFragmentManager.set(this, null);
+        //
+        // } catch (NoSuchFieldException e) {
+        //     throw new RuntimeException(e);
+        // } catch (IllegalAccessException e) {
+        //     throw new RuntimeException(e);
+        // }
     }
 
     @Override
@@ -388,7 +390,7 @@ public abstract class QuickFragment extends Fragment {
         }
     }
 
-    @Subscribe(threadMode = ThreadMode.MainThread)
+    @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEventBus(EventCenter eventCenter) {
         if (null != eventCenter) {
             onEventComing(eventCenter);

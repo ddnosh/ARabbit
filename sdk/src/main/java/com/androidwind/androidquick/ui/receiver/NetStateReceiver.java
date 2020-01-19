@@ -5,10 +5,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 
-import de.greenrobot.event.EventBus;
 import com.androidwind.androidquick.util.LogUtil;
 import com.androidwind.androidquick.util.NetUtil;
 import com.androidwind.androidquick.module.asynchronize.eventbus.EventCenter;
+
+import org.greenrobot.eventbus.EventBus;
 
 /**
  * @author  ddnosh

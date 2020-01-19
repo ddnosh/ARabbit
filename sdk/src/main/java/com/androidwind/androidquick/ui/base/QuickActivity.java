@@ -17,14 +17,7 @@ package com.androidwind.androidquick.ui.base;
 
 import android.content.Context;
 import android.content.Intent;
-import android.databinding.DataBindingUtil;
-import android.databinding.ViewDataBinding;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,11 +33,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.databinding.DataBindingUtil;
+import androidx.databinding.ViewDataBinding;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
-import de.greenrobot.event.EventBus;
-import de.greenrobot.event.Subscribe;
-import de.greenrobot.event.ThreadMode;
 
 import com.androidwind.androidquick.module.asynchronize.eventbus.EventCenter;
 import com.androidwind.androidquick.manager.QuickAppManager;
@@ -55,6 +51,11 @@ import com.androidwind.androidquick.ui.dialog.dialogactivity.LoadingDialog;
 import com.androidwind.androidquick.ui.permission.EasyPermissions;
 import com.androidwind.androidquick.ui.receiver.NetStateReceiver;
 import com.androidwind.androidquick.ui.viewstatus.VaryViewHelperController;
+import com.google.android.material.snackbar.Snackbar;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 /**
  * @author ddnosh
@@ -544,7 +545,7 @@ public abstract class QuickActivity extends AppCompatActivity implements EasyPer
         mVaryViewHelperController.restore();
     }
 
-    @Subscribe(threadMode = ThreadMode.MainThread)
+    @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEventBus(EventCenter eventCenter) {
         if (null != eventCenter) {
             onEventComing(eventCenter);

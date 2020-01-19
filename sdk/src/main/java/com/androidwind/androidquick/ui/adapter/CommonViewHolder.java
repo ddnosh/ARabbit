@@ -1,7 +1,6 @@
 package com.androidwind.androidquick.ui.adapter;
 
 import android.content.Context;
-import android.support.v7.widget.RecyclerView;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +11,8 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 
 import com.androidwind.androidquick.R;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * @author  ddnosh

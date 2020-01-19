@@ -1,7 +1,5 @@
 package com.androidwind.androidquick.sample.http;
 
-import android.support.annotation.NonNull;
-
 import com.androidwind.androidquick.sample.AppConfig;
 import com.androidwind.androidquick.sample.MyApplication;
 import com.androidwind.androidquick.util.FileUtil;
@@ -10,6 +8,7 @@ import com.androidwind.androidquick.util.LogUtil;
 import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 
+import androidx.annotation.NonNull;
 import okhttp3.Cache;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;

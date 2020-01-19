@@ -1,9 +1,10 @@
 package com.androidwind.androidquick.ui.dialog.dialogfragment;
 
-import android.support.annotation.IdRes;
 import android.util.SparseArray;
 import android.view.View;
 import android.widget.TextView;
+
+import androidx.annotation.IdRes;
 
 public class ViewHolder {
     private SparseArray<View> views;

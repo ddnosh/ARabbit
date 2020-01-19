@@ -1,6 +1,6 @@
 package com.androidwind.androidquick.ui.dialog.dialogfragment;
 
-import android.support.annotation.LayoutRes;
+import androidx.annotation.LayoutRes;
 
 /**
  * 公用样式Dialog
