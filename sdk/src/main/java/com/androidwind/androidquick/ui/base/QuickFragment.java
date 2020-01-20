@@ -444,4 +444,8 @@ public abstract class QuickFragment extends Fragment {
         throw new IllegalStateException("CommonDialog can only be used in a class which extends QuickActivity!");
     }
 
+    public void showError(Throwable throwable) {
+        if (getActivity() instanceof QuickActivity)
+            ((QuickActivity) getActivity()).showError(throwable);
+    }
 }

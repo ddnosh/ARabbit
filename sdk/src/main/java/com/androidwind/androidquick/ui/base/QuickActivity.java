@@ -44,7 +44,11 @@ import butterknife.Unbinder;
 
 import com.androidwind.androidquick.module.asynchronize.eventbus.EventCenter;
 import com.androidwind.androidquick.manager.QuickAppManager;
+import com.androidwind.androidquick.module.exeception.ApiException;
+import com.androidwind.androidquick.module.exeception.ExeceptionEngine;
+import com.androidwind.androidquick.util.LogUtil;
 import com.androidwind.androidquick.util.StringUtil;
+import com.androidwind.androidquick.util.ToastUtil;
 import com.androidwind.androidquick.util.immersion.StatusBarUtil;
 import com.androidwind.androidquick.ui.dialog.dialogactivity.CommonDialog;
 import com.androidwind.androidquick.ui.dialog.dialogactivity.LoadingDialog;
@@ -710,4 +714,9 @@ public abstract class QuickActivity extends AppCompatActivity implements EasyPer
         return new CommonDialog.Builder(context);
     }
 
+    public void showError(Throwable t) {
+        ApiException apiException = ExeceptionEngine.handleException(t);
+        LogUtil.e(TAG, "error:" + apiException.getMessage());
+        ToastUtil.showToast(apiException.getMessage());
+    }
 }

@@ -3,8 +3,8 @@ package com.androidwind.androidquick.module.rxjava;
 import androidx.annotation.NonNull;
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
-import com.androidwind.androidquick.module.retrofit.exeception.ApiException;
-import com.androidwind.androidquick.module.retrofit.exeception.ExeceptionEngine;
+import com.androidwind.androidquick.module.exeception.ApiException;
+import com.androidwind.androidquick.module.exeception.ExeceptionEngine;
 
 /** RxJava订阅者封装,包括Exception
  * @author ddnosh

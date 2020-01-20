@@ -1,4 +1,4 @@
-package com.androidwind.androidquick.module.retrofit.exeception;
+package com.androidwind.androidquick.module.exeception;
 
 /**
  * @author ddnosh

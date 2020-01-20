@@ -5,7 +5,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.androidwind.androidquick.module.glide.GlideManager;
-import com.androidwind.androidquick.module.retrofit.exeception.ApiException;
+import com.androidwind.androidquick.module.exeception.ApiException;
 import com.androidwind.androidquick.module.rxjava.BaseObserver;
 import com.androidwind.androidquick.sample.http.RetrofitManager;
 import com.androidwind.androidquick.util.LogUtil;
