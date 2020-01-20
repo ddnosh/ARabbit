@@ -2,14 +2,20 @@
 [![Download](https://api.bintray.com/packages/ddnosh/maven/androidquick/images/download.svg) ](https://bintray.com/ddnosh/maven/androidquick/_latestVersion)  
 
 QuickBase是一个用于Android快速开发的SDK库。   
-因为是SDK，所以QuickBase提供基本功能库，尽量剥离强制性引用第三方库。  
+因为是SDK，所以QuickBase提供基本功能库，尽量剥离强制性引用第三方库。 
+该库目前已经全面支持AndroidX。
 目前QuickBase引用的第三方库如下：  
 ``` xml
+//androidx  
+api : 'androidx.appcompat:appcompat:1.1.0'
+api : 'com.google.android.material:material:1.2.0-alpha03'
+api : 'androidx.multidex:multidex:2.0.0'
+api : 'androidx.constraintlayout:constraintlayout:1.1.3'
 //异步分发：eventbus  
-api 'de.greenrobot:eventbus:3.0.0-beta1'  
+api 'org.greenrobot:eventbus:3.1.1'  
 //IOC：butterknife  
-api "com.jakewharton:butterknife:8.4.0"  
-annotationProcessor "com.jakewharton:butterknife-compiler:8.4.0"  
+api "com.jakewharton:butterknife:10.0.0"  
+annotationProcessor "com.jakewharton:butterknife-compiler:10.0.0"  
 //网络：retrofit+okhttp  
 api 'com.squareup.retrofit2:retrofit:2.5.0'  
 api 'com.squareup.retrofit2:adapter-rxjava2:2.5.0'  
@@ -25,11 +31,12 @@ api 'jp.wasabeef:glide-transformations:4.0.0@aar'
 # SDK功能
 1. constant：存放常量；
 2. manager：存放管理类；
-3. module: 功能模块  
-3.1 asynchronize：异步模块，包含eventbus和tinytask； 
+3. module: 功能模块；  
+3.1 asynchronize：异步模块，包含eventbus和handler；  
 3.2 glide：图片模块glide的封装；  
 3.3 retrofit：网络模块retrofit的功能封装，包括exception和ssl；  
 3.4 rxjava：rxjava部分功能封装；  
+3.5 exception: 异常处理
 4. ui：UI模块  
 4.1 adapter：单一布局和多布局；  
 4.2 base：提供activity和fragment基类；  
