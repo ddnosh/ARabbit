@@ -1,4 +1,4 @@
-package com.androidwind.androidquick.module.exeception;
+package com.androidwind.androidquick.module.exception;
 
 /**
  * @author ddnosh
