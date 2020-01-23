@@ -1,5 +1,7 @@
 # QuickBase
 [![Download](https://api.bintray.com/packages/ddnosh/maven/androidquick/images/download.svg) ](https://bintray.com/ddnosh/maven/androidquick/_latestVersion)  
+欢迎加入QQ群：
+<a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=5867e988b85eecbb8c50bedab9810624fc017ce71098ae9394e7c935a4125281"><img border="0" src="http://pub.idqqimg.com/wpa/images/group.png" alt="Android开发技术交流" title="Android开发技术交流"></a>
 
 QuickBase是一个用于Android App快速开发的SDK库。   
 因为是SDK，所以QuickBase提供基本功能库，尽量剥离强制性引用第三方库。  
