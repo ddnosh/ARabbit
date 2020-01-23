@@ -2,6 +2,8 @@ apply plugin: 'com.android.library'
 apply plugin: 'com.jakewharton.butterknife'
 apply plugin: 'maven'
 apply plugin: 'com.novoda.bintray-release'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion rootProject.ext.android.compileSdkVersion
@@ -36,9 +38,8 @@ android {
 }
 
 dependencies {
-//    api rootProject.ext.dependencies["appcompatv4"]
-//    api rootProject.ext.dependencies["appcompatv7"]
-//    api rootProject.ext.dependencies["design"]
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
     api rootProject.ext.dependencies.values()
     //eventbus
     api 'org.greenrobot:eventbus:3.1.1'
@@ -61,7 +62,7 @@ publish {
     userOrg = 'ddnosh'
     groupId = 'com.androidwind'
     artifactId = 'androidquick'
-    publishVersion = '2.2.1'
+    publishVersion = '3.0.0'
     desc = 'AndroidQuick is a code library contains quicker kits.'
     website = "https://github.com/ddnosh/QuickBase"
 }
