@@ -14,7 +14,7 @@ class MainActivity : BaseActivity() {
         register(applicationContext)
         toolbar.title = "首页"
         toolbar.setTitleTextColor(Color.parseColor("#ffffff"))
-        binding!!.hasPendingBindings()
+//        binding!!.hasPendingBindings()
     }
 
     fun OpenActivity(v: View?) {

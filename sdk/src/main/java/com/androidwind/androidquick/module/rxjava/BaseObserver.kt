@@ -3,7 +3,7 @@ package com.androidwind.androidquick.module.rxjava
 import io.reactivex.Observer
 import io.reactivex.disposables.Disposable
 import com.androidwind.androidquick.module.exception.ApiException
-import com.androidwind.androidquick.module.exception.ExeceptionEngine
+import com.androidwind.androidquick.module.exception.ExceptionEngine
 
 /** RxJava订阅者封装,包括Exception
  * @author ddnosh
@@ -19,7 +19,7 @@ abstract class BaseObserver<T> : Observer<T> {
     }
 
     override fun onError(e: Throwable) {
-        onError(ExeceptionEngine.handleException(e))
+        onError(ExceptionEngine.handleException(e))
     }
 
     override fun onComplete() {}

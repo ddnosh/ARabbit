@@ -24,7 +24,7 @@ enum class RetrofitManager {
     private val retrofitMap = HashMap<String, Retrofit?>()
     private fun createRetrofit(baseUrl: String, isJson: Boolean) {
         val timeOut = AppConfig.HTTP_TIME_OUT
-        val cache = Cache(MyApplication.instance?.let { FileUtil.getHttpImageCacheDir(it) },
+        val cache = Cache(MyApplication.instance?.let { FileUtil.getHttpImageCacheDir(it) }!!,
             AppConfig.HTTP_MAX_CACHE_SIZE.toLong())
         // Log信息拦截器
         val loggingInterceptor = HttpLoggingInterceptor()

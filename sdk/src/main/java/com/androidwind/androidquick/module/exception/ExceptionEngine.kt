@@ -19,7 +19,7 @@ import retrofit2.HttpException
  * @author ddnosh
  * @website http://blog.csdn.net/ddnosh
  */
-object ExeceptionEngine {
+object ExceptionEngine {
 
     //对应HTTP的状态码
     private val UNAUTHORIZED = 401

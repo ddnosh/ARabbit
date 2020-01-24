@@ -36,8 +36,7 @@ import butterknife.Unbinder
 
 import com.androidwind.androidquick.module.asynchronize.eventbus.EventCenter
 import com.androidwind.androidquick.manager.QuickAppManager
-import com.androidwind.androidquick.module.exception.ApiException
-import com.androidwind.androidquick.module.exception.ExeceptionEngine
+import com.androidwind.androidquick.module.exception.ExceptionEngine
 import com.androidwind.androidquick.util.LogUtil
 import com.androidwind.androidquick.util.StringUtil
 import com.androidwind.androidquick.util.ToastUtil
@@ -543,7 +542,7 @@ abstract class QuickActivity : AppCompatActivity() {
     }
 
     fun showError(t: Throwable) {
-        val apiException = ExeceptionEngine.handleException(t)
+        val apiException = ExceptionEngine.handleException(t)
         LogUtil.e(TAG, "error:" + apiException.message!!)
         ToastUtil.showToast(apiException.message)
     }

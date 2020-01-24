@@ -1268,7 +1268,7 @@ class FileUtil private constructor() {
          * @param context 上下文
          * @return 网络请求缓存文件夹
          */
-        fun getHttpImageCacheDir(context: Context): File? {
+        fun getHttpImageCacheDir(context: Context): File {
             return getCacheDir(context, HTTP_CACHE_DIR_NAME)
         }
 
@@ -1279,7 +1279,7 @@ class FileUtil private constructor() {
          * @param dirName 文件夹名称
          * @return 缓存文件夹
          */
-        fun getCacheDir(context: Context, dirName: String): File? {
+        fun getCacheDir(context: Context, dirName: String): File {
             val rootDir = context.externalCacheDir
             val cacheFile = File(rootDir, dirName)
             if (!cacheFile.exists()) {

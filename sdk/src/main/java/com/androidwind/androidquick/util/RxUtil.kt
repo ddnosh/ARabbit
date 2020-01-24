@@ -1,4 +1,4 @@
-package com.androidwind.androidquick.sample
+package com.androidwind.androidquick.util
 
 import io.reactivex.Observable
 import io.reactivex.ObservableSource

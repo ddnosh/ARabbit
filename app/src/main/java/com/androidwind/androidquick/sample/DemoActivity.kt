@@ -10,6 +10,7 @@ import com.androidwind.androidquick.module.rxjava.BaseObserver
 import com.androidwind.androidquick.sample.http.RetrofitManager
 import com.androidwind.androidquick.util.LogUtil.e
 import com.androidwind.androidquick.util.LogUtil.i
+import com.androidwind.androidquick.util.RxUtil
 import com.androidwind.androidquick.util.ToastUtil
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit

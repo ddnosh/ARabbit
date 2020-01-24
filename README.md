@@ -34,26 +34,25 @@ QuickBase是一个用于Android App快速开发的SDK库。
 
 # 引用的第三方库
 ``` xml
-//androidx  
-api : 'androidx.appcompat:appcompat:1.1.0'
-api : 'com.google.android.material:material:1.2.0-alpha03'
-api : 'androidx.multidex:multidex:2.0.0'
-api : 'androidx.constraintlayout:constraintlayout:1.1.3'
-//异步分发：eventbus  
-api 'org.greenrobot:eventbus:3.1.1'  
-//IOC：butterknife  
-api "com.jakewharton:butterknife:10.0.0"  
-annotationProcessor "com.jakewharton:butterknife-compiler:10.0.0"  
-//网络：retrofit+okhttp  
-api 'com.squareup.retrofit2:retrofit:2.5.0'  
-api 'com.squareup.retrofit2:adapter-rxjava2:2.5.0'  
-api 'com.squareup.okhttp3:okhttp:3.12.1'  
-api 'com.squareup.okhttp3:logging-interceptor:3.12.1'  
-//解析：gson  
-api 'com.google.code.gson:gson:2.4'  
-//图片：glide  
-api 'com.github.bumptech.glide:glide:4.9.0'  
-api 'jp.wasabeef:glide-transformations:4.0.0@aar'  
+api rootProject.ext.dependencies.values()
+//eventbus
+api 'org.greenrobot:eventbus:3.1.1'
+//butterknife
+api "com.jakewharton:butterknife:10.0.0"
+annotationProcessor "com.jakewharton:butterknife-compiler:10.0.0"
+//rxjava
+api "io.reactivex.rxjava2:rxjava:2.2.10"
+api "io.reactivex.rxjava2:rxandroid:2.1.1"
+//retrofit
+api 'com.squareup.retrofit2:retrofit:2.6.2'
+//okhttp
+api 'com.squareup.okhttp3:okhttp:4.2.2'
+api 'com.squareup.okhttp3:logging-interceptor:3.12.1'
+//gson
+api 'com.google.code.gson:gson:2.8.6'
+//glide
+api 'com.github.bumptech.glide:glide:4.10.0'
+api 'jp.wasabeef:glide-transformations:4.0.0@aar'
 ```
 
 # 开源框架
