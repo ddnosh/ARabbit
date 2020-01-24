@@ -19,7 +19,7 @@ class CommonDialog(private val mContext: Context) : Dialog(mContext, R.style.dia
 
     companion object {
 
-        val TAG = "CommonDialog"
+        const val TAG = "CommonDialog"
     }
 
     private var mTitleView: TextView? = null
@@ -35,9 +35,9 @@ class CommonDialog(private val mContext: Context) : Dialog(mContext, R.style.dia
     private var mDialogBtnCallBack: DialogBtnCallBack? = null
     private val mCanConfirmButtonDismiss = true
 
-    override fun onCreate(savedInstanceState: Bundle) {
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        init() //悬浮对话框的情况z
+        init() //悬浮对话框的情况
     }
 
     private fun init() {

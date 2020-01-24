@@ -12,11 +12,16 @@ object SpUtil {
 
     lateinit var mContext: Context
 
+    @JvmStatic
     fun init(context: Context) {
         mContext = context.applicationContext
     }
 
+    /**
+     * 清除所有数据
+     */
     @JvmOverloads
+    @JvmStatic
     fun clear(file: String = PREF_FILE_NAME) {
         val sp = mContext.getSharedPreferences(file, Context.MODE_PRIVATE)
         val editor = sp.edit()
@@ -26,10 +31,12 @@ object SpUtil {
     /**
      * 保存数据
      */
+    @JvmStatic
     fun setParam(key: String, `object`: Any) {
         setParam(PREF_FILE_NAME, key, `object`)
     }
 
+    @JvmStatic
     fun setParam(file: String, key: String, `object`: Any) {
 
         val type = `object`.javaClass.simpleName
@@ -58,10 +65,12 @@ object SpUtil {
     /**
      * 查询数据
      */
+    @JvmStatic
     fun getParam(key: String, defaultObject: Any): Any? {
         return getParam(PREF_FILE_NAME, key, defaultObject)
     }
 
+    @JvmStatic
     fun getParam(file: String, key: String, defaultObject: Any?): Any? {
         if (defaultObject == null) {
             return null
@@ -93,10 +102,12 @@ object SpUtil {
     /**
      * 移除某个key值已经对应的值
      */
+    @JvmStatic
     fun remove(context: Context, key: String) {
         remove(context, PREF_FILE_NAME, key)
     }
 
+    @JvmStatic
     fun remove(context: Context, file: String, key: String) {
         val sp = context.getSharedPreferences(file,
             Context.MODE_PRIVATE)
@@ -105,6 +116,3 @@ object SpUtil {
         editor.apply()
     }
 }
-/**
- * 清除所有数据
- */

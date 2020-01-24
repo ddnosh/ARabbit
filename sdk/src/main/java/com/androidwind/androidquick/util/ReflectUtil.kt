@@ -11,6 +11,7 @@ object ReflectUtil {
     private val TAG = "GaramutHelperReflect"
     val LOG_FAIL_REASON = "fail_reason:"
 
+    @JvmStatic
     fun getClass(className: String): Class<*>? {
         try {
             val cls = Class.forName(className)
@@ -25,6 +26,7 @@ object ReflectUtil {
         }
     }
 
+    @JvmStatic
     fun getClass(cls: Class<*>, className: String): Class<*>? {
         var classes = cls.classes
         for (clas in classes) {
@@ -43,6 +45,7 @@ object ReflectUtil {
         return null
     }
 
+    @JvmStatic
     fun getMethod(cls: Class<*>, funcName: String): Method? {
         var methods = cls.declaredMethods
         LogUtil.d(TAG, "getMethod->getMethodsDeclared $methods")
@@ -68,6 +71,7 @@ object ReflectUtil {
         return null
     }
 
+    @JvmStatic
     fun getMethod(
         owner: Class<*>, funcName: String,
         vararg paramTypes: Class<*>
@@ -84,11 +88,13 @@ object ReflectUtil {
         return null
     }
 
+    @JvmStatic
     fun getObject(className: String): Any? {
 
         return getObject(getClass(className))
     }
 
+    @JvmStatic
     fun getObject(cls: Class<*>?): Any? {
         try {
             return cls!!.newInstance()
@@ -109,6 +115,7 @@ object ReflectUtil {
         return null
     }
 
+    @JvmStatic
     operator fun invoke(owner: Any, method: Method, vararg params: Any): Any? {
         try {
             return method.invoke(owner, *params)

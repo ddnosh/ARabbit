@@ -32,6 +32,7 @@ object GsonUtil {
      * @param type 数据类型0表示String类，1表示int类型
      * @return
      */
+    @JvmStatic
     fun getField(json: String, key: String, type: Int): Any? {
         if (StringUtil.isEmpty(json) || StringUtil.isEmpty(key))
             return null
@@ -51,6 +52,7 @@ object GsonUtil {
         return null
     }
 
+    @JvmStatic
     fun <T> fromJson(JSONString: String, typeToken: TypeToken<T>): T? {
         if (TextUtils.isEmpty(JSONString))
             return null
@@ -66,6 +68,7 @@ object GsonUtil {
         return t
     }
 
+    @JvmStatic
     fun <T> fromJson(JSONString: String, classOfT: Class<T>): T? {
         if (TextUtils.isEmpty(JSONString))
             return null
@@ -81,6 +84,7 @@ object GsonUtil {
         return t
     }
 
+    @JvmStatic
     fun toJsonString(`object`: Any): String? {
         var gsonString: String? = null
         if (gson != null) {

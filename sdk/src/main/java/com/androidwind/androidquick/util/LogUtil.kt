@@ -13,6 +13,7 @@ object LogUtil {
 
     private var logOn = true
 
+    @JvmStatic
     fun dumpException(t: Throwable) {
         if (isLoggable(Log.WARN)) {
             val maxLen = 256
@@ -27,42 +28,52 @@ object LogUtil {
         }
     }
 
+    @JvmStatic
     fun v(aTag: String, aMsg: String) {
         log(Log.VERBOSE, aTag, aMsg)
     }
 
+    @JvmStatic
     fun v(aTag: String, aMsg: String, aThrowable: Throwable) {
         log(Log.VERBOSE, aTag, aMsg, aThrowable)
     }
 
+    @JvmStatic
     fun d(aTag: String, aMsg: String) {
         log(Log.DEBUG, aTag, aMsg)
     }
 
+    @JvmStatic
     fun d(aTag: String, aMsg: String, aThrowable: Throwable) {
         log(Log.DEBUG, aTag, aMsg, aThrowable)
     }
 
+    @JvmStatic
     fun i(aTag: String, aMsg: String) {
         log(Log.INFO, aTag, aMsg)
     }
 
+    @JvmStatic
     fun i(aTag: String, aMsg: String, aThrowable: Throwable) {
         log(Log.INFO, aTag, aMsg, aThrowable)
     }
 
+    @JvmStatic
     fun w(aTag: String, aMsg: String) {
         log(Log.WARN, aTag, aMsg)
     }
 
+    @JvmStatic
     fun w(aTag: String, aMsg: String, aThrowable: Throwable) {
         log(Log.WARN, aTag, aMsg, aThrowable)
     }
 
+    @JvmStatic
     fun e(aTag: String, aMsg: String) {
         log(Log.ERROR, aTag, aMsg)
     }
 
+    @JvmStatic
     fun e(aTag: String, aMsg: String, aThrowable: Throwable) {
         log(Log.ERROR, aTag, aMsg, aThrowable)
     }
@@ -78,6 +89,7 @@ object LogUtil {
      * @param aThrowable An exception to log
      */
     @JvmOverloads
+    @JvmStatic
     fun log(aLogLevel: Int, aTag: String, aMessage: String, aThrowable: Throwable? = null) {
         if (logOn && isLoggable(aLogLevel)) {
             when (aLogLevel) {
@@ -94,6 +106,7 @@ object LogUtil {
     /**
      * call when enter the method body that you want to debug with only one line
      */
+    @JvmStatic
     fun method() {
         val stack = Throwable().stackTrace
         if (null == stack || 2 > stack.size) {
@@ -111,6 +124,7 @@ object LogUtil {
     /**
      * call when enter the method body that you want to debug.
      */
+    @JvmStatic
     fun enter() {
         val stack = Throwable().stackTrace
         if (null == stack || 2 > stack.size) {
@@ -128,6 +142,7 @@ object LogUtil {
     /**
      * call when leave the method body that you want to debug.
      */
+    @JvmStatic
     fun leave() {
         val stack = Throwable().stackTrace
         if (null == stack || 2 > stack.size) {
@@ -149,15 +164,13 @@ object LogUtil {
      *
      * @return Whether or not that this is allowed to be logged.
      */
+    @JvmStatic
     fun isLoggable(aLevel: Int): Boolean {
 
-        return if (aLevel >= LOG_LEVEL) {
-            true
-        } else {
-            false
-        }
+        return aLevel >= LOG_LEVEL
     }
 
+    @JvmStatic
     fun setLogOn(logOn: Boolean) {
         LogUtil.logOn = logOn
     }

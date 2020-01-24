@@ -11,19 +11,23 @@ import java.util.LinkedList
 object QuickAppManager {
     private val mActivities = LinkedList<Activity>()
 
+    @JvmStatic
     val forwardActivity: Activity?
         @Synchronized get() = if (size() > 0) mActivities[size() - 1] else null
 
+    @JvmStatic
     fun size(): Int {
         return mActivities.size
     }
 
     @Synchronized
+    @JvmStatic
     fun addActivity(activity: Activity) {
         mActivities.add(activity)
     }
 
     @Synchronized
+    @JvmStatic
     fun removeActivity(activity: Activity) {
         if (mActivities.contains(activity)) {
             mActivities.remove(activity)
@@ -31,6 +35,7 @@ object QuickAppManager {
     }
 
     @Synchronized
+    @JvmStatic
     fun clear() {
         var i = mActivities.size - 1
         while (i > -1) {
@@ -43,6 +48,7 @@ object QuickAppManager {
     }
 
     @Synchronized
+    @JvmStatic
     fun clearToTop() {
         var i = mActivities.size - 2
         while (i > -1) {

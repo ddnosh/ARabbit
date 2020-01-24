@@ -57,6 +57,7 @@ class NetStateReceiver : BroadcastReceiver() {
                 return mBroadcastReceiver
             }
 
+        @JvmStatic
         fun registerNetworkStateReceiver(mContext: Context) {
             val filter = IntentFilter()
             filter.addAction(CUSTOM_ANDROID_NET_CHANGE_ACTION)
@@ -64,12 +65,14 @@ class NetStateReceiver : BroadcastReceiver() {
             mContext.applicationContext.registerReceiver(receiver, filter)
         }
 
+        @JvmStatic
         fun checkNetworkState(mContext: Context) {
             val intent = Intent()
             intent.action = CUSTOM_ANDROID_NET_CHANGE_ACTION
             mContext.sendBroadcast(intent)
         }
 
+        @JvmStatic
         fun unRegisterNetworkStateReceiver(mContext: Context) {
             mBroadcastReceiver?.let {
                 try {

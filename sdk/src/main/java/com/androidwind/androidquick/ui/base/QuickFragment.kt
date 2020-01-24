@@ -409,7 +409,7 @@ abstract class QuickFragment : Fragment() {
     }
 
     companion object {
-
+        @JvmField
         var TAG = "QuickFragment"
     }
 }

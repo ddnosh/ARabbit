@@ -21,6 +21,7 @@ object RxUtil {
     /**
      * RxJava线程封装
      */
+    @JvmStatic
     fun <T> applySchedulers(): ObservableTransformer<T, T> {
         return schedulersTransformer as ObservableTransformer<T, T>
     }

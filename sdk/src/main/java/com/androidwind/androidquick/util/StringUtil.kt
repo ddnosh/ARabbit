@@ -13,34 +13,37 @@ object StringUtil {
      * @param str
      * @return
      */
+    @JvmStatic
     fun isEmpty(str: String?): Boolean {
-        return if (str == null || str.length == 0 || str.equals("null", ignoreCase = true) || str.isEmpty() || str == "") {
-            true
-        } else {
-            false
-        }
+        return str == null || str.length == 0 || str.equals("null", ignoreCase = true) || str.isEmpty() || str == ""
     }
 
+    @JvmStatic
     fun getTrimedString(s: String): String {
         return trim(s)
     }
 
+    @JvmStatic
     fun trim(s: String?): String {
         return s?.trim { it <= ' ' } ?: ""
     }
 
+    @JvmStatic
     fun equals(str1: String, str2: String): Boolean {
         return str1 === str2 || equalsNotNull(str1, str2)
     }
 
+    @JvmStatic
     fun equalsNotNull(str1: String?, str2: String): Boolean {
         return str1 != null && str1 == str2
     }
 
+    @JvmStatic
     fun isBlank(str: String?): Boolean {
         return str == null || str.trim { it <= ' ' }.length == 0
     }
 
+    @JvmStatic
     fun getHostName(urlString: String): String {
         var urlString = urlString
         var head = ""
@@ -56,6 +59,7 @@ object StringUtil {
         return head + urlString
     }
 
+    @JvmStatic
     fun getDataSize(var0: Long): String {
         val var2 = DecimalFormat("###.00")
         return if (var0 < 1024L)

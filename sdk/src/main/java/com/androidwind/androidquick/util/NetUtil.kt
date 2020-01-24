@@ -16,6 +16,7 @@ object NetUtil {
         WIFI, CMNET, CMWAP, NONE
     }
 
+    @JvmStatic
     fun isNetworkAvailable(context: Context): Boolean {
         val mgr = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         val info = mgr.allNetworkInfo
@@ -29,6 +30,7 @@ object NetUtil {
         return false
     }
 
+    @JvmStatic
     fun isNetworkConnected(context: Context?): Boolean {
         if (context != null) {
             val mConnectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
@@ -40,6 +42,7 @@ object NetUtil {
         return false
     }
 
+    @JvmStatic
     fun isWifiConnected(context: Context?): Boolean {
         if (context != null) {
             val mConnectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
@@ -51,6 +54,7 @@ object NetUtil {
         return false
     }
 
+    @JvmStatic
     fun isMobileConnected(context: Context?): Boolean {
         if (context != null) {
             val mConnectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
@@ -62,6 +66,7 @@ object NetUtil {
         return false
     }
 
+    @JvmStatic
     fun getConnectedType(context: Context?): Int {
         if (context != null) {
             val mConnectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
@@ -73,6 +78,7 @@ object NetUtil {
         return -1
     }
 
+    @JvmStatic
     fun getAPNType(context: Context): NetType {
         val connMgr = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         val networkInfo = connMgr.activeNetworkInfo ?: return NetType.NONE

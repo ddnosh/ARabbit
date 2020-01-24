@@ -18,14 +18,14 @@ class LoadingDialog(val loadingDialogContext: Context) : Dialog(loadingDialogCon
 
     companion object {
 
-        val TAG = "LoadingDialog"
+        const val TAG = "LoadingDialog"
     }
 
     private var mNoBgLinely: LinearLayout? = null
     private var mTipTxt: TextView? = null
     private var mTip: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle) {
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.dialog_loading)
         mNoBgLinely = findViewById<View>(R.id.ll_loading) as LinearLayout

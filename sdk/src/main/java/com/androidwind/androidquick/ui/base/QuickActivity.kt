@@ -58,6 +58,7 @@ import org.greenrobot.eventbus.ThreadMode
 abstract class QuickActivity : AppCompatActivity() {
 
     companion object {
+        @JvmField
         var TAG = "QuickActivity"
     }
 

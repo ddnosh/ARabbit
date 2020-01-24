@@ -12,13 +12,14 @@ import android.content.pm.PackageManager.NameNotFoundException
  */
 object AppUtil {
 
-    private val TAG = "AppUtil"
+    private const val TAG = "AppUtil"
 
     /**
      * get App versionCode
      * @param context
      * @return
      */
+    @JvmStatic
     fun getVersionCode(context: Context): String {
         val packageManager = context.packageManager
         val packageInfo: PackageInfo
@@ -38,6 +39,7 @@ object AppUtil {
      * @param context
      * @return
      */
+    @JvmStatic
     fun getVersionName(context: Context): String {
         val packageManager = context.packageManager
         val packageInfo: PackageInfo
@@ -52,6 +54,7 @@ object AppUtil {
         return versionName
     }
 
+    @JvmStatic
     fun isContextValid(context: Context?): Boolean {
         if (context == null) {
             LogUtil.d(TAG, "context is null")
