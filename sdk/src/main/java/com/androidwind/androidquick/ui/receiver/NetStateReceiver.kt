@@ -35,9 +35,9 @@ class NetStateReceiver : BroadcastReceiver() {
 
     companion object {
 
-        private val TAG = "NetStateReceiver"
-        private val CUSTOM_ANDROID_NET_CHANGE_ACTION = "com.androidwind.androidquick.net.conn.CONNECTIVITY_CHANGE"
-        private val ANDROID_NET_CHANGE_ACTION = "android.net.conn.CONNECTIVITY_CHANGE"
+        private const val TAG = "NetStateReceiver"
+        private const val CUSTOM_ANDROID_NET_CHANGE_ACTION = "com.androidwind.androidquick.net.conn.CONNECTIVITY_CHANGE"
+        private const val ANDROID_NET_CHANGE_ACTION = "android.net.conn.CONNECTIVITY_CHANGE"
 
         var isNetworkAvailable = false
             private set

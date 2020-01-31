@@ -123,9 +123,7 @@ abstract class QuickFragment : Fragment() {
 
     override fun onDestroy() {
         super.onDestroy()
-        if (mUnbinder != null) {
-            mUnbinder!!.unbind()
-        }
+        mUnbinder?.unbind()
         if (isBindEventBus) {
             EventBus.getDefault().unregister(this)
         }

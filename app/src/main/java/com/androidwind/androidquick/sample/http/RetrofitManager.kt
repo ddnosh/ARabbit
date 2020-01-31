@@ -21,7 +21,7 @@ enum class RetrofitManager {
     INSTANCE;
 
     private val TAG = "RetrofitManager"
-    private val retrofitMap = HashMap<String, Retrofit?>()
+    private val retrofitMap = HashMap<String, Retrofit>()
     private fun createRetrofit(baseUrl: String, isJson: Boolean) {
         val timeOut = AppConfig.HTTP_TIME_OUT
         val cache = Cache(MyApplication.instance?.let { FileUtil.getHttpImageCacheDir(it) }!!,
@@ -47,15 +47,15 @@ enum class RetrofitManager {
         retrofitMap["$baseUrl-$isJson"] = builder.build()
     }
 
-    fun getRetrofit(baseUrl: String, isJson: Boolean): Retrofit? {
+    private fun getRetrofit(baseUrl: String, isJson: Boolean): Retrofit {
         val key = "$baseUrl-$isJson"
         if (!retrofitMap.containsKey(key)) {
             createRetrofit(baseUrl, isJson)
         }
-        return retrofitMap[key]
+        return retrofitMap[key]!!
     }
 
-    fun getRetrofit(baseUrl: String): Retrofit? {
+    fun getRetrofit(baseUrl: String): Retrofit {
         return getRetrofit(baseUrl, true)
     }
 }

@@ -23,7 +23,7 @@ abstract class BaseFragment : QuickFragment() {
 
     override val isBindEventBus: Boolean = false
 
-    protected override fun onEventComing(eventCenter: EventCenter<*>) {}
+    override fun onEventComing(eventCenter: EventCenter<*>) {}
     override fun getGoIntent(clazz: Class<*>): Intent {
         return if (BaseFragment::class.java.isAssignableFrom(clazz)) {
             val intent = Intent(activity, FrameActivity::class.java)

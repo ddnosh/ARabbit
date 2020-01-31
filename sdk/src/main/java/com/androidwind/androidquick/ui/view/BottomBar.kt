@@ -23,6 +23,8 @@ import androidx.core.view.ViewCompat
  */
 class BottomBar @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : LinearLayout(context, attrs, defStyleAttr) {
 
+    private val TRANSLATE_DURATION_MILLIS = 200
+
     private val mInterpolator = AccelerateDecelerateInterpolator()
     var isVisible = true
         private set
@@ -188,9 +190,5 @@ class BottomBar @JvmOverloads constructor(context: Context, attrs: AttributeSet?
                 ViewCompat.setTranslationY(this, translationY.toFloat())
             }
         }
-    }
-
-    companion object {
-        private val TRANSLATE_DURATION_MILLIS = 200
     }
 }

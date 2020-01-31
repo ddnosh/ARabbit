@@ -29,10 +29,10 @@ class LoadingDialog(val loadingDialogContext: Context) : Dialog(loadingDialogCon
         super.onCreate(savedInstanceState)
         setContentView(R.layout.dialog_loading)
         mNoBgLinely = findViewById<View>(R.id.ll_loading) as LinearLayout
-        mNoBgLinely!!.visibility = View.VISIBLE
+        mNoBgLinely?.visibility = View.VISIBLE
         mTipTxt = findViewById<View>(R.id.tip) as TextView
         if (!StringUtil.isEmpty(mTip)) {
-            mTipTxt!!.text = mTip
+            mTipTxt?.text = mTip
         }
     }
 

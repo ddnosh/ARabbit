@@ -67,7 +67,7 @@ abstract class QuickActivity : AppCompatActivity() {
     /**
      * loading view status controller: empty/loading/error
      */
-    private var mVaryViewHelperController: VaryViewHelperController? = null
+    private lateinit var mVaryViewHelperController: VaryViewHelperController
 
     /**
      * butterknife 8+ support
@@ -216,7 +216,7 @@ abstract class QuickActivity : AppCompatActivity() {
 
     protected fun initContentView() {
         contentView = LinearLayout(this)
-        contentView!!.orientation = LinearLayout.VERTICAL
+        contentView.orientation = LinearLayout.VERTICAL
     }
 
     private fun initToolBarView() {
@@ -230,17 +230,16 @@ abstract class QuickActivity : AppCompatActivity() {
 
         setSupportActionBar(toolbar)
         val actionBar = supportActionBar
-        initToolBarSet(actionBar!!)
+        initToolBarSet(actionBar)
     }
 
-    protected fun initToolBarSet(actionBar: ActionBar) {
-        actionBar.setDisplayShowTitleEnabled(false)
-
-        if (actionBar != null) {
-            actionBar.setDisplayShowHomeEnabled(true)
-            actionBar.setDisplayHomeAsUpEnabled(true)
-            actionBar.setDisplayUseLogoEnabled(false)
-            actionBar.setHomeAsUpIndicator(R.drawable.icon_back)
+    protected fun initToolBarSet(actionBar: ActionBar?) {
+        actionBar?.run {
+            setDisplayShowTitleEnabled(false)
+            setDisplayShowHomeEnabled(true)
+            setDisplayHomeAsUpEnabled(true)
+            setDisplayUseLogoEnabled(false)
+            setHomeAsUpIndicator(R.drawable.icon_back)
             toolbar.setNavigationOnClickListener { finish() }
         }
     }
@@ -250,20 +249,20 @@ abstract class QuickActivity : AppCompatActivity() {
         QuickAppManager.removeActivity(this)
         if (toggleOverridePendingTransition()) {
             when (overridePendingTransitionMode) {
-                QuickActivity.TransitionMode.LEFT -> overridePendingTransition(R.anim.left_in, R.anim.left_out)
-                QuickActivity.TransitionMode.RIGHT -> overridePendingTransition(R.anim.right_in, R.anim.right_out)
-                QuickActivity.TransitionMode.TOP -> overridePendingTransition(R.anim.top_in, R.anim.top_out)
-                QuickActivity.TransitionMode.BOTTOM -> overridePendingTransition(R.anim.bottom_in, R.anim.bottom_out)
-                QuickActivity.TransitionMode.SCALE -> overridePendingTransition(R.anim.scale_in, R.anim.scale_out)
-                QuickActivity.TransitionMode.FADE -> overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
+                TransitionMode.LEFT -> overridePendingTransition(R.anim.left_in, R.anim.left_out)
+                TransitionMode.RIGHT -> overridePendingTransition(R.anim.right_in, R.anim.right_out)
+                TransitionMode.TOP -> overridePendingTransition(R.anim.top_in, R.anim.top_out)
+                TransitionMode.BOTTOM -> overridePendingTransition(R.anim.bottom_in, R.anim.bottom_out)
+                TransitionMode.SCALE -> overridePendingTransition(R.anim.scale_in, R.anim.scale_out)
+                TransitionMode.FADE -> overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
             }
         }
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        if (mUnbinder != null) {
-            mUnbinder!!.unbind()
+        mUnbinder?.run {
+            unbind()
         }
         NetStateReceiver.unRegisterNetworkStateReceiver(mContext)
         if (isBindEventBus) {
@@ -438,9 +437,9 @@ abstract class QuickActivity : AppCompatActivity() {
         requireNotNull(mVaryViewHelperController) { "You must return a right target view for loading" }
 
         if (toggle) {
-            mVaryViewHelperController!!.showLoading(msg)
+            mVaryViewHelperController.showLoading(msg)
         } else {
-            mVaryViewHelperController!!.restore()
+            mVaryViewHelperController.restore()
         }
     }
 
@@ -453,9 +452,9 @@ abstract class QuickActivity : AppCompatActivity() {
         requireNotNull(mVaryViewHelperController) { "You must return a right target view for loading" }
 
         if (toggle) {
-            mVaryViewHelperController!!.showEmpty(msg, onClickListener)
+            mVaryViewHelperController.showEmpty(msg, onClickListener)
         } else {
-            mVaryViewHelperController!!.restore()
+            mVaryViewHelperController.restore()
         }
     }
 
@@ -468,9 +467,9 @@ abstract class QuickActivity : AppCompatActivity() {
         requireNotNull(mVaryViewHelperController) { "You must return a right target view for loading" }
 
         if (toggle) {
-            mVaryViewHelperController!!.showError(msg, onClickListener)
+            mVaryViewHelperController.showError(msg, onClickListener)
         } else {
-            mVaryViewHelperController!!.restore()
+            mVaryViewHelperController.restore()
         }
     }
 
@@ -483,15 +482,15 @@ abstract class QuickActivity : AppCompatActivity() {
         requireNotNull(mVaryViewHelperController) { "You must return a right target view for loading" }
 
         if (toggle) {
-            mVaryViewHelperController!!.showNetworkError(onClickListener)
+            mVaryViewHelperController.showNetworkError(onClickListener)
         } else {
-            mVaryViewHelperController!!.restore()
+            mVaryViewHelperController.restore()
         }
     }
 
     protected fun toggleRestore() {
         requireNotNull(mVaryViewHelperController) { "You must return a right target view for loading" }
-        mVaryViewHelperController!!.restore()
+        mVaryViewHelperController.restore()
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
@@ -505,24 +504,24 @@ abstract class QuickActivity : AppCompatActivity() {
     fun showLoadingDialog(tips: String? = null) {
         if (!isFinishing) {
             try {
-                if (loadingDialog == null) {
-                    loadingDialog = LoadingDialog(this)
-                    if (!StringUtil.isEmpty(tips)) {
-                        loadingDialog!!.setTip(tips)
-                    }
-                    loadingDialog!!.show()
-                } else {
+                loadingDialog?.run {
                     //相同的上下文，无需重新创建
-                    if (loadingDialog!!.loadingDialogContext === this) {
+                    if (loadingDialogContext === this@QuickActivity) {
                         loadingDialog!!.show()
                     } else {
                         loadingDialog!!.dismiss()
-                        loadingDialog = LoadingDialog(this)
+                        loadingDialog = LoadingDialog(this@QuickActivity)
                         if (!StringUtil.isEmpty(tips)) {
                             loadingDialog!!.setTip(tips)
                         }
                         loadingDialog!!.show()
                     }
+                } ?: loadingDialog.run {
+                    loadingDialog = LoadingDialog(this@QuickActivity)
+                    if (!StringUtil.isEmpty(tips)) {
+                        loadingDialog!!.setTip(tips)
+                    }
+                    loadingDialog!!.show()
                 }
             } catch (e: Throwable) {
             }

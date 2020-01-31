@@ -46,21 +46,21 @@ class CommonDialog(private val mContext: Context) : Dialog(mContext, R.style.dia
         mInfoView = findViewById<View>(R.id.dialog_info) as TextView
         mConfirmBtn = findViewById<View>(R.id.dialog_confirm) as Button
         mCancelBtn = findViewById<View>(R.id.dialog_cancel) as Button
-        mConfirmBtn!!.setOnClickListener(this)
-        mCancelBtn!!.setOnClickListener(this)
+        mConfirmBtn?.setOnClickListener(this)
+        mCancelBtn?.setOnClickListener(this)
 
         if (mInfoText != null && !StringUtil.isEmpty(mInfoText)) {
-            mInfoView!!.text = mInfoText
+            mInfoView?.text = mInfoText
         }
 
         //设置title content 等具体名称
-        mTitleView!!.text = mTitle
+        mTitleView?.text = mTitle
 
         if (mConfirmText != null && !StringUtil.isEmpty(mConfirmText)) {
-            mConfirmBtn!!.text = mConfirmText
+            mConfirmBtn?.text = mConfirmText
         }
         if (mCancelText != null && !StringUtil.isEmpty(mCancelText)) {
-            mCancelBtn!!.text = mCancelText
+            mCancelBtn?.text = mCancelText
         }
     }
 
@@ -92,11 +92,11 @@ class CommonDialog(private val mContext: Context) : Dialog(mContext, R.style.dia
             if (mCanConfirmButtonDismiss)
                 onDismiss()
             if (mDialogBtnCallBack != null)
-                mDialogBtnCallBack!!.onDialogButClick(true)
+                mDialogBtnCallBack?.onDialogButClick(true)
         } else if (i == R.id.dialog_cancel) {
             onDismiss()
             if (mDialogBtnCallBack != null) {
-                mDialogBtnCallBack!!.onDialogButClick(false)
+                mDialogBtnCallBack?.onDialogButClick(false)
             }
         }
     }

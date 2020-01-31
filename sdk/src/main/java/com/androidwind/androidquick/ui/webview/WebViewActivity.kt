@@ -54,18 +54,18 @@ class WebViewActivity : QuickActivity() {
 
     @SuppressLint("SetJavaScriptEnabled", "JavascriptInterface")
     fun initData() {
-        var url = mBundle!!.getString(Constant.QUICKBASE_WEB_URL)
+        var url = mBundle?.getString(Constant.QUICKBASE_WEB_URL)
         if (StringUtil.isEmpty(url)) {
             url = URL
         }
 
-        val webSettings = wvWebView!!.settings
-        webSettings.javaScriptEnabled = true
+        val webSettings = wvWebView?.settings
+        webSettings?.javaScriptEnabled = true
 
-        wvWebView!!.requestFocus()
+        wvWebView?.requestFocus()
 
         // 设置setWebChromeClient对象
-        wvWebView!!.webChromeClient = object : WebChromeClient() {
+        wvWebView?.webChromeClient = object : WebChromeClient() {
             override fun onReceivedTitle(view: WebView, title: String) {
                 super.onReceivedTitle(view, title)
                 toolbar.title = title
@@ -77,9 +77,9 @@ class WebViewActivity : QuickActivity() {
             }
         }
 
-        wvWebView!!.webViewClient = object : WebViewClient() {
+        wvWebView?.webViewClient = object : WebViewClient() {
             override fun shouldOverrideUrlLoading(view: WebView, url: String): Boolean {
-                wvWebView!!.loadUrl(url)
+                wvWebView?.loadUrl(url)
                 return true
             }
 
@@ -96,7 +96,7 @@ class WebViewActivity : QuickActivity() {
             }
         }
 
-        wvWebView!!.loadUrl(url)
+        wvWebView?.loadUrl(url)
     }
 
     override fun getBundleExtras(extras: Bundle) {
@@ -106,7 +106,7 @@ class WebViewActivity : QuickActivity() {
     //系统自带监听方法<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     override fun onBackPressed() {
         if (wvWebView!!.canGoBack()) {
-            wvWebView!!.goBack()
+            wvWebView?.goBack()
             return
         }
 
@@ -116,17 +116,17 @@ class WebViewActivity : QuickActivity() {
     //类相关监听<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     override fun onPause() {
         super.onPause()
-        wvWebView!!.onPause()
+        wvWebView?.onPause()
     }
 
     override fun onResume() {
-        wvWebView!!.onResume()
+        wvWebView?.onResume()
         super.onResume()
     }
 
     override fun onDestroy() {
         if (wvWebView != null) {
-            wvWebView!!.destroy()
+            wvWebView?.destroy()
             wvWebView = null
         }
         super.onDestroy()

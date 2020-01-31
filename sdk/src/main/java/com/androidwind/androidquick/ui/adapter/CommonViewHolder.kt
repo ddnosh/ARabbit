@@ -30,7 +30,7 @@ class CommonViewHolder(private val mContext: Context, private val mConvertView: 
      */
     fun <T : View> getView(viewId: Int): T {
         var view: View? = mViews.get(viewId)
-        if (view == null) {
+        view?.run {
             view = mConvertView.findViewById(viewId)
             mViews.put(viewId, view)
         }

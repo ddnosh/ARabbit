@@ -16,9 +16,7 @@ object QuickAppManager {
         @Synchronized get() = if (size() > 0) mActivities[size() - 1] else null
 
     @JvmStatic
-    fun size(): Int {
-        return mActivities.size
-    }
+    fun size(): Int = mActivities.size
 
     @Synchronized
     @JvmStatic

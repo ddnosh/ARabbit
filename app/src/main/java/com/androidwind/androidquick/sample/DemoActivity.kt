@@ -22,6 +22,10 @@ import retrofit2.converter.scalars.ScalarsConverterFactory
  * @website http://blog.csdn.net/ddnosh
  */
 class DemoActivity : BaseActivity() {
+    private val service: GankApis by lazy {
+        RetrofitManager.INSTANCE.getRetrofit(AppConfig.GANK_API_URL).create(GankApis::class.java)
+    }
+
     override fun getBundleExtras(extras: Bundle) {}
     override val contentViewLayoutID: Int = R.layout.activity_demo
 
@@ -29,12 +33,11 @@ class DemoActivity : BaseActivity() {
         super.initViewsAndEvents(savedInstanceState)
     }
 
-    fun OpenNetwork(v: View?) { //使用sdk自带的RetrofitManager, 返回Json字符串格式
-        RetrofitManager.INSTANCE.getRetrofit(AppConfig.GANK_API_URL)!!.create(GankApis::class.java)
-            .historyDate!!
-            .compose(RxUtil.applySchedulers())
-            .compose(lifecycleProvider!!.bindUntilEvent(Lifecycle.Event.ON_DESTROY))
-            .subscribe(object : BaseObserver<GankRes<List<String?>?>?>() {
+    fun openNetwork(v: View?) { //使用sdk自带的RetrofitManager, 返回Json字符串格式
+        service.getHistoryDate()
+            ?.compose(RxUtil.applySchedulers())
+            ?.compose(lifecycleProvider!!.bindUntilEvent(Lifecycle.Event.ON_DESTROY))
+            ?.subscribe(object : BaseObserver<GankRes<List<String?>?>?>() {
                 override fun onError(exception: ApiException) {
                     e(TAG, "error:" + exception.message)
                     ToastUtil.showToast("Fail!")
@@ -53,18 +56,17 @@ class DemoActivity : BaseActivity() {
             .addConverterFactory(ScalarsConverterFactory.create()) //添加 string 转换器
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create()) //添加 RxJava 适配器
             .build()
-        retrofit.create(GankApis::class.java)
-            .sdkVersion!!
-            .compose(RxUtil.applySchedulers())
-            .compose(lifecycleProvider!!.bindUntilEvent(Lifecycle.Event.ON_DESTROY))
-            .subscribe(object : BaseObserver<String?>() {
+        service.getSdkVersion()
+            ?.compose(RxUtil.applySchedulers())
+            ?.compose(lifecycleProvider!!.bindUntilEvent(Lifecycle.Event.ON_DESTROY))
+            ?.subscribe(object : BaseObserver<String?>() {
                 override fun onError(exception: ApiException) {}
                 override fun onSuccess(html: String?) {}
             }
             )
     }
 
-    fun OpenImage(v: View?) {
+    fun openImage(v: View?) {
         GlideManager
             .loadNet("https://hbimg.huabanimg.com/ca0077ed805df7a1566d68a74cae73c59994929b73f68-nkFwhw_fw658", findViewById<View>(R.id.imageView) as ImageView)
     }

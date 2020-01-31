@@ -17,11 +17,11 @@ class MainActivity : BaseActivity() {
 //        binding!!.hasPendingBindings()
     }
 
-    fun OpenActivity(v: View?) {
+    fun openActivity(v: View?) {
         readyGo(DemoActivity::class.java)
     }
 
-    fun OpenFragment(v: View?) {
+    fun openFragment(v: View?) {
         readyGo(DemoFragment::class.java)
     }
 }
