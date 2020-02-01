@@ -17,11 +17,13 @@ class MainActivity : BaseActivity() {
 //        binding!!.hasPendingBindings()
     }
 
-    fun openActivity(v: View?) {
+    fun openActivity(v: View) {
+        val clickTime = v.getClickTime
+        println(clickTime)
         readyGo(DemoActivity::class.java)
     }
 
-    fun openFragment(v: View?) {
+    fun openFragment(v: View) {
         readyGo(DemoFragment::class.java)
     }
 }

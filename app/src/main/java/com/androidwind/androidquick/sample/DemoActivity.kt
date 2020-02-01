@@ -35,15 +35,14 @@ class DemoActivity : BaseActivity() {
 
     fun openNetwork(v: View?) { //使用sdk自带的RetrofitManager, 返回Json字符串格式
         service.getHistoryDate()
-            ?.compose(RxUtil.applySchedulers())
-            ?.compose(lifecycleProvider!!.bindUntilEvent(Lifecycle.Event.ON_DESTROY))
-            ?.subscribe(object : BaseObserver<GankRes<List<String?>?>?>() {
+            .composeWithLifecycleDestroy(lifecycleProvider)
+            .subscribe(object : BaseObserver<GankRes<List<String>>>() {
                 override fun onError(exception: ApiException) {
                     e(TAG, "error:" + exception.message)
                     ToastUtil.showToast("Fail!")
                 }
 
-                override fun onSuccess(listGankRes: GankRes<List<String?>?>?) {
+                override fun onSuccess(listGankRes: GankRes<List<String>>) {
                     i(TAG, listGankRes?.results.toString())
                     ToastUtil.showToast("Success!")
                 }
@@ -56,10 +55,10 @@ class DemoActivity : BaseActivity() {
             .addConverterFactory(ScalarsConverterFactory.create()) //添加 string 转换器
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create()) //添加 RxJava 适配器
             .build()
+
         service.getSdkVersion()
-            ?.compose(RxUtil.applySchedulers())
-            ?.compose(lifecycleProvider!!.bindUntilEvent(Lifecycle.Event.ON_DESTROY))
-            ?.subscribe(object : BaseObserver<String?>() {
+            .composeWithLifecycleDestroy(lifecycleProvider)
+            .subscribe(object : BaseObserver<String?>() {
                 override fun onError(exception: ApiException) {}
                 override fun onSuccess(html: String?) {}
             }

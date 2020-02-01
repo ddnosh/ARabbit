@@ -9,9 +9,4 @@ import java.io.Serializable
 class GankRes<T> : Serializable {
     var isError = false
     var results: T? = null
-        private set
-
-    fun setResults(results: T) {
-        this.results = results
-    }
 }

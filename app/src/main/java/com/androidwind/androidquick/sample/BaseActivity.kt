@@ -22,8 +22,7 @@ abstract class BaseActivity : QuickActivity() {
         var TAG = "BaseActivity"
     }
 
-    @JvmField
-    protected var lifecycleProvider: LifecycleProvider<Lifecycle.Event>? = null
+    protected lateinit var lifecycleProvider: LifecycleProvider<Lifecycle.Event>
 
     override fun initViewsAndEvents(savedInstanceState: Bundle?) {
         lifecycleProvider = AndroidLifecycle.createLifecycleProvider(this)

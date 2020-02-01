@@ -47,7 +47,7 @@ class NetStateReceiver : BroadcastReceiver() {
 
         private val receiver: BroadcastReceiver?
             get() {
-                if (null == mBroadcastReceiver) {
+                mBroadcastReceiver?.run {
                     synchronized(NetStateReceiver::class.java) {
                         if (null == mBroadcastReceiver) {
                             mBroadcastReceiver = NetStateReceiver()

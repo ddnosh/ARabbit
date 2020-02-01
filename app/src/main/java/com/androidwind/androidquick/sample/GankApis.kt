@@ -9,8 +9,8 @@ import retrofit2.http.GET
  */
 interface GankApis {
     @GET("day/history")
-    fun getHistoryDate(): Observable<GankRes<List<String?>?>?>?
+    fun getHistoryDate(): Observable<GankRes<List<String>>>
 
     @GET("https://api.bintray.com/packages/ddnosh/maven/androidquick/images/download.svg")
-    fun getSdkVersion(): Observable<String?>?
+    fun getSdkVersion(): Observable<String>
 }
