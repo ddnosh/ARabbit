@@ -1,17 +1,10 @@
 package com.androidwind.androidquick.util
 
 import com.androidwind.androidquick.module.rxjava.scheduler.IoMainScheduler
-import com.cxz.wanandroid.rx.scheduler.ComputationMainScheduler
-import com.cxz.wanandroid.rx.scheduler.NewThreadMainScheduler
-import com.cxz.wanandroid.rx.scheduler.SingleMainScheduler
-import com.cxz.wanandroid.rx.scheduler.TrampolineMainScheduler
-import io.reactivex.Observable
-import io.reactivex.ObservableSource
-import io.reactivex.ObservableTransformer
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.internal.schedulers.ComputationScheduler
-import io.reactivex.internal.schedulers.TrampolineScheduler
-import io.reactivex.schedulers.Schedulers
+import com.androidwind.androidquick.module.rxjava.scheduler.ComputationMainScheduler
+import com.androidwind.androidquick.module.rxjava.scheduler.NewThreadMainScheduler
+import com.androidwind.androidquick.module.rxjava.scheduler.SingleMainScheduler
+import com.androidwind.androidquick.module.rxjava.scheduler.TrampolineMainScheduler
 
 /**
  * @author ddnosh

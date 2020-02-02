@@ -19,7 +19,6 @@ abstract class BaseFragment : QuickFragment() {
     override fun onFirstUserVisible() {}
     override fun onUserVisible() {}
     override fun onUserInvisible() {}
-    override fun setDefaultVaryViewRoot(): View? = null
 
     override val isBindEventBus: Boolean = false
 

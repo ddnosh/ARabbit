@@ -43,8 +43,8 @@ import com.androidwind.androidquick.util.ToastUtil
 import com.androidwind.androidquick.util.immersion.StatusBarUtil
 import com.androidwind.androidquick.ui.dialog.dialogactivity.CommonDialog
 import com.androidwind.androidquick.ui.dialog.dialogactivity.LoadingDialog
+import com.androidwind.androidquick.ui.multipleviewstatus.MultipleStatusView
 import com.androidwind.androidquick.ui.receiver.NetStateReceiver
-import com.androidwind.androidquick.ui.viewstatus.VaryViewHelperController
 import com.google.android.material.snackbar.Snackbar
 
 import org.greenrobot.eventbus.EventBus
@@ -67,7 +67,7 @@ abstract class QuickActivity : AppCompatActivity() {
     /**
      * loading view status controller: empty/loading/error
      */
-    private lateinit var mVaryViewHelperController: VaryViewHelperController
+    protected var mLayoutStatusView: MultipleStatusView? = null
 
     /**
      * butterknife 8+ support
@@ -205,9 +205,6 @@ abstract class QuickActivity : AppCompatActivity() {
             super.setContentView(layoutResID)
         }
         mUnbinder = ButterKnife.bind(this)
-        if (null != setDefaultVaryViewRoot()) {
-            mVaryViewHelperController = VaryViewHelperController(setDefaultVaryViewRoot())
-        }
     }
 
     protected fun getContentView(layoutResID: Int, contentView: LinearLayout): View? {
@@ -284,11 +281,6 @@ abstract class QuickActivity : AppCompatActivity() {
      * @param eventCenter
      */
     protected abstract fun onEventComing(eventCenter: EventCenter<*>)
-
-    /**
-     * get loading target view
-     */
-    protected abstract fun setDefaultVaryViewRoot(): View?
 
     /**
      * init all views and add events
@@ -414,83 +406,6 @@ abstract class QuickActivity : AppCompatActivity() {
             intent.putExtras(bundle)
         }
         startActivityForResult(intent, requestCode)
-    }
-
-    /**
-     * show toast
-     *
-     * @param msg
-     */
-    protected fun showToast(msg: String?) {
-        //防止遮盖虚拟按键
-        if (null != msg && !StringUtil.isEmpty(msg)) {
-            Snackbar.make(setDefaultVaryViewRoot()!!, msg, Snackbar.LENGTH_SHORT).show()
-        }
-    }
-
-    /**
-     * toggle show loading
-     *
-     * @param toggle
-     */
-    protected fun toggleShowLoading(toggle: Boolean, msg: String) {
-        requireNotNull(mVaryViewHelperController) { "You must return a right target view for loading" }
-
-        if (toggle) {
-            mVaryViewHelperController.showLoading(msg)
-        } else {
-            mVaryViewHelperController.restore()
-        }
-    }
-
-    /**
-     * toggle show empty
-     *
-     * @param toggle
-     */
-    protected fun toggleShowEmpty(toggle: Boolean, msg: String, onClickListener: View.OnClickListener) {
-        requireNotNull(mVaryViewHelperController) { "You must return a right target view for loading" }
-
-        if (toggle) {
-            mVaryViewHelperController.showEmpty(msg, onClickListener)
-        } else {
-            mVaryViewHelperController.restore()
-        }
-    }
-
-    /**
-     * toggle show error
-     *
-     * @param toggle
-     */
-    protected fun toggleShowError(toggle: Boolean, msg: String, onClickListener: View.OnClickListener) {
-        requireNotNull(mVaryViewHelperController) { "You must return a right target view for loading" }
-
-        if (toggle) {
-            mVaryViewHelperController.showError(msg, onClickListener)
-        } else {
-            mVaryViewHelperController.restore()
-        }
-    }
-
-    /**
-     * toggle show network error
-     *
-     * @param toggle
-     */
-    protected fun toggleNetworkError(toggle: Boolean, onClickListener: View.OnClickListener) {
-        requireNotNull(mVaryViewHelperController) { "You must return a right target view for loading" }
-
-        if (toggle) {
-            mVaryViewHelperController.showNetworkError(onClickListener)
-        } else {
-            mVaryViewHelperController.restore()
-        }
-    }
-
-    protected fun toggleRestore() {
-        requireNotNull(mVaryViewHelperController) { "You must return a right target view for loading" }
-        mVaryViewHelperController.restore()
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)

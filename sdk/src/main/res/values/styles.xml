@@ -713,19 +713,19 @@
     </style>
 
     <!--<style name="topbar_title">-->
-        <!--<item name="android:id">@id/tvBaseTitle</item>-->
-        <!--<item name="android:textColor">@color/black</item>-->
-        <!--<item name="android:gravity">center</item>-->
-        <!--<item name="android:layout_width">wrap_content</item>-->
-        <!--<item name="android:layout_height">match_parent</item>-->
-        <!--<item name="android:textSize">18sp</item>-->
-        <!--<item name="android:layout_centerHorizontal">true</item>-->
+    <!--<item name="android:id">@id/tvBaseTitle</item>-->
+    <!--<item name="android:textColor">@color/black</item>-->
+    <!--<item name="android:gravity">center</item>-->
+    <!--<item name="android:layout_width">wrap_content</item>-->
+    <!--<item name="android:layout_height">match_parent</item>-->
+    <!--<item name="android:textSize">18sp</item>-->
+    <!--<item name="android:layout_centerHorizontal">true</item>-->
     <!--</style>-->
 
     <!--<style name="topbar_title_pb">-->
-        <!--<item name="android:id">@id/pbBaseTitle</item>-->
-        <!--<item name="android:layout_width">@dimen/pb_circle_topbar_width</item>-->
-        <!--<item name="android:layout_height">match_parent</item>-->
+    <!--<item name="android:id">@id/pbBaseTitle</item>-->
+    <!--<item name="android:layout_width">@dimen/pb_circle_topbar_width</item>-->
+    <!--<item name="android:layout_height">match_parent</item>-->
     <!--</style>-->
 
     <style name="topbar_btn">
@@ -890,16 +890,16 @@
     </style>
 
     <!--<style name="bottom_menu_btn_return" parent="bottom_menu_btn">-->
-        <!--<item name="android:id">@id/tvBaseViewBottomWindowReturn</item>-->
-        <!--<item name="android:text">取消</item>-->
-        <!--<item name="android:textColor">@color/gray_3</item>-->
-        <!--<item name="android:onClick">onReturnClick</item>-->
+    <!--<item name="android:id">@id/tvBaseViewBottomWindowReturn</item>-->
+    <!--<item name="android:text">取消</item>-->
+    <!--<item name="android:textColor">@color/gray_3</item>-->
+    <!--<item name="android:onClick">onReturnClick</item>-->
     <!--</style>-->
 
     <!--<style name="bottom_menu_btn_forward" parent="bottom_menu_btn">-->
-        <!--<item name="android:id">@id/tvBaseViewBottomWindowForward</item>-->
-        <!--<item name="android:text">确定</item>-->
-        <!--<item name="android:onClick">onForwardClick</item>-->
+    <!--<item name="android:id">@id/tvBaseViewBottomWindowForward</item>-->
+    <!--<item name="android:text">确定</item>-->
+    <!--<item name="android:onClick">onForwardClick</item>-->
     <!--</style>-->
 
     <!-- bottom_menu_btn >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
@@ -1216,6 +1216,16 @@
         <item name="android:colorBackgroundCacheHint">@null</item>
         <item name="android:windowSoftInputMode">adjustPan</item>
         <item name="android:windowIsFloating">true</item>
+    </style>
+
+    <!--MultipleStatusView-->
+    <style name="MultipleStatusViewContent">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_centerInParent">true</item>
+        <item name="android:layout_margin">8dp</item>
+        <item name="android:textColor">#a9b7b7</item>
+        <item name="android:textSize">16sp</item>
     </style>
 
 </resources>

@@ -1,6 +1,7 @@
 package com.androidwind.androidquick.sample
 
 import androidx.multidex.MultiDexApplication
+import com.androidwind.androidquick.util.ToastUtil
 
 /**
  * @author ddnosh
@@ -13,6 +14,7 @@ class MyApplication : MultiDexApplication() {
         instance ?: run {
             instance = this
         }
+        ToastUtil.register(this)
     }
 
     companion object {

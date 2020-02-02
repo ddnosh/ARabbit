@@ -30,8 +30,6 @@ abstract class BaseActivity : QuickActivity() {
 
     override val isBindEventBus: Boolean = false
 
-    override fun setDefaultVaryViewRoot(): View? = null
-
     override fun onEventComing(eventCenter: EventCenter<*>) {
         Log.i(TAG, eventCenter.eventCode.toString())
     }

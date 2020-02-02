@@ -1,6 +1,5 @@
-package com.cxz.wanandroid.rx.scheduler
+package com.androidwind.androidquick.module.rxjava.scheduler
 
-import com.androidwind.androidquick.module.rxjava.scheduler.BaseScheduler
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 

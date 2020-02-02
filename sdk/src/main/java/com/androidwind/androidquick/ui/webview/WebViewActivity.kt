@@ -38,10 +38,6 @@ class WebViewActivity : QuickActivity() {
     override fun onEventComing(eventCenter: EventCenter<*>) {
     }
 
-    override fun setDefaultVaryViewRoot(): View? {
-        return null
-    }
-
     override fun initViewsAndEvents(savedInstanceState: Bundle?) {
         wvWebView = findViewById(R.id.wvWebView)
         pbWebView = findViewById(R.id.pbWebView)

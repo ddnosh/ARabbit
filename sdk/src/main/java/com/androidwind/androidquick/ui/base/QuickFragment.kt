@@ -8,7 +8,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 
-import java.lang.reflect.Field
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
@@ -18,7 +17,7 @@ import butterknife.Unbinder
 import com.androidwind.androidquick.util.StringUtil
 import com.androidwind.androidquick.ui.dialog.dialogactivity.CommonDialog
 import com.androidwind.androidquick.module.asynchronize.eventbus.EventCenter
-import com.androidwind.androidquick.ui.viewstatus.VaryViewHelperController
+import com.androidwind.androidquick.ui.multipleviewstatus.MultipleStatusView
 import com.google.android.material.snackbar.Snackbar
 
 import org.greenrobot.eventbus.EventBus
@@ -38,7 +37,10 @@ abstract class QuickFragment : Fragment() {
     private var isFirstInvisible = true
     private var isPrepared: Boolean = false
 
-    private var mVaryViewHelperController: VaryViewHelperController? = null
+    /**
+     * loading view status controller: empty/loading/error
+     */
+    protected var mLayoutStatusView: MultipleStatusView? = null
 
     /**
      * butterknife 8+ support
@@ -109,10 +111,6 @@ abstract class QuickFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         mUnbinder = ButterKnife.bind(this, view)
-
-        if (null != setDefaultVaryViewRoot()) {
-            mVaryViewHelperController = VaryViewHelperController(setDefaultVaryViewRoot())
-        }
 
         initViewsAndEvents(savedInstanceState)
     }
@@ -219,11 +217,6 @@ abstract class QuickFragment : Fragment() {
     protected abstract fun onUserInvisible()
 
     /**
-     * get loading target view
-     */
-    protected abstract fun setDefaultVaryViewRoot(): View?
-
-    /**
      * init all views and add events
      */
     protected abstract fun initViewsAndEvents(savedInstanceState: Bundle?)
@@ -297,66 +290,6 @@ abstract class QuickFragment : Fragment() {
     protected fun showToast(msg: String?) {
         if (null != msg && !StringUtil.isEmpty(msg)) {
             Snackbar.make((mContext as Activity).window.decorView, msg, Snackbar.LENGTH_SHORT).show()
-        }
-    }
-
-    /**
-     * toggle show loading
-     *
-     * @param toggle
-     */
-    protected fun toggleShowLoading(toggle: Boolean, msg: String) {
-        requireNotNull(mVaryViewHelperController) { "You must return a right target view for loading" }
-
-        if (toggle) {
-            mVaryViewHelperController!!.showLoading(msg)
-        } else {
-            mVaryViewHelperController!!.restore()
-        }
-    }
-
-    /**
-     * toggle show empty
-     *
-     * @param toggle
-     */
-    protected fun toggleShowEmpty(toggle: Boolean, msg: String, onClickListener: View.OnClickListener) {
-        requireNotNull(mVaryViewHelperController) { "You must return a right target view for loading" }
-
-        if (toggle) {
-            mVaryViewHelperController!!.showEmpty(msg, onClickListener)
-        } else {
-            mVaryViewHelperController!!.restore()
-        }
-    }
-
-    /**
-     * toggle show error
-     *
-     * @param toggle
-     */
-    protected fun toggleShowError(toggle: Boolean, msg: String, onClickListener: View.OnClickListener) {
-        requireNotNull(mVaryViewHelperController) { "You must return a right target view for loading" }
-
-        if (toggle) {
-            mVaryViewHelperController!!.showError(msg, onClickListener)
-        } else {
-            mVaryViewHelperController!!.restore()
-        }
-    }
-
-    /**
-     * toggle show network error
-     *
-     * @param toggle
-     */
-    protected fun toggleNetworkError(toggle: Boolean, onClickListener: View.OnClickListener) {
-        requireNotNull(mVaryViewHelperController) { "You must return a right target view for loading" }
-
-        if (toggle) {
-            mVaryViewHelperController!!.showNetworkError(onClickListener)
-        } else {
-            mVaryViewHelperController!!.restore()
         }
     }
 
