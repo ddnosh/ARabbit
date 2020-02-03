@@ -3,14 +3,14 @@ package com.androidwind.androidquick.sample
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
-import androidx.lifecycle.Lifecycle
 import com.androidwind.androidquick.module.exception.ApiException
 import com.androidwind.androidquick.module.glide.GlideManager
 import com.androidwind.androidquick.module.rxjava.BaseObserver
+import com.androidwind.androidquick.sample.http.GankApis
+import com.androidwind.androidquick.sample.http.GankRes
 import com.androidwind.androidquick.sample.http.RetrofitManager
 import com.androidwind.androidquick.util.LogUtil.e
 import com.androidwind.androidquick.util.LogUtil.i
-import com.androidwind.androidquick.util.RxUtil
 import com.androidwind.androidquick.util.ToastUtil
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -23,7 +23,7 @@ import retrofit2.converter.scalars.ScalarsConverterFactory
  */
 class DemoActivity : BaseActivity() {
     private val service: GankApis by lazy {
-        RetrofitManager.INSTANCE.getRetrofit(AppConfig.GANK_API_URL).create(GankApis::class.java)
+        RetrofitManager.getRetrofit(AppConfig.GANK_API_URL).create(GankApis::class.java)
     }
 
     override fun getBundleExtras(extras: Bundle) {}

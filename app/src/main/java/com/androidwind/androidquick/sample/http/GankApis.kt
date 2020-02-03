@@ -1,6 +1,7 @@
-package com.androidwind.androidquick.sample
+package com.androidwind.androidquick.sample.http
 
 import io.reactivex.Observable
+import kotlinx.coroutines.Deferred
 import retrofit2.http.GET
 
 /**
@@ -13,4 +14,7 @@ interface GankApis {
 
     @GET("https://api.bintray.com/packages/ddnosh/maven/androidquick/images/download.svg")
     fun getSdkVersion(): Observable<String>
+
+    @GET("day/history")
+    fun getHistoryDateAsync(): Deferred<GankRes<List<String>>>
 }

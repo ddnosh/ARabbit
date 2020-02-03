@@ -17,8 +17,7 @@ import java.util.concurrent.TimeUnit
  * @author ddnosh
  * @website http://blog.csdn.net/ddnosh
  */
-enum class RetrofitManager {
-    INSTANCE;
+object RetrofitManager {
 
     private val TAG = "RetrofitManager"
     private val retrofitMap = HashMap<String, Retrofit>()
@@ -38,6 +37,7 @@ enum class RetrofitManager {
             .baseUrl(baseUrl)
             .addConverterFactory(GsonConverterFactory.create()) //定义转化器,用Gson将服务器返回的Json格式解析成实体
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create()) //关联RxJava
+            .addCallAdapterFactory(CoroutineCallAdapterFactory())
             .client(okHttpClient)
         if (isJson) {
             builder.addConverterFactory(GsonConverterFactory.create())

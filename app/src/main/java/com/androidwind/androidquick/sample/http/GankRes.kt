@@ -1,4 +1,4 @@
-package com.androidwind.androidquick.sample
+package com.androidwind.androidquick.sample.http
 
 import java.io.Serializable
 

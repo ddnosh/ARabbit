@@ -37,4 +37,8 @@ class MainActivity : BaseActivity() {
     fun statusView(view: View) {
         mLayoutStatusView?.showError()
     }
+
+    fun coroutine(view: View) {
+        readyGo(CoroutineActivity::class.java)
+    }
 }
