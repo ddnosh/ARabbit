@@ -1,5 +1,6 @@
 package com.androidwind.androidquick.util
 
+import com.androidwind.androidquick.module.rxjava.exception.ExceptionScheduler
 import com.androidwind.androidquick.module.rxjava.scheduler.IoMainScheduler
 import com.androidwind.androidquick.module.rxjava.scheduler.ComputationMainScheduler
 import com.androidwind.androidquick.module.rxjava.scheduler.NewThreadMainScheduler
@@ -49,5 +50,13 @@ object RxUtil {
     @JvmStatic
     fun <T> trampoline2Main(): TrampolineMainScheduler<T> {
         return TrampolineMainScheduler()
+    }
+
+    /**
+     *
+     */
+    @JvmStatic
+    fun <T> exception(): ExceptionScheduler<T> {
+        return ExceptionScheduler()
     }
 }

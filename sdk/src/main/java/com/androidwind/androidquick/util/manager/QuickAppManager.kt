@@ -1,4 +1,4 @@
-package com.androidwind.androidquick.manager
+package com.androidwind.androidquick.util.manager
 
 import android.app.Activity
 

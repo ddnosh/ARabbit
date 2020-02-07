@@ -1,11 +1,14 @@
 package com.androidwind.androidquick.module.retrofit
 
+import org.greenrobot.eventbus.util.ErrorDialogManager.factory
+import java.security.KeyStore
 import java.security.SecureRandom
 import java.security.cert.X509Certificate
 import javax.net.ssl.HostnameVerifier
 import javax.net.ssl.SSLContext
 import javax.net.ssl.SSLSocketFactory
 import javax.net.ssl.TrustManager
+import javax.net.ssl.TrustManagerFactory
 import javax.net.ssl.X509TrustManager
 
 /**
@@ -34,24 +37,25 @@ object SSLSocketClient {
         throw RuntimeException(e)
     }
 
-    //okhttp3开启https证书校验
-//    public static SSLSocketFactory getSSLSocketFactory() {
-//        try {
-//            SSLContext sslContext = SSLContext.getInstance("TLS");
-//            KeyStore trustStore = KeyStore.getInstance(KeyStore.getDefaultType());
+//    //okhttp3开启https证书校验: 单向验证
+//    fun getSSLSocketFactory(): SSLSocketFactory? {
+//        return try {
+//            val sslContext = SSLContext.getInstance("TLS");
+//            val trustStore = KeyStore.getInstance(KeyStore.getDefaultType());
 //            trustStore.load(null, null);
 //            trustStore.setCertificateEntry("your_crt", Utility.setKeystoreOfCA());
-//            TrustManagerFactory trustManagerFactory = TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm());
+//            val trustManagerFactory = TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm());
 //            trustManagerFactory.init(trustStore);
 //            sslContext.init(null, trustManagerFactory.getTrustManagers(), null);
-//            SSLSocketFactory factory = sslContext.getSocketFactory();
-//            return factory;
-//        } catch (Exception e) {
+//            val sslSocketFactory = sslContext.getSocketFactory();
+//            sslSocketFactory;
+//        } catch (e: Exception) {
 //            e.printStackTrace();
-//            return null;
+//            null;
 //        } finally {
 //        }
 //    }
+//    //okhttp3开启https证书校验: 双向验证
 
     //获取HostnameVerifier
     fun getHostnameVerifier(): HostnameVerifier = HostnameVerifier { s, sslSession -> true }

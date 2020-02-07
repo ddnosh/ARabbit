@@ -4,6 +4,8 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
+import com.androidwind.androidquick.constant.Constant
+import com.androidwind.androidquick.module.asynchronize.eventbus.EventBusUtil
 
 import com.androidwind.androidquick.util.LogUtil
 import com.androidwind.androidquick.util.NetUtil
@@ -23,12 +25,12 @@ class NetStateReceiver : BroadcastReceiver() {
             if (!NetUtil.isNetworkAvailable(context)) {
                 LogUtil.i(TAG, "<--- network disconnected --->")
                 isNetworkAvailable = false
-                EventBus.getDefault().post(EventCenter<Any>(10001))
+                EventBusUtil.sendEvent(EventCenter<Any>(Constant.RECEIVER_NETWORK_DISCONNECTED))
             } else {
                 LogUtil.i(TAG, "<--- network connected --->")
                 isNetworkAvailable = true
                 apnType = NetUtil.getAPNType(context)
-                EventBus.getDefault().post(EventCenter<Any>(10002))
+                EventBusUtil.sendEvent(EventCenter<Any>(Constant.RECEIVER_NETWORK_CONNECTED, apnType))
             }
         }
     }

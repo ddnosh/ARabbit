@@ -33,9 +33,10 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import butterknife.ButterKnife
 import butterknife.Unbinder
+import com.androidwind.androidquick.module.asynchronize.eventbus.EventBusUtil
 
 import com.androidwind.androidquick.module.asynchronize.eventbus.EventCenter
-import com.androidwind.androidquick.manager.QuickAppManager
+import com.androidwind.androidquick.util.manager.QuickAppManager
 import com.androidwind.androidquick.module.exception.ExceptionEngine
 import com.androidwind.androidquick.util.LogUtil
 import com.androidwind.androidquick.util.StringUtil
@@ -45,7 +46,6 @@ import com.androidwind.androidquick.ui.dialog.dialogactivity.CommonDialog
 import com.androidwind.androidquick.ui.dialog.dialogactivity.LoadingDialog
 import com.androidwind.androidquick.ui.multipleviewstatus.MultipleStatusView
 import com.androidwind.androidquick.ui.receiver.NetStateReceiver
-import com.google.android.material.snackbar.Snackbar
 
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -149,7 +149,7 @@ abstract class QuickActivity : AppCompatActivity() {
         }
         // eventbus
         if (isBindEventBus) {
-            EventBus.getDefault().register(this)
+            EventBusUtil.register(this)
         }
         // layout
         val layoutId = contentViewLayoutID
@@ -176,7 +176,7 @@ abstract class QuickActivity : AppCompatActivity() {
         }
         // network status
         NetStateReceiver.registerNetworkStateReceiver(mContext)
-
+        // init view & event
         initViewsAndEvents(savedInstanceState)
     }
 
@@ -263,7 +263,7 @@ abstract class QuickActivity : AppCompatActivity() {
         }
         NetStateReceiver.unRegisterNetworkStateReceiver(mContext)
         if (isBindEventBus) {
-            EventBus.getDefault().unregister(this)
+            EventBusUtil.unregister(this)
         }
         dismissLoadingDialog()
     }

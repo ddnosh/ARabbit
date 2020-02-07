@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import butterknife.ButterKnife
 import butterknife.Unbinder
+import com.androidwind.androidquick.module.asynchronize.eventbus.EventBusUtil
 import com.androidwind.androidquick.util.StringUtil
 import com.androidwind.androidquick.ui.dialog.dialogactivity.CommonDialog
 import com.androidwind.androidquick.module.asynchronize.eventbus.EventCenter
@@ -83,7 +84,7 @@ abstract class QuickFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if (isBindEventBus) {
-            EventBus.getDefault().register(this)
+            EventBusUtil.register(this)
         }
     }
 
@@ -123,7 +124,7 @@ abstract class QuickFragment : Fragment() {
         super.onDestroy()
         mUnbinder?.unbind()
         if (isBindEventBus) {
-            EventBus.getDefault().unregister(this)
+            EventBusUtil.unregister(this)
         }
     }
 

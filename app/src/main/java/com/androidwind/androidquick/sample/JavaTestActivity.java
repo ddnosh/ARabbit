@@ -2,7 +2,7 @@ package com.androidwind.androidquick.sample;
 
 import android.os.Bundle;
 
-import com.androidwind.androidquick.manager.QuickAppManager;
+import com.androidwind.androidquick.util.manager.QuickAppManager;
 import com.androidwind.androidquick.ui.receiver.NetStateReceiver;
 import com.androidwind.androidquick.util.LogUtil;
 import com.androidwind.androidquick.util.ToastUtil;
