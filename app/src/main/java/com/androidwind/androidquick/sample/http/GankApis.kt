@@ -17,4 +17,7 @@ interface GankApis {
 
     @GET("day/history")
     fun getHistoryDateAsync(): Deferred<GankRes<List<String>>>
+
+    @GET("day/h")
+    fun getError(): Observable<GankRes<List<String>>>
 }

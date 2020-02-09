@@ -6,6 +6,7 @@ import android.widget.ImageView
 import com.androidwind.androidquick.module.exception.ApiException
 import com.androidwind.androidquick.module.glide.GlideManager
 import com.androidwind.androidquick.module.rxjava.BaseObserver
+import com.androidwind.androidquick.sample.error.GlobalErrorProcessor
 import com.androidwind.androidquick.sample.http.GankApis
 import com.androidwind.androidquick.sample.http.GankRes
 import com.androidwind.androidquick.sample.http.RetrofitManager
@@ -55,12 +56,21 @@ class DemoActivity : BaseActivity() {
             .addConverterFactory(ScalarsConverterFactory.create()) //添加 string 转换器
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create()) //添加 RxJava 适配器
             .build()
-
+        //获取sdk
         service.getSdkVersion()
             .composeWithLifecycleDestroy(lifecycleProvider)
             .subscribe(object : BaseObserver<String?>() {
                 override fun onError(exception: ApiException) {}
                 override fun onSuccess(html: String?) {}
+            }
+            )
+        //error
+        service.getError()
+            .compose(GlobalErrorProcessor.processGlobalError(this))
+            .composeWithLifecycleDestroy(lifecycleProvider)
+            .subscribe(object : BaseObserver<GankRes<List<String>>>() {
+                override fun onError(exception: ApiException) {}
+                override fun onSuccess(html: GankRes<List<String>>) {}
             }
             )
     }
