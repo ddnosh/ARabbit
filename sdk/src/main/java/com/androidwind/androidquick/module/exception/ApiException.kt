@@ -5,5 +5,5 @@ package com.androidwind.androidquick.module.exception
  * @website http://blog.csdn.net/ddnosh
  */
 class ApiException(throwable: Throwable, var code: Int) : Exception(throwable) {
-    override var message: String? = null
+    var msg: String? = null
 }
