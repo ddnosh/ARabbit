@@ -19,12 +19,8 @@ class CoroutineActivity : BaseActivity() {
         RetrofitManager.getRetrofit(AppConfig.GANK_API_URL).create(GankApis::class.java)
     }
 
-    override fun getBundleExtras(extras: Bundle) {}
     override val contentViewLayoutID: Int = R.layout.activity_coroutine
-
-    override fun initViewsAndEvents(savedInstanceState: Bundle?) {
-        super.initViewsAndEvents(savedInstanceState)
-    }
+    override fun getBundleExtras(extras: Bundle) {}
 
     fun coroutine(view: View) {
         GlobalScope.launch(Dispatchers.Main) {

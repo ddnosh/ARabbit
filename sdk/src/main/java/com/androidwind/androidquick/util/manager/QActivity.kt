@@ -8,7 +8,7 @@ import java.util.LinkedList
  * @author  ddnosh
  * @website http://blog.csdn.net/ddnosh
  */
-object QuickAppManager {
+object QActivity {
     private val mActivities = LinkedList<Activity>()
 
     @JvmStatic

@@ -16,12 +16,10 @@ import butterknife.ButterKnife
 import butterknife.Unbinder
 import com.androidwind.androidquick.module.asynchronize.eventbus.EventBusUtil
 import com.androidwind.androidquick.util.StringUtil
-import com.androidwind.androidquick.ui.dialog.dialogactivity.CommonDialog
 import com.androidwind.androidquick.module.asynchronize.eventbus.EventCenter
 import com.androidwind.androidquick.ui.multipleviewstatus.MultipleStatusView
 import com.google.android.material.snackbar.Snackbar
 
-import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 
@@ -328,12 +326,12 @@ abstract class QuickFragment : Fragment() {
         }
     }
 
-    fun getDialogBuilder(context: Context): CommonDialog.Builder {
-        if (activity != null && activity is QuickActivity) {
-            return (activity as QuickActivity).getDialogBuilder(context)
-        }
-        throw IllegalStateException("CommonDialog can only be used in a class which extends QuickActivity!")
-    }
+//    fun getDialogBuilder(context: Context): CommonDialog.Builder {
+//        if (activity != null && activity is QuickActivity) {
+//            return (activity as QuickActivity).getDialogBuilder(context)
+//        }
+//        throw IllegalStateException("CommonDialog can only be used in a class which extends QuickActivity!")
+//    }
 
     fun showError(throwable: Throwable) {
         if (activity is QuickActivity)

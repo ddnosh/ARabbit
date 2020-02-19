@@ -2,7 +2,7 @@ package com.androidwind.androidquick.sample;
 
 import android.os.Bundle;
 
-import com.androidwind.androidquick.util.manager.QuickAppManager;
+import com.androidwind.androidquick.util.manager.QActivity;
 import com.androidwind.androidquick.ui.receiver.NetStateReceiver;
 import com.androidwind.androidquick.util.LogUtil;
 import com.androidwind.androidquick.util.ToastUtil;
@@ -31,7 +31,7 @@ public class JavaTestActivity extends BaseActivity {
         getBinding();
         LogUtil.i(TAG, "");
         ToastUtil.showToast("");
-        QuickAppManager.addActivity(this);
+        QActivity.addActivity(this);
         NetStateReceiver.unRegisterNetworkStateReceiver(this);
         showLoadingDialog();
     }

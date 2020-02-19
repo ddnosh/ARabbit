@@ -21,6 +21,8 @@
         <activity android:name=".DemoActivity" />
         <activity android:name=".FrameActivity" />
         <activity android:name=".CoroutineActivity" />
+        <activity android:name=".DialogActivity" />
+        <activity android:name=".mvvm.LiveDataActivity" />
     </application>
 
 </manifest>

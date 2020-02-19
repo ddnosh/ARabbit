@@ -3,7 +3,7 @@ package com.androidwind.androidquick.sample
 import android.graphics.Color
 import android.os.Bundle
 import android.view.View
-import android.view.View.OnClickListener
+import com.androidwind.androidquick.sample.mvvm.LiveDataActivity
 import com.androidwind.androidquick.util.ToastUtil
 import com.androidwind.androidquick.util.ToastUtil.register
 import kotlinx.android.synthetic.main.activity_main.*
@@ -22,6 +22,7 @@ class MainActivity : BaseActivity() {
         mLayoutStatusView?.setOnClickListener {
             ToastUtil.showToast("retried.")
         }
+//        showLoadingDialog()
     }
 
     fun openActivity(v: View) {
@@ -40,5 +41,13 @@ class MainActivity : BaseActivity() {
 
     fun coroutine(view: View) {
         readyGo(CoroutineActivity::class.java)
+    }
+
+    fun dialog(view: View) {
+        readyGo(DialogActivity::class.java)
+    }
+
+    fun livedata(view: View) {
+        readyGo(LiveDataActivity::class.java)
     }
 }

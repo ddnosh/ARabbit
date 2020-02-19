@@ -36,18 +36,17 @@ import butterknife.Unbinder
 import com.androidwind.androidquick.module.asynchronize.eventbus.EventBusUtil
 
 import com.androidwind.androidquick.module.asynchronize.eventbus.EventCenter
-import com.androidwind.androidquick.util.manager.QuickAppManager
+import com.androidwind.androidquick.util.manager.QActivity
 import com.androidwind.androidquick.module.exception.ExceptionEngine
+import com.androidwind.androidquick.ui.dialog.ViewHolder
+import com.androidwind.androidquick.ui.dialog.dialogactivity.BaseDialog
+import com.androidwind.androidquick.ui.dialog.dialogactivity.ADialog
 import com.androidwind.androidquick.util.LogUtil
-import com.androidwind.androidquick.util.StringUtil
 import com.androidwind.androidquick.util.ToastUtil
 import com.androidwind.androidquick.util.immersion.StatusBarUtil
-import com.androidwind.androidquick.ui.dialog.dialogactivity.CommonDialog
-import com.androidwind.androidquick.ui.dialog.dialogactivity.LoadingDialog
 import com.androidwind.androidquick.ui.multipleviewstatus.MultipleStatusView
 import com.androidwind.androidquick.ui.receiver.NetStateReceiver
 
-import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 
@@ -91,7 +90,7 @@ abstract class QuickActivity : AppCompatActivity() {
     /**
      * dialog
      */
-    protected var loadingDialog: LoadingDialog? = null
+    protected var mLoadingDialog: ADialog? = null
 
     /**
      * default title bar
@@ -130,7 +129,7 @@ abstract class QuickActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         mContext = this
         // activity manager
-        QuickAppManager.addActivity(this)
+        QActivity.addActivity(this)
         // animation
         if (toggleOverridePendingTransition()) {
             when (overridePendingTransitionMode) {
@@ -243,7 +242,7 @@ abstract class QuickActivity : AppCompatActivity() {
 
     override fun finish() {
         super.finish()
-        QuickAppManager.removeActivity(this)
+        QActivity.removeActivity(this)
         if (toggleOverridePendingTransition()) {
             when (overridePendingTransitionMode) {
                 TransitionMode.LEFT -> overridePendingTransition(R.anim.left_in, R.anim.left_out)
@@ -419,24 +418,30 @@ abstract class QuickActivity : AppCompatActivity() {
     fun showLoadingDialog(tips: String? = null) {
         if (!isFinishing) {
             try {
-                loadingDialog?.run {
+                mLoadingDialog?.run {
                     //相同的上下文，无需重新创建
-                    if (loadingDialogContext === this@QuickActivity) {
-                        loadingDialog!!.show()
+                    if (mContext === this@QuickActivity) {
+                        mLoadingDialog!!.show()
                     } else {
-                        loadingDialog!!.dismiss()
-                        loadingDialog = LoadingDialog(this@QuickActivity)
-                        if (!StringUtil.isEmpty(tips)) {
-                            loadingDialog!!.setTip(tips)
-                        }
-                        loadingDialog!!.show()
+                        mLoadingDialog!!.dismiss()
+                        mLoadingDialog = ADialog(mContext)
+                            .setDialogLayout(R.layout.dialog_loading)
+                            .setConvertListener(object : BaseDialog.ViewConvertListener {
+                                override fun convertView(holder: ViewHolder, dialog: BaseDialog) {
+                                    holder.getView<TextView>(R.id.tip).text = "正在努力加载..."
+                                }
+                            })
+                        mLoadingDialog!!.show()
                     }
-                } ?: loadingDialog.run {
-                    loadingDialog = LoadingDialog(this@QuickActivity)
-                    if (!StringUtil.isEmpty(tips)) {
-                        loadingDialog!!.setTip(tips)
-                    }
-                    loadingDialog!!.show()
+                } ?: mLoadingDialog.run {
+                    mLoadingDialog = ADialog(mContext)
+                        .setDialogLayout(R.layout.dialog_loading)
+                        .setConvertListener(object : BaseDialog.ViewConvertListener {
+                            override fun convertView(holder: ViewHolder, dialog: BaseDialog) {
+                                holder.getView<TextView>(R.id.tip).text = "正在努力加载..."
+                            }
+                        })
+                    mLoadingDialog!!.show()
                 }
             } catch (e: Throwable) {
             }
@@ -445,16 +450,16 @@ abstract class QuickActivity : AppCompatActivity() {
 
     fun dismissLoadingDialog() {
         try {
-            if (!isFinishing && loadingDialog != null && loadingDialog!!.isShowing) {
-                loadingDialog!!.dismiss()
+            if (!isFinishing && mLoadingDialog != null && mLoadingDialog!!.isShowing) {
+                mLoadingDialog!!.dismiss()
             }
         } catch (e: Throwable) {
         }
     }
 
-    fun getDialogBuilder(context: Context): CommonDialog.Builder {
-        return CommonDialog.Builder(context)
-    }
+//    fun getDialogBuilder(context: Context): CommonDialog.Builder {
+//        return CommonDialog.Builder(context)
+//    }
 
     fun showError(t: Throwable) {
         val apiException = ExceptionEngine.handleException(t)

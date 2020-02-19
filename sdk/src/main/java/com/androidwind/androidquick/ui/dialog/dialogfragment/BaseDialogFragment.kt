@@ -2,12 +2,10 @@ package com.androidwind.androidquick.ui.dialog.dialogfragment
 
 import android.content.Context
 import android.os.Bundle
-import android.util.DisplayMetrics
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.Window
 import android.view.WindowManager
 
 import com.androidwind.androidquick.R
@@ -17,6 +15,8 @@ import androidx.annotation.LayoutRes
 import androidx.annotation.StyleRes
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
+import com.androidwind.androidquick.ui.dialog.ViewHolder
+import java.io.Serializable
 
 /**
  * @author ddnosh
@@ -43,7 +43,7 @@ abstract class BaseDialogFragment : DialogFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setStyle(DialogFragment.STYLE_NO_TITLE, R.style.BaseDialogFragment)
+        setStyle(STYLE_NO_TITLE, R.style.BaseDialogFragment)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -190,6 +190,15 @@ abstract class BaseDialogFragment : DialogFragment() {
         fun dp2px(context: Context, dipValue: Float): Int {
             val scale = context.resources.displayMetrics.density
             return (dipValue * scale + 0.5f).toInt()
+        }
+    }
+
+    interface ViewConvertListener : Serializable {
+
+        fun convertView(holder: ViewHolder, dialog: BaseDialogFragment)
+
+        companion object {
+            val serialVersionUID by lazy { System.currentTimeMillis() }
         }
     }
 }

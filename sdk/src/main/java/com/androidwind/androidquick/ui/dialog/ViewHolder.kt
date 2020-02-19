@@ -1,4 +1,4 @@
-package com.androidwind.androidquick.ui.dialog.dialogfragment
+package com.androidwind.androidquick.ui.dialog
 
 import android.util.SparseArray
 import android.view.View
@@ -6,6 +6,9 @@ import android.widget.TextView
 
 import androidx.annotation.IdRes
 
+/**
+ * dialog ui管理
+ */
 class ViewHolder private constructor(private val convertView: View) {
     private val views: SparseArray<View> = SparseArray()
 
