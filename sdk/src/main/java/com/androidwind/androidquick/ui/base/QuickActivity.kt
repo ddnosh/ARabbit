@@ -428,7 +428,7 @@ abstract class QuickActivity : AppCompatActivity() {
                             .setDialogLayout(R.layout.dialog_loading)
                             .setConvertListener(object : BaseDialog.ViewConvertListener {
                                 override fun convertView(holder: ViewHolder, dialog: BaseDialog) {
-                                    holder.getView<TextView>(R.id.tip).text = "正在努力加载..."
+                                    holder.setText(R.id.tip, "正在努力加载...");
                                 }
                             })
                         mLoadingDialog!!.show()
@@ -438,7 +438,7 @@ abstract class QuickActivity : AppCompatActivity() {
                         .setDialogLayout(R.layout.dialog_loading)
                         .setConvertListener(object : BaseDialog.ViewConvertListener {
                             override fun convertView(holder: ViewHolder, dialog: BaseDialog) {
-                                holder.getView<TextView>(R.id.tip).text = "正在努力加载..."
+                                holder.setText(R.id.tip, "正在努力加载...");
                             }
                         })
                     mLoadingDialog!!.show()

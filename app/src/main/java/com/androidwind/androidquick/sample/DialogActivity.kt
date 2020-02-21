@@ -20,15 +20,15 @@ class DialogActivity : BaseActivity() {
 
     fun dialog1(view: View) {
         ADialog(mContext)
-//            .setDialogLayout(R.layout.dialog_alert)
-//            .setConvertListener(object : CommonDialog.ViewConvertListener {
-//                override fun convertView(holder: ViewHolder, dialog: BaseDialog) {
-//                    holder.getView<TextView>(R.id.dialog_title).setText("QuickBase")
-//                    holder.getView<TextView>(R.id.dialog_info).setText("this is an alert message.")
-//                    holder.getView<TextView>(R.id.dialog_confirm).setText("Close")
-//                    holder.setOnClickListener(R.id.dialog_confirm, View.OnClickListener { dialog.dismiss() })
-//                }
-//            })
+            .setDialogLayout(R.layout.dialog_alert)
+            .setConvertListener(object : BaseDialog.ViewConvertListener {
+                override fun convertView(holder: ViewHolder, dialog: BaseDialog) {
+                    holder.setText(R.id.dialog_title, "QuickBase");
+                    holder.setText(R.id.dialog_info, "this is an alert message.");
+                    holder.setText(R.id.dialog_confirm, "Close");
+                    holder.setOnClickListener(R.id.dialog_confirm, View.OnClickListener { dialog.dismiss() })
+                }
+            })
             .show();
     }
 
@@ -37,7 +37,7 @@ class DialogActivity : BaseActivity() {
             .setDialogLayout(R.layout.dialog_loading)
             .setConvertListener(object : BaseDialog.ViewConvertListener {
                 override fun convertView(holder: ViewHolder, dialog: BaseDialog) {
-                    holder.getView<TextView>(R.id.tip).text = "正在努力加载..."
+                    holder.setText(R.id.tip, "正在努力加载...");
                 }
             }).show()
     }
@@ -47,8 +47,8 @@ class DialogActivity : BaseActivity() {
             .setDialogLayout(R.layout.dialogfragment_confirm)
             .setConvertListener(object : BaseDialogFragment.ViewConvertListener {
                 override fun convertView(holder: ViewHolder, dialog: BaseDialogFragment) {
-                    holder.getView<TextView>(R.id.df_title).text = "Title"
-                    holder.getView<TextView>(R.id.df_message).text = "This is content!"
+                    holder.setText(R.id.df_title, "Title");
+                    holder.setText(R.id.df_message, "This is content!");
                     holder.setOnClickListener(R.id.df_confirm, View.OnClickListener { dialog.dismiss(); })
                     holder.setOnClickListener(R.id.df_cancel, View.OnClickListener { dialog.dismiss(); })
                 }
