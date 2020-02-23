@@ -4,7 +4,7 @@ package com.androidwind.androidquick.constant
  * @author  ddnosh
  * @website http://blog.csdn.net/ddnosh
  */
-object Constant {
+object QConstant {
     const val QUICKBASE_WEB_URL = "QUICKBASE_WEB_URL"
 
     const val RECEIVER_NETWORK_DISCONNECTED = 10001

@@ -5,13 +5,12 @@ import android.graphics.Bitmap
 import android.os.Bundle
 import android.view.View
 import android.webkit.WebChromeClient
-import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.ProgressBar
 
 import com.androidwind.androidquick.R
-import com.androidwind.androidquick.constant.Constant
+import com.androidwind.androidquick.constant.QConstant
 import com.androidwind.androidquick.module.asynchronize.eventbus.EventCenter
 import com.androidwind.androidquick.ui.base.QuickActivity
 import com.androidwind.androidquick.util.StringUtil
@@ -50,7 +49,7 @@ class WebViewActivity : QuickActivity() {
 
     @SuppressLint("SetJavaScriptEnabled", "JavascriptInterface")
     fun initData() {
-        var url = mBundle?.getString(Constant.QUICKBASE_WEB_URL)
+        var url = mBundle?.getString(QConstant.QUICKBASE_WEB_URL)
         if (StringUtil.isEmpty(url)) {
             url = URL
         }
@@ -79,7 +78,7 @@ class WebViewActivity : QuickActivity() {
                 return true
             }
 
-            override fun onPageStarted(view: WebView, url: String, favicon: Bitmap) {
+            override fun onPageStarted(view: WebView, url: String, favicon: Bitmap?) {
                 super.onPageStarted(view, url, favicon)
                 toolbar.title = StringUtil.getTrimedString(wvWebView!!.url)
                 pbWebView!!.visibility = View.VISIBLE

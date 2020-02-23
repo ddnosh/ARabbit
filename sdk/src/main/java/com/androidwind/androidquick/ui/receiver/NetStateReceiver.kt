@@ -4,14 +4,12 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
-import com.androidwind.androidquick.constant.Constant
+import com.androidwind.androidquick.constant.QConstant
 import com.androidwind.androidquick.module.asynchronize.eventbus.EventBusUtil
 
 import com.androidwind.androidquick.util.LogUtil
 import com.androidwind.androidquick.util.NetUtil
 import com.androidwind.androidquick.module.asynchronize.eventbus.EventCenter
-
-import org.greenrobot.eventbus.EventBus
 
 /**
  * @author  ddnosh
@@ -25,12 +23,12 @@ class NetStateReceiver : BroadcastReceiver() {
             if (!NetUtil.isNetworkAvailable(context)) {
                 LogUtil.i(TAG, "<--- network disconnected --->")
                 isNetworkAvailable = false
-                EventBusUtil.sendEvent(EventCenter<Any>(Constant.RECEIVER_NETWORK_DISCONNECTED))
+                EventBusUtil.sendEvent(EventCenter<Any>(QConstant.RECEIVER_NETWORK_DISCONNECTED))
             } else {
                 LogUtil.i(TAG, "<--- network connected --->")
                 isNetworkAvailable = true
                 apnType = NetUtil.getAPNType(context)
-                EventBusUtil.sendEvent(EventCenter<Any>(Constant.RECEIVER_NETWORK_CONNECTED, apnType))
+                EventBusUtil.sendEvent(EventCenter<Any>(QConstant.RECEIVER_NETWORK_CONNECTED, apnType))
             }
         }
     }
