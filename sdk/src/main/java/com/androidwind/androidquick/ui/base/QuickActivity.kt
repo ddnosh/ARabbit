@@ -219,9 +219,9 @@ abstract class QuickActivity : AppCompatActivity() {
         toolbarLayout = FrameLayout(this)
         LayoutInflater.from(this).inflate(R.layout.layout_toolbar, toolbarLayout,
             true)
-        tvTitle = toolbarLayout.findViewById<View>(R.id.tv_title) as TextView
-        tvRight = toolbarLayout.findViewById<View>(R.id.tv_right) as TextView
-        toolbar = toolbarLayout.findViewById<View>(R.id.toolbar) as Toolbar
+        tvTitle = toolbarLayout.findViewById(R.id.tv_title)
+        tvRight = toolbarLayout.findViewById(R.id.tv_right)
+        toolbar = toolbarLayout.findViewById(R.id.toolbar)
         toolbar.title = ""
 
         setSupportActionBar(toolbar)

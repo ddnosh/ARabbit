@@ -8,20 +8,14 @@
 
     <TextView
         android:id="@+id/df_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:text="--"
-        android:textColor="#333333"
-        android:textSize="16sp" />
+        style="@style/dialog_title_style"
+        android:text="--" />
 
     <TextView
         android:id="@+id/df_message"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/dialog_msg_style"
         android:layout_marginTop="15dp"
-        android:text="---"
-        android:textSize="16sp" />
+        android:text="---" />
 
     <View
         android:layout_width="match_parent"

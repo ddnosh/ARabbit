@@ -29,7 +29,7 @@ abstract class BaseDialogFragment : DialogFragment() {
 
     private var mDimAmount = 0.5f//背景昏暗度
     private var mShowBottomEnable: Boolean = false//是否底部显示
-    private var mMargin = 0//左右边距
+    private var mMargin = 60//左右边距
     private var mAnimStyle = 0//进入退出动画
     private var mOutCancel = true//点击外部取消
     private var mContext: Context? = null
