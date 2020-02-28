@@ -24,8 +24,6 @@ import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.LinearLayout
 import android.widget.TextView
-
-import com.androidwind.androidquick.R
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -33,20 +31,18 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import butterknife.ButterKnife
 import butterknife.Unbinder
+import com.androidwind.androidquick.R
 import com.androidwind.androidquick.module.asynchronize.eventbus.EventBusUtil
-
 import com.androidwind.androidquick.module.asynchronize.eventbus.EventCenter
-import com.androidwind.androidquick.util.manager.QActivity
 import com.androidwind.androidquick.module.exception.ExceptionEngine
 import com.androidwind.androidquick.ui.dialog.ViewHolder
-import com.androidwind.androidquick.ui.dialog.dialogactivity.BaseDialog
 import com.androidwind.androidquick.ui.dialog.dialogactivity.ADialog
+import com.androidwind.androidquick.ui.dialog.dialogactivity.BaseDialog
+import com.androidwind.androidquick.ui.receiver.NetStateReceiver
 import com.androidwind.androidquick.util.LogUtil
 import com.androidwind.androidquick.util.ToastUtil
 import com.androidwind.androidquick.util.immersion.StatusBarUtil
-import com.androidwind.androidquick.ui.multipleviewstatus.MultipleStatusView
-import com.androidwind.androidquick.ui.receiver.NetStateReceiver
-
+import com.androidwind.androidquick.util.manager.QActivity
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 
@@ -62,14 +58,8 @@ abstract class QuickActivity : AppCompatActivity() {
     }
 
     protected lateinit var mContext: Context
-
     /**
-     * loading view status controller: empty/loading/error
-     */
-    protected var mLayoutStatusView: MultipleStatusView? = null
-
-    /**
-     * butterknife 8+ support
+     * butterknife support
      */
     private var mUnbinder: Unbinder? = null
 
@@ -203,7 +193,8 @@ abstract class QuickActivity : AppCompatActivity() {
         } else {
             super.setContentView(layoutResID)
         }
-        mUnbinder = ButterKnife.bind(this)
+        if (isApplyButterKnife())
+            mUnbinder = ButterKnife.bind(this)
     }
 
     protected fun getContentView(layoutResID: Int, contentView: LinearLayout): View? {
@@ -292,6 +283,13 @@ abstract class QuickActivity : AppCompatActivity() {
      * @return
      */
     protected abstract fun toggleOverridePendingTransition(): Boolean
+
+    /**
+     * toggle isApplyButterKnife
+     *
+     * @return
+     */
+    protected abstract fun isApplyButterKnife(): Boolean
 
     /**
      * 会被子类覆盖去封装 跳转到不同的activity 或者fragment的页面

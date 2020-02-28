@@ -17,7 +17,7 @@ import org.jetbrains.annotations.Nullable;
 public class JavaTestActivity extends BaseActivity {
     @Override
     protected int getContentViewLayoutID() {
-        return 0;
+        return R.layout.activity_test;
     }
 
     @Override

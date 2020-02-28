@@ -47,6 +47,8 @@ class WebViewActivity : QuickActivity() {
         return false
     }
 
+    override fun isApplyButterKnife(): Boolean = false
+
     @SuppressLint("SetJavaScriptEnabled", "JavascriptInterface")
     fun initData() {
         var url = mBundle?.getString(QConstant.QUICKBASE_WEB_URL)

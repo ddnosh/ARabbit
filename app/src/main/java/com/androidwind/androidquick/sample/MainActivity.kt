@@ -18,8 +18,7 @@ class MainActivity : BaseActivity() {
         toolbar.title = "首页"
         toolbar.setTitleTextColor(Color.parseColor("#ffffff"))
 //        binding!!.hasPendingBindings()
-        mLayoutStatusView = multiple_status_view
-        mLayoutStatusView?.setOnClickListener {
+        multiple_status_view.setOnClickListener {
             ToastUtil.showToast("retried.")
         }
 //        showLoadingDialog()
@@ -36,7 +35,7 @@ class MainActivity : BaseActivity() {
     }
 
     fun statusView(view: View) {
-        mLayoutStatusView?.showError()
+        multiple_status_view.showError()
     }
 
     fun coroutine(view: View) {

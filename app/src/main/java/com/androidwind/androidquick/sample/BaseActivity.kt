@@ -40,6 +40,8 @@ abstract class BaseActivity : QuickActivity() {
 
     override val isLoadDefaultTitleBar: Boolean = true
 
+    override fun isApplyButterKnife(): Boolean = false
+
     override fun getGoIntent(clazz: Class<*>): Intent {
         return if (BaseFragment::class.java.isAssignableFrom(clazz)) {
             val intent = Intent(this, FrameActivity::class.java)

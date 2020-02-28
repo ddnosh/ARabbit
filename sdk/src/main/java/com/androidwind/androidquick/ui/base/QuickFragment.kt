@@ -35,12 +35,6 @@ abstract class QuickFragment : Fragment() {
     private var isFirstVisible = true
     private var isFirstInvisible = true
     private var isPrepared: Boolean = false
-
-    /**
-     * loading view status controller: empty/loading/error
-     */
-    protected var mLayoutStatusView: MultipleStatusView? = null
-
     /**
      * butterknife 8+ support
      */
@@ -109,7 +103,8 @@ abstract class QuickFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        mUnbinder = ButterKnife.bind(this, view)
+        if (isApplyButterKnife())
+            mUnbinder = ButterKnife.bind(this, view)
 
         initViewsAndEvents(savedInstanceState)
     }
@@ -219,6 +214,13 @@ abstract class QuickFragment : Fragment() {
      * init all views and add events
      */
     protected abstract fun initViewsAndEvents(savedInstanceState: Bundle?)
+
+    /**
+     * toggle isApplyButterKnife
+     *
+     * @return
+     */
+    protected abstract fun isApplyButterKnife(): Boolean
 
     /**
      * when event comming
