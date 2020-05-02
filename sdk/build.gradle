@@ -42,7 +42,7 @@ dependencies {
 
     api rootProject.ext.dependencies.values()
     //eventbus
-    api 'org.greenrobot:eventbus:3.1.1'
+    api 'org.greenrobot:eventbus:3.2.0'
     //butterknife
     api "com.jakewharton:butterknife:10.0.0"
     annotationProcessor "com.jakewharton:butterknife-compiler:10.0.0"
