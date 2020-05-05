@@ -1,19 +1,16 @@
-# QuickBase
+# ARabbit
 [![Download](https://api.bintray.com/packages/ddnosh/maven/androidquick/images/download.svg) ](https://bintray.com/ddnosh/maven/androidquick/_latestVersion)  
 欢迎加入QQ群：
 <a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=5867e988b85eecbb8c50bedab9810624fc017ce71098ae9394e7c935a4125281"><img border="0" src="http://pub.idqqimg.com/wpa/images/group.png" alt="Android开发技术交流" title="Android开发技术交流"></a>
 
-QuickBase是一个用于Android App快速开发的SDK库。   
-因为是SDK，所以QuickBase提供基本功能库，尽量剥离强制性引用第三方库。  
+# 项目目的
+只关心App的业务实现，不用再关系具体功能实现，比如网络请求、对话框、缓存等，也不用再为内存泄漏担心；  
 
-# 主要版本修订日志
-* 3.0.0版本改用Kotlin；  
-* 2.2.0版本支持AndroidX；  
-* 2.1.0版本剥离强制引用的一些第三方库；  
-* 2.0.0版本更改包名为com.androidwind.androidquick；  
-* 1.0.0版本初次提交；  
-
-# SDK功能
+# 项目结构
+ARabbit包含两个项目，一个是app，一个是sdk。  
+sdk：顾名思义，就是用来提供快速开发app的库，封装了常用的功能；     
+app：作为ARabbit的演示工程，采用MVVM模式，整合RxJava+Retrofit+OkHttp+Glide等主流模块，使用ViewBinding技术。  
+## SDK功能
 1. constant：存放常量；  
 2. module: 功能模块；  
 2.1 asynchronize：异步模块，包含eventbus和handler；  
@@ -34,12 +31,27 @@ QuickBase是一个用于Android App快速开发的SDK库。
 5. util：提供一些常用的Util工具类；  
 5.1 immersion：沉浸式状态栏；  
 5.2 manager：存放管理类；  
+## App功能
+1. MVVM架构(简化版，只有View + ViewModel，通过CompositeDisposable解决RxJava内存泄漏问题)；  
+2. 改进型LiveData，保证LiveData不丢失，LiveData在激活时回调，没有内存泄漏；  
+3. ViewBinding视图绑定；  
+4. 网络连接（retrofit+okhttp，rxjava通过rxlifecycle绑定生命周期，RxJava异常处理）
+5. 图片处理：Glide
+6. 自定义各种Dialog
+7. Kotlin协程
+# 主要版本修订日志
+* 3.1.0版本改名，完善App工程实例；
+* 3.0.0版本改用Kotlin；  
+* 2.2.0版本支持AndroidX；  
+* 2.1.0版本剥离强制引用的一些第三方库；  
+* 2.0.0版本更改包名为com.androidwind.androidquick；  
+* 1.0.0版本初次提交；  
 
 # 引用的第三方库
 ``` xml
 api rootProject.ext.dependencies.values()
 //eventbus
-api 'org.greenrobot:eventbus:3.1.1'
+api 'org.greenrobot:eventbus:3.2.0'
 //butterknife
 api "com.jakewharton:butterknife:10.0.0"
 annotationProcessor "com.jakewharton:butterknife-compiler:10.0.0"
