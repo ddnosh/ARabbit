@@ -1,6 +1,7 @@
-package com.androidwind.androidquick.sample
+package com.androidwind.androidquick.sample.base
 
 import android.os.Bundle
+import com.androidwind.androidquick.sample.R
 import com.androidwind.androidquick.ui.base.QuickFragment
 import com.androidwind.androidquick.util.LogUtil
 import com.androidwind.androidquick.util.ReflectUtil

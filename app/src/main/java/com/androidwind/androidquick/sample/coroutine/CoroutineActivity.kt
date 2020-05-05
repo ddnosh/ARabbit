@@ -1,9 +1,12 @@
-package com.androidwind.androidquick.sample
+package com.androidwind.androidquick.sample.coroutine
 
 import android.os.Bundle
 import android.view.View
-import com.androidwind.androidquick.sample.http.GankApis
-import com.androidwind.androidquick.sample.http.RetrofitManager
+import com.androidwind.androidquick.sample.AppConfig
+import com.androidwind.androidquick.sample.base.BaseActivity
+import com.androidwind.androidquick.sample.R
+import com.androidwind.androidquick.sample.network.GankApis
+import com.androidwind.androidquick.sample.network.RetrofitManager
 import com.androidwind.androidquick.util.ToastUtil
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope

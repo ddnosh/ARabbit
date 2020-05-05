@@ -1,8 +1,7 @@
-package com.androidwind.androidquick.sample
+package com.androidwind.androidquick.sample.base
 
 import android.content.Context
 import android.content.Intent
-import android.view.View
 import com.androidwind.androidquick.module.asynchronize.eventbus.EventCenter
 import com.androidwind.androidquick.ui.base.QuickFragment
 

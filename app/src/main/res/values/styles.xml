@@ -8,4 +8,12 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="SplashTheme" parent="AppTheme">
+        <!-- 将状态栏透明化，设置为true，状态栏有阴影，false则无阴影 -->
+        <item name="android:windowTranslucentStatus">false</item>
+        <!-- 设置状态栏颜色为透明色 -->
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowBackground">@mipmap/splash</item>
+    </style>
+
 </resources>

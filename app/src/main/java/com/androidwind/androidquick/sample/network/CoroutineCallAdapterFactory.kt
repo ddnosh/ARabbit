@@ -1,4 +1,4 @@
-package com.androidwind.androidquick.sample.http
+package com.androidwind.androidquick.sample.network
 
 /**
  * @author  ddnosh

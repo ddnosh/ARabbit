@@ -14,8 +14,8 @@ import io.reactivex.Observable
 //自定义方法
 fun <T> Observable<T>.composeWithLifecycleDestroy(lifecycleProvider: LifecycleProvider<Lifecycle.Event>): Observable<T> {
     return this
-        .compose(RxUtil.io2Main())
-        .compose(lifecycleProvider.bindUntilEvent(Lifecycle.Event.ON_DESTROY))
+            .compose(RxUtil.io2Main())
+            .compose(lifecycleProvider.bindUntilEvent(Lifecycle.Event.ON_DESTROY))
 }
 
 //自定义属性

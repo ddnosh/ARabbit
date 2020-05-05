@@ -1,9 +1,8 @@
-package com.androidwind.androidquick.sample
+package com.androidwind.androidquick.sample.base
 
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import androidx.lifecycle.Lifecycle
 import com.androidwind.androidquick.module.asynchronize.eventbus.EventCenter
 import com.androidwind.androidquick.ui.base.QuickActivity

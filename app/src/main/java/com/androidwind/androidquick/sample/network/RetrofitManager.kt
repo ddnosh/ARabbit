@@ -1,4 +1,4 @@
-package com.androidwind.androidquick.sample.http
+package com.androidwind.androidquick.sample.network
 
 import com.androidwind.androidquick.sample.AppConfig
 import com.androidwind.androidquick.sample.MyApplication

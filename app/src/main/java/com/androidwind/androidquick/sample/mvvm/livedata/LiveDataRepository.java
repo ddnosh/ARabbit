@@ -1,4 +1,4 @@
-package com.androidwind.androidquick.sample.mvvm;
+package com.androidwind.androidquick.sample.mvvm.livedata;
 
 import com.androidwind.androidquick.mvvm.livedata.EventMutableLiveData;
 import com.androidwind.androidquick.mvvm.livedata.LiveDataUtils;

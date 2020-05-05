@@ -2,6 +2,7 @@ package com.androidwind.androidquick.sample;
 
 import android.os.Bundle;
 
+import com.androidwind.androidquick.sample.base.BaseActivity;
 import com.androidwind.androidquick.util.manager.QActivity;
 import com.androidwind.androidquick.ui.receiver.NetStateReceiver;
 import com.androidwind.androidquick.util.LogUtil;

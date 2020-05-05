@@ -51,7 +51,7 @@ class WebViewActivity : QuickActivity() {
 
     @SuppressLint("SetJavaScriptEnabled", "JavascriptInterface")
     fun initData() {
-        var url = mBundle?.getString(QConstant.QUICKBASE_WEB_URL)
+        var url = mBundle?.getString(QConstant.ARABBIT_WEB_URL)
         if (StringUtil.isEmpty(url)) {
             url = URL
         }

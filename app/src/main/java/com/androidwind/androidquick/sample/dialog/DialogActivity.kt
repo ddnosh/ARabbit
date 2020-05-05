@@ -1,8 +1,9 @@
-package com.androidwind.androidquick.sample
+package com.androidwind.androidquick.sample.dialog
 
 import android.os.Bundle
 import android.view.View
-import android.widget.TextView
+import com.androidwind.androidquick.sample.base.BaseActivity
+import com.androidwind.androidquick.sample.R
 import com.androidwind.androidquick.ui.dialog.ViewHolder
 import com.androidwind.androidquick.ui.dialog.dialogactivity.BaseDialog
 import com.androidwind.androidquick.ui.dialog.dialogactivity.ADialog
@@ -23,7 +24,7 @@ class DialogActivity : BaseActivity() {
             .setDialogLayout(R.layout.dialog_alert)
             .setConvertListener(object : BaseDialog.ViewConvertListener {
                 override fun convertView(holder: ViewHolder, dialog: BaseDialog) {
-                    holder.setText(R.id.dialog_title, "QuickBase");
+                    holder.setText(R.id.dialog_title, "ARabbit");
                     holder.setText(R.id.dialog_info, "this is an alert message.");
                     holder.setText(R.id.dialog_confirm, "Close");
                     holder.setOnClickListener(R.id.dialog_confirm, View.OnClickListener { dialog.dismiss() })

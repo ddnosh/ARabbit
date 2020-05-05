@@ -1,11 +1,7 @@
-package com.androidwind.androidquick.sample.mvvm;
-
-import android.app.Application;
+package com.androidwind.androidquick.sample.mvvm.livedata;
 
 import com.androidwind.androidquick.mvvm.livedata.EventMutableLiveData;
 
-import androidx.annotation.NonNull;
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
 /**

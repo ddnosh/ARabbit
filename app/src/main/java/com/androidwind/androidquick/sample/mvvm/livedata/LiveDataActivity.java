@@ -1,9 +1,9 @@
-package com.androidwind.androidquick.sample.mvvm;
+package com.androidwind.androidquick.sample.mvvm.livedata;
 
 import android.os.Bundle;
 import android.view.View;
 
-import com.androidwind.androidquick.sample.BaseActivity;
+import com.androidwind.androidquick.sample.base.BaseActivity;
 import com.androidwind.androidquick.sample.R;
 
 import org.jetbrains.annotations.NotNull;

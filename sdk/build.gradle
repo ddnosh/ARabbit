@@ -67,7 +67,7 @@ publish {
     artifactId = 'androidquick'
     publishVersion = '3.0.4'
     desc = 'AndroidQuick is a code library contains quicker kits.'
-    website = "https://github.com/ddnosh/QuickBase"
+    website = "https://github.com/ddnosh/ARabbit"
 }
 
 tasks.withType(Javadoc) {//防止编码问题
@@ -104,7 +104,7 @@ artifacts {
 //打包任务
 task makeJar(type: Copy) {
     //删除旧的jar包
-    delete 'build/libs/quickbase.jar'
+    delete 'build/libs/arabbit.jar'
     //从哪里打包class文件
     from('build/intermediates/packaged-classes/debug/')
     //打包到jar后的目录结构
@@ -116,7 +116,7 @@ task makeJar(type: Copy) {
     //去掉R$开头的文件
     exclude { it.name.startsWith('R$'); }
     //重命名jar包为tinytask
-    rename ('classes.jar', 'quickbase.jar')
+    rename ('classes.jar', 'arabbit.jar')
 }
 
 makeJar.dependsOn(build)
