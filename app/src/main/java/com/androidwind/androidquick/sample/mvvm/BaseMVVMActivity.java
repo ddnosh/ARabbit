@@ -28,6 +28,9 @@ public abstract class BaseMVVMActivity<T extends BaseViewModel> extends BaseActi
 
     @Override
     protected void initViewsAndEvents(Bundle savedInstanceState) {
+        super.initViewsAndEvents(savedInstanceState);
         initViewModel();
+        //注入RxLifecycle生命周期
+        mViewModel.bindLifecycleProvider(lifecycleProvider);
     }
 }

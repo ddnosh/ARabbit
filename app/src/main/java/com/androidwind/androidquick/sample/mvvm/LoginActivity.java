@@ -9,9 +9,6 @@ import com.androidwind.androidquick.sample.R;
 
 import org.jetbrains.annotations.NotNull;
 
-import butterknife.BindView;
-import butterknife.OnClick;
-
 public class LoginActivity extends BaseMVVMActivity<LoginViewModel> {
 
     Button mLoginButton;

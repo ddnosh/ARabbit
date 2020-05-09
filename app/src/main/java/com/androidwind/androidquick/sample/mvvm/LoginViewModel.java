@@ -9,7 +9,6 @@ import com.androidwind.androidquick.util.RxUtil;
 
 import io.reactivex.Observable;
 import io.reactivex.ObservableOnSubscribe;
-import io.reactivex.disposables.Disposable;
 
 public class LoginViewModel extends BaseViewModel {
     public LoginViewModel(@NonNull Application application) {
@@ -24,7 +23,25 @@ public class LoginViewModel extends BaseViewModel {
 //            return data;
 //        }
 
-        Disposable subscribe = Observable.create((ObservableOnSubscribe<Boolean>) emitter -> {
+        //1.使用CompositeDisposable
+//        Disposable subscribe = Observable.create((ObservableOnSubscribe<Boolean>) emitter -> {
+//                    try {
+//                        Thread.sleep(2000); // 假设此处是耗时操作
+//                    } catch (Exception e) {
+//                        e.printStackTrace();
+////                        emitter.onError(new RuntimeException());
+//                    }
+//                    emitter.onNext(true);
+//                }
+//        )
+//                .compose(RxUtil.io2Main())
+//                .subscribe(aBoolean -> {
+//                    loginData.setValue(aBoolean);
+//                }, throwable -> loginData.setValue(null));
+//        addDisposable(subscribe);
+
+        //2.使用LifecycleProvider
+        Observable.create((ObservableOnSubscribe<Boolean>) emitter -> {
                     try {
                         Thread.sleep(2000); // 假设此处是耗时操作
                     } catch (Exception e) {
@@ -35,10 +52,10 @@ public class LoginViewModel extends BaseViewModel {
                 }
         )
                 .compose(RxUtil.io2Main())
+                .compose(getLifecycleProvider().bindToLifecycle())
                 .subscribe(aBoolean -> {
-                    loginData.setValue(aBoolean);
+                    loginData.setValue((Boolean) aBoolean);
                 }, throwable -> loginData.setValue(null));
-        addDisposable(subscribe);
 
         return loginData;
     }
