@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 
 import com.androidwind.androidquick.util.RxUtil;
+import com.trello.rxlifecycle2.android.ActivityEvent;
 
 import io.reactivex.Observable;
 import io.reactivex.ObservableOnSubscribe;
@@ -40,7 +41,7 @@ public class LoginViewModel extends BaseViewModel {
 //                }, throwable -> loginData.setValue(null));
 //        addDisposable(subscribe);
 
-        //2.使用LifecycleProvider
+        //2.使用LifecycleProvider，有两种绑定方式：bindToLifecycle和bindUntilEvent
         Observable.create((ObservableOnSubscribe<Boolean>) emitter -> {
                     try {
                         Thread.sleep(2000); // 假设此处是耗时操作
@@ -52,7 +53,8 @@ public class LoginViewModel extends BaseViewModel {
                 }
         )
                 .compose(RxUtil.io2Main())
-                .compose(getLifecycleProvider().bindToLifecycle())
+                .compose(getLifecycleProvider().bindToLifecycle()) //使用bindToLifecycle
+//                .compose(getLifecycleProvider().bindUntilEvent(ActivityEvent.DESTROY)) //使用bindUntilEvent
                 .subscribe(aBoolean -> {
                     loginData.setValue((Boolean) aBoolean);
                 }, throwable -> loginData.setValue(null));
