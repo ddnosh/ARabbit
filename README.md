@@ -4,7 +4,7 @@
 <a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=5867e988b85eecbb8c50bedab9810624fc017ce71098ae9394e7c935a4125281"><img border="0" src="http://pub.idqqimg.com/wpa/images/group.png" alt="Android开发技术交流" title="Android开发技术交流"></a>
 
 # 项目目的
-只关心App的业务实现，不用再关系具体功能实现，比如网络请求、对话框、缓存等，也不用再为内存泄漏担心；  
+提供App开发的接口，使开发者只关心App的业务实现，不用再关心具体功能实现，比如网络请求、对话框、缓存等，也不用再为内存泄漏担心
 
 # 项目结构
 ARabbit包含两个项目，一个是app，一个是sdk。  
@@ -35,7 +35,7 @@ app：作为ARabbit的演示工程，采用MVVM模式，整合RxJava+Retrofit+Ok
 1. MVVM架构(简化版，只有View + ViewModel，通过CompositeDisposable解决RxJava内存泄漏问题)；  
 2. 改进型LiveData，保证LiveData不丢失，LiveData在激活时回调，没有内存泄漏；  
 3. ViewBinding视图绑定；  
-4. 网络连接（retrofit+okhttp，rxjava通过rxlifecycle绑定生命周期，RxJava异常处理）
+4. 网络连接（retrofit + okhttp，rxjava通过rxlifecycle绑定生命周期，RxJava异常处理）
 5. 图片处理：Glide
 6. 自定义各种Dialog
 7. Kotlin协程
@@ -70,11 +70,13 @@ api 'com.github.bumptech.glide:glide:4.10.0'
 api 'jp.wasabeef:glide-transformations:4.0.0@aar'
 ```
 
-# 开源框架
+# SDK引用的一些开源框架
 - [ButterKnife](https://github.com/JakeWharton/butterknife)
 - [Glide](https://github.com/bumptech/glide)
 - [EventBus](https://github.com/greenrobot/EventBus)
+- [RxJava](https://github.com/ReactiveX/RxJava)
 - [Retrofit](https://github.com/square/retrofit)
+- [OkHttp](https://github.com/square/okhttp)
 - [Gson](https://github.com/google/gson)
 
 # 使用QuickBase的项目
