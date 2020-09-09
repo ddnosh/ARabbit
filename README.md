@@ -79,7 +79,7 @@ api 'jp.wasabeef:glide-transformations:4.0.0@aar'
 - [OkHttp](https://github.com/square/okhttp)
 - [Gson](https://github.com/google/gson)
 
-# 使用QuickBase的项目
+# 使用ARabbit的项目
 - [AndroidQuick](https://github.com/ddnosh/AndroidQuick)
 - [QuickGank](https://github.com/ddnosh/QuickGank)
 - [QuickGank-Kotlin](https://github.com/ddnosh/QuickGank-Kotlin)
