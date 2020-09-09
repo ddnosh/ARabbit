@@ -83,3 +83,8 @@ api 'jp.wasabeef:glide-transformations:4.0.0@aar'
 - [AndroidQuick](https://github.com/ddnosh/AndroidQuick)
 - [QuickGank](https://github.com/ddnosh/QuickGank)
 - [QuickGank-Kotlin](https://github.com/ddnosh/QuickGank-Kotlin)
+
+# 微信公众号：国民程序员
+<p align="center">
+  <img src="https://img-blog.csdnimg.cn/20200909075440310.jpg" alt="公众号：国民程序员"/>
+</p>
