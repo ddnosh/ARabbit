@@ -79,18 +79,19 @@
 ```
 
 # SDK引用的一些开源框架
-- [ButterKnife](https://github.com/JakeWharton/butterknife)
-- [Glide](https://github.com/bumptech/glide)
-- [EventBus](https://github.com/greenrobot/EventBus)
-- [RxJava](https://github.com/ReactiveX/RxJava)
-- [Retrofit](https://github.com/square/retrofit)
-- [OkHttp](https://github.com/square/okhttp)
-- [Gson](https://github.com/google/gson)
+- [Glide](https://github.com/bumptech/glide)  
+- [RxBus](https://github.com/Blankj/RxBus)  
+- [RxJava](https://github.com/ReactiveX/RxJava)  
+- [RxLifecycle](https://github.com/trello/RxLifecycle)  
+- [Retrofit](https://github.com/square/retrofit)  
+- [OkHttp](https://github.com/square/okhttp)  
+- [Gson](https://github.com/google/gson)  
 
 # 使用ARabbit的项目
-- [AndroidQuick](https://github.com/ddnosh/AndroidQuick)
-- [QuickGank](https://github.com/ddnosh/QuickGank)
-- [QuickGank-Kotlin](https://github.com/ddnosh/QuickGank-Kotlin)
+- [AndroidQuick](https://github.com/ddnosh/AndroidQuick)  
+- [QuickHub-Java-MVVM](https://github.com/ddnosh/QuickHub-Java-MVVM)  
+- [QuickGank](https://github.com/ddnosh/QuickGank)  
+- [QuickGank-Kotlin](https://github.com/ddnosh/QuickGank-Kotlin)  
 
 # 微信公众号：国民程序员
 <p align="center">
