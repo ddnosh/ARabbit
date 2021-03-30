@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">AndroidQuick</string>
+    <string name="app_name">ARabbit</string>
     <string name="dialog_loading_prompt">loading...</string>
     <string name="toolbar_back">Back</string>
     <string name="dialog_btn_sure">确定</string>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/y90"
+    android:layout_height="@dimen/toolbar_height"
     android:baselineAligned="false"
     android:orientation="horizontal">
 
@@ -12,8 +12,8 @@
 
         <ImageView
             android:id="@+id/img_back"
-            android:layout_width="@dimen/x72"
-            android:layout_height="@dimen/y72"
+            android:layout_width="@dimen/toolbar_image_back_size"
+            android:layout_height="@dimen/toolbar_image_back_size"
             android:layout_centerVertical="true"
             android:background="@drawable/icon_back" />
 
@@ -39,7 +39,7 @@
         <ImageView
             android:id="@+id/img_title"
             android:layout_width="wrap_content"
-            android:layout_height="@dimen/y36"
+            android:layout_height="@dimen/toolbar_image_title_size"
             android:layout_centerInParent="true"
             android:layout_gravity="center"
             android:visibility="gone" />
@@ -60,7 +60,7 @@
         android:id="@+id/rl_right"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:paddingRight="@dimen/x28">
+        android:paddingRight="@dimen/toolbar_right_padding">
 
         <ImageView
             android:id="@+id/img_right"

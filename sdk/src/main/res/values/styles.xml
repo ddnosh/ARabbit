@@ -69,8 +69,8 @@
     </style>
 
     <style name="toolbar_image_style">
-        <item name="android:layout_width">@dimen/x46</item>
-        <item name="android:layout_height">@dimen/y46</item>
+        <item name="android:layout_width">@dimen/toolbar_image_left_size</item>
+        <item name="android:layout_height">@dimen/toolbar_image_left_size</item>
         <item name="android:layout_centerInParent">true</item>
     </style>
 

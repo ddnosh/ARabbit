@@ -16,10 +16,6 @@ android {
         versionName rootProject.ext.android.versionName
     }
 
-    dataBinding {
-        enabled = true
-    }
-
     buildTypes {
         release {
             minifyEnabled false
@@ -38,35 +34,38 @@ android {
 }
 
 dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
 
     api rootProject.ext.dependencies.values()
-    //eventbus
-    api 'org.greenrobot:eventbus:3.2.0'
-    //butterknife
-    api "com.jakewharton:butterknife:10.0.0"
-    annotationProcessor "com.jakewharton:butterknife-compiler:10.0.0"
-    //rxjava
-    api "io.reactivex.rxjava2:rxjava:2.2.10"
+    //rxjava2
+    api "io.reactivex.rxjava2:rxjava:2.2.21"
     api "io.reactivex.rxjava2:rxandroid:2.1.1"
-    //retrofit
-    api 'com.squareup.retrofit2:retrofit:2.6.2'
-    //okhttp
-    api 'com.squareup.okhttp3:okhttp:4.2.2'
-    api 'com.squareup.okhttp3:logging-interceptor:3.12.1'
+    //rxlifecycle
+    api 'com.trello.rxlifecycle3:rxlifecycle:3.0.0'
+    api 'com.trello.rxlifecycle3:rxlifecycle-android:3.0.0'
+    api 'com.trello.rxlifecycle3:rxlifecycle-android-lifecycle:3.0.0'
+    api 'com.trello.rxlifecycle3:rxlifecycle-kotlin:3.0.0'
+    //retrofit2
+    api 'com.squareup.retrofit2:retrofit:2.9.0'
+    //okhttp3
+    api 'com.squareup.okhttp3:okhttp:4.9.0'
+    api 'com.squareup.okhttp3:logging-interceptor:4.9.0'
     //gson
     api 'com.google.code.gson:gson:2.8.6'
     //glide
-    api 'com.github.bumptech.glide:glide:4.10.0'
-    api 'jp.wasabeef:glide-transformations:4.0.0@aar'
+    api 'com.github.bumptech.glide:glide:4.12.0'
+    api 'jp.wasabeef:glide-transformations:4.1.0@aar'
+    //ktx
+    api 'androidx.activity:activity-ktx:1.2.2'
+    api 'androidx.fragment:fragment-ktx:1.3.2'
 }
 
 publish {
     userOrg = 'ddnosh'
     groupId = 'com.androidwind'
-    artifactId = 'androidquick'
-    publishVersion = '3.0.4'
-    desc = 'AndroidQuick is a code library contains quicker kits.'
+    artifactId = 'arabbit'
+    publishVersion = '4.0.0'
+    desc = 'ARabbit is a sdk for faster android app development'
     website = "https://github.com/ddnosh/ARabbit"
 }
 

@@ -124,5 +124,13 @@
 
     <dimen name="grid_picker_content_height">300dp</dimen>
     <dimen name="radius">3dp</dimen>
+
+    <!-- toolbar >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
+    <dimen name="toolbar_height">90dp</dimen>
+    <dimen name="toolbar_image_back_size">72dp</dimen>
+    <dimen name="toolbar_image_left_size">46dp</dimen>
+    <dimen name="toolbar_image_title_size">36dp</dimen>
+    <dimen name="toolbar_right_padding">28dp</dimen>
+
     <!-- End: from outer -->
 </resources>
