@@ -3,11 +3,18 @@
 欢迎加入QQ群：
 <a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=5867e988b85eecbb8c50bedab9810624fc017ce71098ae9394e7c935a4125281"><img border="0" src="http://pub.idqqimg.com/wpa/images/group.png" alt="Android开发技术交流" title="Android开发技术交流"></a>
 
-# 项目目的
-提供App开发的接口，使开发者只关心App的业务实现，不用再关心具体功能实现，比如网络请求、图片加载、对话框、缓存等，也不用再为内存泄漏担心
+# 项目简介
+提供App开发的接口，使开发者只关心App的业务实现，不用再关心具体功能实现，比如网络请求、图片加载、对话框、缓存等，也不用再为内存泄漏担心； 
 
-# 项目结构
-4.0.0版本进一步精简代码，淘汰了一些老旧的技术栈，全面向kotlin技术栈和jetpack技术栈靠齐;  
+**4.0.0版本进一步精简代码，淘汰了一些老旧的技术栈，全面向kotlin技术栈和jetpack技术栈靠齐;**
+
+ARabbit名字的含义：A代表Android，Rabbit是兔子的意思，象征着速度快，和本项目的初衷匹配：快速开发。
+
+# 项目地址
+- [https://github.com/ddnosh/ARabbit](https://github.com/ddnosh/ARabbit)  
+``` groovy
+引用方式: implementation 'com.androidwind:arabbit:4.0.0'  
+```
 
 ## SDK功能 
 1. module: 功能模块；   
