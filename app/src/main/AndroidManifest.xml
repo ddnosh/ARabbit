@@ -28,8 +28,9 @@
         <activity android:name=".dialog.DialogActivity" />
         <activity android:name=".mvvm.LoginActivity" />
         <activity android:name=".livedata.LiveDataActivity" />
-        <activity android:name=".viewbinding.VBActivity" />
+        <activity android:name="com.github.ddnosh.arabbit.sample.binding.viewbinding.VBActivity" />
         <activity android:name=".JavaTestActivity" />
+        <activity android:name=".binding.databinding.DBActivity" />
     </application>
 
 </manifest>

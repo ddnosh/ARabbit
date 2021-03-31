@@ -1,11 +1,14 @@
-package com.github.ddnosh.arabbit.sample.viewbinding;
+package com.github.ddnosh.arabbit.sample.binding.viewbinding;
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.github.ddnosh.arabbit.sample.databinding.ActivityVbBinding
 import com.github.ddnosh.arabbit.util.ToastUtil
 
-// viewBinding已经替代Kotlin Android Extensions
+/*
+ viewBinding已经替代Kotlin Android Extensions
+ ViewBinding只是为了替代findViewById，优点是空安全
+ */
 class VBActivity : AppCompatActivity() {
     private val TAG = "app_start_timer"
     private lateinit var viewBinding: ActivityVbBinding

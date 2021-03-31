@@ -6,6 +6,7 @@ import android.util.Log
 import androidx.lifecycle.Lifecycle
 import com.github.ddnosh.arabbit.module.rxbus.RxBus
 import com.github.ddnosh.arabbit.sample.base.BaseActivity
+import com.github.ddnosh.arabbit.sample.binding.databinding.DBActivity
 import com.github.ddnosh.arabbit.sample.coroutine.CoroutineActivity
 import com.github.ddnosh.arabbit.sample.dialog.DialogActivity
 import com.github.ddnosh.arabbit.sample.event.TestEvent
@@ -14,7 +15,7 @@ import com.github.ddnosh.arabbit.sample.livedata.LiveDataActivity
 import com.github.ddnosh.arabbit.sample.mvvm.LoginActivity
 import com.github.ddnosh.arabbit.sample.network.NetworkActivity
 import com.github.ddnosh.arabbit.sample.util.TimeUtils
-import com.github.ddnosh.arabbit.sample.viewbinding.VBActivity
+import com.github.ddnosh.arabbit.sample.binding.viewbinding.VBActivity
 import com.github.ddnosh.arabbit.util.LogUtil
 import com.github.ddnosh.arabbit.util.RxUtil
 import com.github.ddnosh.arabbit.util.ToastUtil
@@ -65,6 +66,9 @@ class MainActivity : BaseActivity() {
         }
         button7.setOnClickListener {
             readyGo(VBActivity::class.java)
+        }
+        button8.setOnClickListener {
+            readyGo(DBActivity::class.java)
         }
     }
 
