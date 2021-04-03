@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import androidx.lifecycle.Lifecycle
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.github.ddnosh.arabbit.module.rxbus.RxBus
 import com.github.ddnosh.arabbit.sample.base.BaseActivity
 import com.github.ddnosh.arabbit.sample.binding.databinding.DBActivity
@@ -16,6 +17,7 @@ import com.github.ddnosh.arabbit.sample.mvvm.LoginActivity
 import com.github.ddnosh.arabbit.sample.network.NetworkActivity
 import com.github.ddnosh.arabbit.sample.util.TimeUtils
 import com.github.ddnosh.arabbit.sample.binding.viewbinding.VBActivity
+import com.github.ddnosh.arabbit.sample.multiplestatusview.MSVActivity
 import com.github.ddnosh.arabbit.util.LogUtil
 import com.github.ddnosh.arabbit.util.RxUtil
 import com.github.ddnosh.arabbit.util.ToastUtil
@@ -41,34 +43,24 @@ class MainActivity : BaseActivity() {
                 .subscribe {
                     LogUtil.d(TAG, "[RxBus] ${it.data}")
                 }
-        //多页面状态
-        multiple_status_view.setOnClickListener {
-            ToastUtil.showToast("retried.")
-        }
 
-        button1.setOnClickListener {
-            readyGo(LoginActivity::class.java)
+        recycler_view.layoutManager = LinearLayoutManager(this)
+        recycler_view.adapter = SampleAdapter(resources.getStringArray(R.array.sample_array)) {
+            goto(it)
         }
-        button2.setOnClickListener {
-            readyGo(LiveDataActivity::class.java)
-        }
-        button3.setOnClickListener {
-            readyGo(CoroutineActivity::class.java)
-        }
-        button4.setOnClickListener {
-            readyGo(NetworkActivity::class.java)
-        }
-        button5.setOnClickListener {
-            readyGo(GlideActivity::class.java)
-        }
-        button6.setOnClickListener {
-            readyGo(DialogActivity::class.java)
-        }
-        button7.setOnClickListener {
-            readyGo(VBActivity::class.java)
-        }
-        button8.setOnClickListener {
-            readyGo(DBActivity::class.java)
+    }
+
+    private fun goto(position: Int) {
+        when (position) {
+            0 -> readyGo(LoginActivity::class.java)
+            1 -> readyGo(LiveDataActivity::class.java)
+            2 -> readyGo(CoroutineActivity::class.java)
+            3 -> readyGo(NetworkActivity::class.java)
+            4 -> readyGo(GlideActivity::class.java)
+            5 -> readyGo(DialogActivity::class.java)
+            6 -> readyGo(VBActivity::class.java)
+            7 -> readyGo(DBActivity::class.java)
+            8 -> readyGo(MSVActivity::class.java)
         }
     }
 

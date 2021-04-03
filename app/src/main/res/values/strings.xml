@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">ARabbit</string>
+
+    <string-array name="sample_array">
+        <item>1.MVVM</item>
+        <item>2.LiveData</item>
+        <item>3.Coroutine</item>
+        <item>4.Network</item>
+        <item>5.Image</item>
+        <item>6.Dialog</item>
+        <item>7.ViewBinding</item>
+        <item>8.DataBinding</item>
+        <item>9.MultipleStatusView</item>
+    </string-array>
 </resources>

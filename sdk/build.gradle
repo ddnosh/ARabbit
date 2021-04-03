@@ -1,7 +1,5 @@
 apply plugin: 'com.android.library'
-apply plugin: 'com.jakewharton.butterknife'
 apply plugin: 'maven'
-apply plugin: 'com.novoda.bintray-release'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
@@ -12,8 +10,8 @@ android {
     defaultConfig {
         minSdkVersion rootProject.ext.android.minSdkVersion
         targetSdkVersion rootProject.ext.android.targetSdkVersion
-        versionCode rootProject.ext.android.versionCode
-        versionName rootProject.ext.android.versionName
+        versionCode versionCode
+        versionName versionName
     }
 
     buildTypes {
@@ -48,7 +46,7 @@ dependencies {
     //retrofit2
     api 'com.squareup.retrofit2:retrofit:2.9.0'
     //okhttp3
-    api 'com.squareup.okhttp3:okhttp:4.9.0'
+    api 'com.squareup.okhttp3:okhttp:4.9.1'
     api 'com.squareup.okhttp3:logging-interceptor:4.9.0'
     //gson
     api 'com.google.code.gson:gson:2.8.6'
@@ -60,62 +58,16 @@ dependencies {
     api 'androidx.fragment:fragment-ktx:1.3.2'
 }
 
-publish {
-    userOrg = 'ddnosh'
-    groupId = 'com.androidwind'
-    artifactId = 'arabbit'
-    publishVersion = '4.0.0'
-    desc = 'ARabbit is a sdk for faster android app development'
-    website = "https://github.com/ddnosh/ARabbit"
+ext {
+    // These could be set globally
+    PUBLISH_GROUP_ID = 'com.github.ddnosh'
+    PUBLISH_VERSION = versionName
+
+    // These should be module-dependent
+    PUBLISH_ARTIFACT_ID = 'arabbit'
+    ARTIFACT_DESCRIPTION = "ARabbit is a sdk for faster android app development."
+    uploadJavadocs = false
+    uploadSources = false
 }
 
-tasks.withType(Javadoc) {//防止编码问题
-    options.addStringOption('Xdoclint:none', '-quiet')
-    options.addStringOption('encoding', 'UTF-8')
-    options.addStringOption('charSet', 'UTF-8')
-}
-
-task sourcesJar(type: Jar) {
-    from android.sourceSets.main.java.srcDirs
-    classifier = 'sources'
-}
-
-task javadoc(type: Javadoc) {
-    failOnError false
-    source = android.sourceSets.main.java.srcDirs
-    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
-}
-
-task javadocJar(type: Jar, dependsOn: javadoc) {
-    classifier = 'javadoc'
-    from javadoc.destinationDir
-}
-
-tasks.withType(Javadoc).all {
-    enabled = false
-}
-
-artifacts {
-    archives javadocJar
-    archives sourcesJar
-}
-
-//打包任务
-task makeJar(type: Copy) {
-    //删除旧的jar包
-    delete 'build/libs/arabbit.jar'
-    //从哪里打包class文件
-    from('build/intermediates/packaged-classes/debug/')
-    //打包到jar后的目录结构
-    into('build/libs/')
-    //包含的jar包
-    include('classes.jar')
-    //去掉不需要打包的目录和文件
-    exclude('BuildConfig.class', 'R.class')
-    //去掉R$开头的文件
-    exclude { it.name.startsWith('R$'); }
-    //重命名jar包为tinytask
-    rename ('classes.jar', 'arabbit.jar')
-}
-
-makeJar.dependsOn(build)
+apply from: "${rootProject.projectDir}/publish-mavencentral.gradle"

@@ -6,14 +6,14 @@
 # 项目简介
 提供App开发的接口，使开发者只关心App的业务实现，不用再关心具体功能实现，比如网络请求、图片加载、对话框、缓存等，也不用再为内存泄漏担心； 
 
-**4.0.0版本进一步精简代码，淘汰了一些老旧的技术栈，全面向kotlin技术栈和jetpack技术栈靠齐;**
+**1.0.0版本进一步精简代码，淘汰了一些老旧的技术栈，全面向kotlin技术栈和jetpack技术栈靠齐;**
 
 ARabbit名字的含义：A代表Android，Rabbit是兔子的意思，象征着速度快，和本项目的初衷匹配：快速开发。
 
 # 项目地址
 - [https://github.com/ddnosh/ARabbit](https://github.com/ddnosh/ARabbit)  
 ``` groovy
-引用方式: implementation 'com.androidwind:arabbit:4.0.0'  
+引用方式: implementation 'com.github.ddnosh:arabbit:1.0.0'  
 ```
 
 ## SDK功能 
@@ -46,11 +46,11 @@ ARabbit名字的含义：A代表Android，Rabbit是兔子的意思，象征着�
 7. viewBinding的使用方法  
 
 # 主要版本修订日志
-* 4.0.0
+* 1.0.0
   1. 去除butterknife(使用kotlin自带)、去除viewbinding(放在app工程中)、去除eventbus(使用rxbus替换)、去除老旧的屏幕适配方案(可使用头条的)
   2. 使用jetpack的viewmodels和coroutines等
   3. 进一步明确rxjava+rxlifecycle+rxbus搭配、viewmodel+livedata搭配的技术栈
-  4. 更改包名
+  4. 更改包名，重新将版本号设定为1.0.0
 * 3.1.0版本改名，完善App工程实例；
 * 3.0.0版本改用Kotlin；  
 * 2.2.0版本支持AndroidX；  
