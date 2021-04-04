@@ -1,5 +1,5 @@
 # ARabbit
-[![Download](https://api.bintray.com/packages/ddnosh/maven/arabbit/images/download.svg) ](https://bintray.com/ddnosh/maven/arabbit/_latestVersion)  
+[![Maven](https://maven-badges.herokuapp.com/maven-central/com.github.ddnosh/arabbit/badge.svg)](https://search.maven.org/search?q=g:com.github.ddnosh%20AND%20a:arabbit)  
 欢迎加入QQ群：
 <a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=5867e988b85eecbb8c50bedab9810624fc017ce71098ae9394e7c935a4125281"><img border="0" src="http://pub.idqqimg.com/wpa/images/group.png" alt="Android开发技术交流" title="Android开发技术交流"></a>
 
