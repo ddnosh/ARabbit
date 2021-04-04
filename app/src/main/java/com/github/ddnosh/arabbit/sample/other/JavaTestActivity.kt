@@ -1,6 +1,7 @@
-package com.github.ddnosh.arabbit.sample
+package com.github.ddnosh.arabbit.sample.other
 
 import android.os.Bundle
+import com.github.ddnosh.arabbit.sample.R
 import com.github.ddnosh.arabbit.sample.base.BaseActivity
 import com.github.ddnosh.arabbit.util.LogUtil
 import com.github.ddnosh.arabbit.util.ToastUtil.showToast

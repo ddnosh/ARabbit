@@ -27,13 +27,15 @@ class CommonViewHolder(private val mContext: Context, private val mConvertView: 
      * @param viewId
      * @return
      */
-    fun <T : View> getView(viewId: Int): T {
+    private fun <T : View> getView(viewId: Int): T {
         var view: View? = mViews.get(viewId)
-        view?.run {
+        return view?.run {
+            view as T
+        } ?: view.run {
             view = mConvertView.findViewById(viewId)
             mViews.put(viewId, view)
+            view as T
         }
-        return (view as T?)!!
     }
 
     /**
@@ -54,15 +56,15 @@ class CommonViewHolder(private val mContext: Context, private val mConvertView: 
     fun setImageResourceWithGlide(viewId: Int, url: String): CommonViewHolder {
         val view = getView<ImageView>(viewId)
         Glide.with(mContext)
-            .load(url)
-            .placeholder(R.drawable.image_loading)
-            .into(view)
+                .load(url)
+                .placeholder(R.drawable.image_loading)
+                .into(view)
         return this
     }
 
     fun setOnClickListener(
-        viewId: Int,
-        listener: View.OnClickListener
+            viewId: Int,
+            listener: View.OnClickListener
     ): CommonViewHolder {
         val view = getView<View>(viewId)
         view.setOnClickListener(listener)

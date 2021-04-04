@@ -1,10 +1,11 @@
-package com.github.ddnosh.arabbit.sample
+package com.github.ddnosh.arabbit.sample.other
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.github.ddnosh.arabbit.sample.R
 
 class SampleAdapter(private val sampleList: Array<String>, private val onClick: (Int) -> Unit) :
         RecyclerView.Adapter<SampleAdapter.SampleViewHolder>() {
