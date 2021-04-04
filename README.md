@@ -13,7 +13,7 @@ ARabbit名字的含义：A代表Android，Rabbit是兔子的意思，象征着�
 # 项目地址
 - [https://github.com/ddnosh/ARabbit](https://github.com/ddnosh/ARabbit)  
 ``` groovy
-引用方式: implementation 'com.github.ddnosh:arabbit:1.0.0'  
+引用方式: implementation 'com.github.ddnosh:arabbit:1.0.1'  
 ```
 
 ## SDK功能 
