@@ -3,75 +3,43 @@ package com.github.ddnosh.arabbit.sample
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
-import androidx.lifecycle.Lifecycle
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.fragment.app.Fragment
+import com.github.ddnosh.arabbit.ext.setDefaultAdapter
+import com.github.ddnosh.arabbit.ext.toSafeObservable
 import com.github.ddnosh.arabbit.module.rxbus.RxBus
 import com.github.ddnosh.arabbit.sample.base.BaseActivity
-import com.github.ddnosh.arabbit.sample.binding.databinding.DBActivity
-import com.github.ddnosh.arabbit.sample.coroutine.CoroutineActivity
-import com.github.ddnosh.arabbit.sample.dialog.DialogActivity
-import com.github.ddnosh.arabbit.sample.event.TestEvent
-import com.github.ddnosh.arabbit.sample.image.GlideActivity
-import com.github.ddnosh.arabbit.sample.livedata.LiveDataActivity
-import com.github.ddnosh.arabbit.sample.mvvm.LoginActivity
-import com.github.ddnosh.arabbit.sample.network.NetworkActivity
+import com.github.ddnosh.arabbit.sample.module.rxbus.TestEvent
 import com.github.ddnosh.arabbit.sample.util.TimeUtils
-import com.github.ddnosh.arabbit.sample.binding.viewbinding.VBActivity
-import com.github.ddnosh.arabbit.sample.multiplestatusview.MSVActivity
-import com.github.ddnosh.arabbit.sample.other.SampleAdapter
-import com.github.ddnosh.arabbit.ui.adapter.CommonAdapter
-import com.github.ddnosh.arabbit.ui.adapter.CommonViewHolder
 import com.github.ddnosh.arabbit.util.LogUtil
-import com.github.ddnosh.arabbit.util.RxUtil
-import com.trello.rxlifecycle3.kotlin.bindUntilEvent
+import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.android.synthetic.main.activity_main.*
 
-/*
-    1. 使用Kotlin Android Extensions代替ButterKnife和findViewById
-    2. 目前Kotlin Android Extensions已经被viewBinding替代
- */
 class MainActivity : BaseActivity() {
     private val TAG = "MainActivity"
 
-    private var nameList = arrayListOf("1.MVVM", "2.LiveData", "3.Coroutine", "4.Network", "5.Image", "6.Dialog", "7.ViewBinding", "8.DataBinding", "9.MultipleStatusView")
+    var titleList = arrayListOf("JetPack", "Module", "Function", "UI")
 
     override val contentViewLayoutID: Int = R.layout.activity_main
 
     @SuppressLint("AutoDispose")
     override fun initViewsAndEvents(savedInstanceState: Bundle?) {
-        super.initViewsAndEvents(savedInstanceState)
         //RxBus
-        RxBus.getDefault().toObservable(TestEvent::class.java)
-                .bindLifeOwner(this)
-                .compose(RxUtil.io2Main())
-                .bindUntilEvent(lifecycleProvider, Lifecycle.Event.ON_DESTROY)
+        RxBus.getDefault().toSafeObservable(TestEvent::class.java, lifecycleProvider, this)
                 .subscribe {
                     LogUtil.d(TAG, "[RxBus] ${it.data}")
                 }
 
-        recycler_view.layoutManager = LinearLayoutManager(this)
-        recycler_view.adapter = object : CommonAdapter<String>(this, R.layout.sample_item, nameList) {
-            override fun convert(holder: CommonViewHolder, name: String) {
-                holder.setText(R.id.sample_text, name)
-                holder.setOnClickListener(R.id.item_root) {
-                    LogUtil.d(TAG, "onItemClick:$name")
-                    goto(name)
-                }
-            }
+        val fragmentList = ArrayList<Fragment>()
+        for (i in titleList.indices) {
+            fragmentList.add(TabFragment.newInstance(i))
         }
-    }
-
-    private fun goto(name: String) {
-        when (name) {
-            "1.MVVM" -> readyGo(LoginActivity::class.java)
-            "2.LiveData" -> readyGo(LiveDataActivity::class.java)
-            "3.Coroutine" -> readyGo(CoroutineActivity::class.java)
-            "4.Network" -> readyGo(NetworkActivity::class.java)
-            "5.Image" -> readyGo(GlideActivity::class.java)
-            "6.Dialog" -> readyGo(DialogActivity::class.java)
-            "7.ViewBinding" -> readyGo(VBActivity::class.java)
-            "8.DataBinding" -> readyGo(DBActivity::class.java)
-            "9.MultipleStatusView" -> readyGo(MSVActivity::class.java)
+        viewPager?.run {
+            offscreenPageLimit = fragmentList.size
+            setDefaultAdapter(this@MainActivity, fragmentList)
+            TabLayoutMediator(tabLayout, viewPager) { tab: TabLayout.Tab, position: Int ->
+                tab.text = titleList[position]
+            }.attach()
         }
     }
 

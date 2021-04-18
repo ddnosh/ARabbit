@@ -1,7 +1,7 @@
 package com.github.ddnosh.arabbit.module.rxjava
 
-import com.github.ddnosh.arabbit.module.exception.ApiException
-import com.github.ddnosh.arabbit.module.exception.ExceptionEngine
+import com.github.ddnosh.arabbit.function.exception.AppException
+import com.github.ddnosh.arabbit.function.exception.ExceptionEngine
 import org.reactivestreams.Subscriber
 import org.reactivestreams.Subscription
 
@@ -23,6 +23,6 @@ abstract class BaseSubscriber<T> : Subscriber<T> {
     }
 
     override fun onComplete() {}
-    abstract fun onError(exception: ApiException)
+    abstract fun onError(exception: AppException)
     abstract fun onSuccess(t: T)
 }

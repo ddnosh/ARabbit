@@ -29,6 +29,10 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
+    dataBinding {
+        enabled = true
+    }
 }
 
 dependencies {
@@ -45,9 +49,11 @@ dependencies {
     api 'com.trello.rxlifecycle3:rxlifecycle-kotlin:3.0.0'
     //retrofit2
     api 'com.squareup.retrofit2:retrofit:2.9.0'
+    api 'me.jessyan:retrofit-url-manager:1.4.0'
+    api 'com.github.franmontiel:PersistentCookieJar:v1.0.1'
     //okhttp3
-    api 'com.squareup.okhttp3:okhttp:4.9.1'
-    api 'com.squareup.okhttp3:logging-interceptor:4.9.0'
+    api 'com.squareup.okhttp3:okhttp:5.0.0-alpha.2'
+    api 'com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.2'
     //gson
     api 'com.google.code.gson:gson:2.8.6'
     //glide

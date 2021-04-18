@@ -27,7 +27,7 @@ class CommonViewHolder(private val mContext: Context, private val mConvertView: 
      * @param viewId
      * @return
      */
-    private fun <T : View> getView(viewId: Int): T {
+    fun <T : View> getView(viewId: Int): T {
         var view: View? = mViews.get(viewId)
         return view?.run {
             view as T

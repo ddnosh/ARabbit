@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.multidex.MultiDexApplication
 import com.github.ddnosh.arabbit.sample.util.TimeUtils
 import com.github.ddnosh.arabbit.util.ToastUtil
+import com.tencent.mmkv.MMKV
 
 
 /**
@@ -21,14 +22,13 @@ class MyApplication : MultiDexApplication() {
     override fun onCreate() {
         super.onCreate()
         //get application
-        instance ?: run {
-            instance = this
-        }
+        instance = this
+        MMKV.initialize(this.filesDir.absolutePath + "/mmkv")
         ToastUtil.register(this)
     }
 
     companion object {
         @get:Synchronized
-        var instance: MyApplication? = null
+        lateinit var instance: MyApplication
     }
 }

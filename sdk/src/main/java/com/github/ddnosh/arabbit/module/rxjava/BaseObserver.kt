@@ -2,8 +2,8 @@ package com.github.ddnosh.arabbit.module.rxjava
 
 import io.reactivex.Observer
 import io.reactivex.disposables.Disposable
-import com.github.ddnosh.arabbit.module.exception.ApiException
-import com.github.ddnosh.arabbit.module.exception.ExceptionEngine
+import com.github.ddnosh.arabbit.function.exception.AppException
+import com.github.ddnosh.arabbit.function.exception.ExceptionEngine
 
 /** RxJava订阅者封装,包括Exception
  * @author ddnosh
@@ -23,6 +23,6 @@ abstract class BaseObserver<T> : Observer<T> {
     }
 
     override fun onComplete() {}
-    abstract fun onError(exception: ApiException)
+    abstract fun onError(exception: AppException)
     abstract fun onSuccess(t: T)
 }

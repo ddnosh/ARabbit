@@ -7,17 +7,27 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.ViewDataBinding
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import androidx.lifecycle.Lifecycle
 import com.github.ddnosh.arabbit.util.StringUtil
 import com.google.android.material.snackbar.Snackbar
+import com.trello.lifecycle2.android.lifecycle.AndroidLifecycle
+import com.trello.rxlifecycle3.LifecycleProvider
 
 /**
  * @author  ddnosh
  * @website http://blog.csdn.net/ddnosh
  */
 abstract class QuickFragment : Fragment() {
+
+    companion object {
+        @JvmField
+        var TAG = "QuickFragment"
+    }
 
     protected lateinit var mContext: Context
 
@@ -26,20 +36,9 @@ abstract class QuickFragment : Fragment() {
     private var isFirstInvisible = true
     private var isPrepared: Boolean = false
 
-    /**
-     * bind layout resource file
-     *
-     * @return id of layout resource
-     */
     protected abstract val contentViewLayoutID: Int
 
-    /**
-     * get the support fragment manager
-     *
-     * @return
-     */
-    protected val supportFragmentManager: FragmentManager
-        get() = requireActivity().supportFragmentManager
+    protected lateinit var lifecycleProvider: LifecycleProvider<Lifecycle.Event>
 
     override fun onAttach(activity: Activity) {
         super.onAttach(activity)
@@ -49,14 +48,21 @@ abstract class QuickFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val layoutId = contentViewLayoutID
         return if (layoutId != 0) {
-            inflater.inflate(layoutId, container, false)
+            initContentView(layoutId, inflater, container)
         } else {
             super.onCreateView(inflater, container, savedInstanceState)
         }
     }
 
+    open fun initContentView(layoutId: Int, inflater: LayoutInflater, container: ViewGroup?): View {
+        return inflater.inflate(layoutId, container, false)
+    }
+
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        // init lifecycleprovider
+        lifecycleProvider = AndroidLifecycle.createLifecycleProvider(this)
         initViewsAndEvents(savedInstanceState)
     }
 
@@ -132,48 +138,31 @@ abstract class QuickFragment : Fragment() {
      */
     protected abstract fun onFirstUserVisible()
 
-    /**
-     * this method like the fragment's lifecycle method onResume()
-     */
     protected abstract fun onUserVisible()
 
-    /**
-     * when fragment is invisible for the first time
-     */
     private fun onFirstUserInvisible() {
         // here we do not recommend do something
     }
 
-    /**
-     * this method like the fragment's lifecycle method onPause()
-     */
     protected abstract fun onUserInvisible()
 
-    /**
-     * init all views and add events
-     */
     protected abstract fun initViewsAndEvents(savedInstanceState: Bundle?)
 
     protected open fun getGoIntent(clazz: Class<*>): Intent {
-        return Intent(activity, clazz)
+        return if (QuickFragment::class.java.isAssignableFrom(clazz)) {
+            val intent = Intent(activity, FrameActivity::class.java)
+            intent.putExtra("fragmentName", clazz.name)
+            intent
+        } else {
+            Intent(activity, clazz)
+        }
     }
 
-    /**
-     * startActivity
-     *
-     * @param clazz
-     */
     protected fun readyGo(clazz: Class<*>) {
         val intent = getGoIntent(clazz)
         startActivity(intent)
     }
 
-    /**
-     * startActivity with bundle
-     *
-     * @param clazz
-     * @param bundle
-     */
     protected fun readyGo(clazz: Class<*>, bundle: Bundle?) {
         val intent = getGoIntent(clazz)
         if (null != bundle) {
@@ -182,24 +171,11 @@ abstract class QuickFragment : Fragment() {
         startActivity(intent)
     }
 
-    /**
-     * startActivityForResult
-     *
-     * @param clazz         类名.class，获取类型类
-     * @param requestCode   请求码
-     */
     protected fun readyGoForResult(clazz: Class<*>, requestCode: Int) {
         val intent = getGoIntent(clazz)
         startActivityForResult(intent, requestCode)
     }
 
-    /**
-     * startActivityForResult with bundle
-     *
-     * @param clazz
-     * @param requestCode
-     * @param bundle
-     */
     protected fun readyGoForResult(clazz: Class<*>, requestCode: Int, bundle: Bundle?) {
         val intent = getGoIntent(clazz)
         if (null != bundle) {
@@ -243,10 +219,5 @@ abstract class QuickFragment : Fragment() {
     fun showError(throwable: Throwable) {
         if (activity is QuickActivity)
             (activity as QuickActivity).showError(throwable)
-    }
-
-    companion object {
-        @JvmField
-        var TAG = "QuickFragment"
     }
 }

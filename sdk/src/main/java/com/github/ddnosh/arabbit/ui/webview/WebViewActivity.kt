@@ -19,16 +19,12 @@ import com.github.ddnosh.arabbit.util.StringUtil
  */
 class WebViewActivity : QuickActivity() {
 
-    private var wvWebView: WebView? = null
-    private var pbWebView: ProgressBar? = null
+    private lateinit var wvWebView: WebView
+    private lateinit var pbWebView: ProgressBar
 
-    private var mBundle: Bundle? = null
+    protected val WEB_URL_KEY: String = "ARABBIT_WEB_URL"
 
     override val contentViewLayoutID = R.layout.activity_webview
-
-    override val overridePendingTransitionMode: TransitionMode = TransitionMode.LEFT
-
-    override val isLoadDefaultTitleBar: Boolean = true
 
     override fun initViewsAndEvents(savedInstanceState: Bundle?) {
         wvWebView = findViewById(R.id.wvWebView)
@@ -36,65 +32,57 @@ class WebViewActivity : QuickActivity() {
         initData()
     }
 
-    override fun toggleOverridePendingTransition(): Boolean {
-        return false
-    }
-
     @SuppressLint("SetJavaScriptEnabled", "JavascriptInterface")
     fun initData() {
-        var url = mBundle?.getString("ARABBIT_WEB_URL")
+        var url = intent.extras?.getString(WEB_URL_KEY)
         if (StringUtil.isEmpty(url)) {
             url = URL
         }
 
-        val webSettings = wvWebView?.settings
-        webSettings?.javaScriptEnabled = true
+        val webSettings = wvWebView.settings
+        webSettings.javaScriptEnabled = true
 
-        wvWebView?.requestFocus()
+        wvWebView.requestFocus()
 
         // 设置setWebChromeClient对象
-        wvWebView?.webChromeClient = object : WebChromeClient() {
+        wvWebView.webChromeClient = object : WebChromeClient() {
             override fun onReceivedTitle(view: WebView, title: String) {
                 super.onReceivedTitle(view, title)
-                toolbar.title = title
+//                toolbar.title = title
             }
 
             override fun onProgressChanged(view: WebView, newProgress: Int) {
                 super.onProgressChanged(view, newProgress)
-                pbWebView!!.progress = newProgress
+                pbWebView.progress = newProgress
             }
         }
 
-        wvWebView?.webViewClient = object : WebViewClient() {
+        wvWebView.webViewClient = object : WebViewClient() {
             override fun shouldOverrideUrlLoading(view: WebView, url: String): Boolean {
-                wvWebView?.loadUrl(url)
+                wvWebView.loadUrl(url)
                 return true
             }
 
             override fun onPageStarted(view: WebView, url: String, favicon: Bitmap?) {
                 super.onPageStarted(view, url, favicon)
-                toolbar.title = StringUtil.getTrimedString(wvWebView!!.url)
-                pbWebView!!.visibility = View.VISIBLE
+//                toolbar.title = StringUtil.getTrimedString(wvWebView.url)
+                pbWebView.visibility = View.VISIBLE
             }
 
             override fun onPageFinished(view: WebView, url: String) {
                 super.onPageFinished(view, url)
-                toolbar.title = StringUtil.getTrimedString(wvWebView!!.title)
-                pbWebView!!.visibility = View.GONE
+//                toolbar.title = StringUtil.getTrimedString(wvWebView.title)
+                pbWebView.visibility = View.GONE
             }
         }
 
-        wvWebView?.loadUrl(url)
-    }
-
-    override fun getBundleExtras(extras: Bundle) {
-        mBundle = extras
+        wvWebView.loadUrl(url)
     }
 
     //系统自带监听方法<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     override fun onBackPressed() {
-        if (wvWebView!!.canGoBack()) {
-            wvWebView?.goBack()
+        if (wvWebView.canGoBack()) {
+            wvWebView.goBack()
             return
         }
 
@@ -104,19 +92,16 @@ class WebViewActivity : QuickActivity() {
     //类相关监听<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     override fun onPause() {
         super.onPause()
-        wvWebView?.onPause()
+        wvWebView.onPause()
     }
 
     override fun onResume() {
-        wvWebView?.onResume()
+        wvWebView.onResume()
         super.onResume()
     }
 
     override fun onDestroy() {
-        if (wvWebView != null) {
-            wvWebView?.destroy()
-            wvWebView = null
-        }
+        wvWebView.destroy()
         super.onDestroy()
     }
 

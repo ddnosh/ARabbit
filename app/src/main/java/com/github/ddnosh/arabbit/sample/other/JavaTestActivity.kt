@@ -15,7 +15,6 @@ class JavaTestActivity : BaseActivity() {
     override val contentViewLayoutID: Int = R.layout.activity_test
 
     override fun initViewsAndEvents(savedInstanceState: Bundle?) {
-        super.initViewsAndEvents(savedInstanceState)
         LogUtil.i(TAG, "")
         showToast("")
         addActivity(this)

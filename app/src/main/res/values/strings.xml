@@ -12,4 +12,6 @@
 <!--        <item>8.DataBinding</item>-->
 <!--        <item>9.MultipleStatusView</item>-->
 <!--    </string-array>-->
+    <string name="toolbar">ToolBar Title</string>
+    <string name="dialog">Dialog Title</string>
 </resources>

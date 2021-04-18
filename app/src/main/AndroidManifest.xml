@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".splash.SplashActivity"
+            android:name=".SplashActivity"
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,17 +21,11 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity" />
-        <activity android:name=".network.NetworkActivity" />
-        <activity android:name=".image.GlideActivity" />
-        <activity android:name=".base.FrameActivity"  />
-        <activity android:name=".coroutine.CoroutineActivity" />
-        <activity android:name=".dialog.DialogActivity" />
-        <activity android:name=".mvvm.LoginActivity" />
-        <activity android:name=".livedata.LiveDataActivity" />
-        <activity android:name="com.github.ddnosh.arabbit.sample.binding.viewbinding.VBActivity" />
+        <activity android:name=".jetpack.viewmodel.LoginActivity" />
+        <activity android:name=".jetpack.livedata.LiveDataActivity" />
+        <activity android:name=".jetpack.binding.viewbinding.ViewBindingActivity" />
         <activity android:name=".other.JavaTestActivity" />
-        <activity android:name=".binding.databinding.DBActivity" />
-        <activity android:name=".multiplestatusview.MSVActivity" />
+        <activity android:name=".jetpack.binding.databinding.ViewDataBindingActivity" />
     </application>
 
 </manifest>
