@@ -7,6 +7,7 @@ import com.github.ddnosh.arabbit.sample.R
 import com.github.ddnosh.arabbit.sample.base.BaseFragment
 import com.github.ddnosh.arabbit.sample.module.network.coroutine.viewmodel.RequestProjectViewModel
 import com.github.ddnosh.arabbit.util.LogUtil
+import com.github.ddnosh.arabbit.util.ToastUtil
 import kotlinx.android.synthetic.main.activity_network.*
 
 /**
@@ -24,6 +25,7 @@ class NetworkFragment1 : BaseFragment() {
             parseState(data, {
                 it.map {
                     LogUtil.d(TAG, it.name)
+                    ToastUtil.showToast(it.name)
                 }
             }, {
 

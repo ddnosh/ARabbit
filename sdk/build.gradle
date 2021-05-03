@@ -49,7 +49,6 @@ dependencies {
     api 'com.trello.rxlifecycle3:rxlifecycle-kotlin:3.0.0'
     //retrofit2
     api 'com.squareup.retrofit2:retrofit:2.9.0'
-    api 'me.jessyan:retrofit-url-manager:1.4.0'
     api 'com.github.franmontiel:PersistentCookieJar:v1.0.1'
     //okhttp3
     api 'com.squareup.okhttp3:okhttp:5.0.0-alpha.2'

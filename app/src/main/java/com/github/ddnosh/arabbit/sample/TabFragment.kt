@@ -13,6 +13,7 @@ import com.github.ddnosh.arabbit.sample.jetpack.room_paging.RoomFragment
 import com.github.ddnosh.arabbit.sample.ui.multiplestatusview.MutipleViewStateFragment
 import com.github.ddnosh.arabbit.sample.jetpack.viewmodel.LoginActivity
 import com.github.ddnosh.arabbit.sample.module.image.GlideFragment
+import com.github.ddnosh.arabbit.sample.module.ioc.dagger2.DaggerFragment
 import com.github.ddnosh.arabbit.sample.module.network.NetworkFragment
 import com.github.ddnosh.arabbit.sample.module.rxbus.RxBusFragment
 import com.github.ddnosh.arabbit.sample.ui.toolbar.ToolBarFragment
@@ -24,7 +25,7 @@ import kotlinx.android.synthetic.main.fragment_tab.*
 class TabFragment: BaseFragment() {
 
     private var jetPackNameList = arrayListOf("1.ViewModel", "2.LiveData", "3.Coroutine", "4.Binding", "5.Navigation", "6.Room")
-    private var moduleNameList = arrayListOf("1.RxBus", "2.Image", "3.Network")
+    private var moduleNameList = arrayListOf("1.RxBus", "2.Image", "3.Network", "4.Dagger2")
     private var functionNameList = arrayListOf("1.Error")
     private var uiNameList = arrayListOf("1.Dialog", "2.MultipleStatusView", "3.ToolBar")
 
@@ -78,6 +79,7 @@ class TabFragment: BaseFragment() {
             "1.RxBus" -> readyGo(RxBusFragment::class.java)
             "2.Image" -> readyGo(GlideFragment::class.java)
             "3.Network" -> readyGo(NetworkFragment::class.java)
+            "4.Dagger2" -> readyGo(DaggerFragment::class.java)
             //for function
             "1.Error" -> readyGo(ExceptionFragment::class.java)
             // for UI

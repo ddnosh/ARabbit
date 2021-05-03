@@ -115,6 +115,9 @@ dependencies {
     implementation 'com.uber.autodispose:autodispose-android-archcomponents:1.3.0'
     //mmkv
     implementation 'com.tencent:mmkv:1.0.22'
+    //dagger2
+    implementation 'com.google.dagger:dagger:2.31.2'
+    kapt 'com.google.dagger:dagger-compiler:2.31.2'
 }
 repositories {
     mavenCentral()
