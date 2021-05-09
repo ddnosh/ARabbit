@@ -26,7 +26,7 @@ class MyApplication : MultiDexApplication() {
         super.onCreate()
         //get application
         instance = this
-        MMKV.initialize(this.filesDir.absolutePath + "/mmkv")
+        MMKV.initialize(this, this.filesDir.absolutePath + "/mmkv")
         ToastUtil.register(this)
     }
 
