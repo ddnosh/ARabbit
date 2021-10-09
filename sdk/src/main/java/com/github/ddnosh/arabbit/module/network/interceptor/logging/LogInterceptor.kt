@@ -1,6 +1,10 @@
 package com.github.ddnosh.arabbit.module.network.interceptor.logging
 
 import android.util.Log
+import com.github.ddnosh.arabbit.util.CharacterHandler.Companion.jsonFormat
+import com.github.ddnosh.arabbit.util.UrlEncoderUtils.Companion.hasUrlEncoded
+import com.github.ddnosh.arabbit.util.ZipHelper.Companion.decompressForGzip
+import com.github.ddnosh.arabbit.util.ZipHelper.Companion.decompressToStringForZlib
 import okhttp3.*
 import okio.Buffer
 import java.io.IOException
@@ -9,19 +13,14 @@ import java.net.URLDecoder
 import java.nio.charset.Charset
 import java.util.*
 import java.util.concurrent.TimeUnit
-import com.github.ddnosh.arabbit.util.CharacterHandler.Companion.jsonFormat
-import com.github.ddnosh.arabbit.util.UrlEncoderUtils.Companion.hasUrlEncoded
-import com.github.ddnosh.arabbit.util.ZipHelper.Companion.decompressForGzip
-import com.github.ddnosh.arabbit.util.ZipHelper.Companion.decompressToStringForZlib
 
 class LogInterceptor : Interceptor {
     private val mPrinter: FormatPrinter = DefaultFormatPrinter()
     private val printLevel = Level.ALL
-    
+
     constructor() {}
 
     constructor(printLevel: Level?) {
-
     }
 
     @Throws(IOException::class)
@@ -30,7 +29,7 @@ class LogInterceptor : Interceptor {
         val logRequest =
             printLevel == Level.ALL || printLevel != Level.NONE && printLevel == Level.REQUEST
         if (logRequest) {
-            //打印请求信息
+            // 打印请求信息
             if (request.body != null && isParseable(
                     request.body!!.contentType()
                 )
@@ -55,14 +54,14 @@ class LogInterceptor : Interceptor {
         val t2 = if (logResponse) System.nanoTime() else 0
         val responseBody = originalResponse.body
 
-        //打印响应结果
+        // 打印响应结果
         var bodyString: String? = null
         if (responseBody != null && isParseable(responseBody.contentType())) {
             bodyString = printResult(request, originalResponse, logResponse)
         }
         if (logResponse) {
             val segmentList =
-                    request.url.encodedPathSegments
+                request.url.encodedPathSegments
             val header: String = if (originalResponse.networkResponse == null) {
                 originalResponse.headers.toString()
             } else {
@@ -103,18 +102,18 @@ class LogInterceptor : Interceptor {
         logResponse: Boolean
     ): String? {
         return try {
-            //读取服务器返回的结果
+            // 读取服务器返回的结果
             val responseBody = response.newBuilder().build().body
             val source = responseBody!!.source()
             source.request(Long.MAX_VALUE) // Buffer the entire body.
             val buffer = source.buffer()
 
-            //获取content的压缩类型
+            // 获取content的压缩类型
             val encoding = response
                 .headers["Content-Encoding"]
             val clone = buffer.clone()
 
-            //解析response content
+            // 解析response content
             parseContent(responseBody, encoding, clone)
         } catch (e: IOException) {
             e.printStackTrace()
@@ -140,21 +139,21 @@ class LogInterceptor : Interceptor {
         if (contentType != null) {
             charset = contentType.charset(charset)
         }
-        //content 使用 gzip 压缩
+        // content 使用 gzip 压缩
         return if ("gzip".equals(encoding, ignoreCase = true)) {
-            //解压
+            // 解压
             decompressForGzip(
                 clone.readByteArray(),
                 convertCharset(charset)
             )
         } else if ("zlib".equals(encoding, ignoreCase = true)) {
-            //content 使用 zlib 压缩
+            // content 使用 zlib 压缩
             decompressToStringForZlib(
                 clone.readByteArray(),
                 convertCharset(charset)
             )
         } else {
-            //content 没有被压缩, 或者使用其他未知压缩方式
+            // content 没有被压缩, 或者使用其他未知压缩方式
             clone.readString(charset)
         }
     }
@@ -225,11 +224,11 @@ class LogInterceptor : Interceptor {
                 false
             } else isText(mediaType) || isPlain(
                 mediaType
-            )
-                    || isJson(mediaType) || isForm(
+            ) ||
+                isJson(mediaType) || isForm(
                 mediaType
-            )
-                    || isHtml(mediaType) || isXml(
+            ) ||
+                isHtml(mediaType) || isXml(
                 mediaType
             )
         }

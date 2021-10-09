@@ -1,10 +1,9 @@
 package com.github.ddnosh.arabbit.util
 
 import android.content.Context
-import android.content.SharedPreferences
 
 /**
- * @author  ddnosh
+ * @author ddnosh
  * @website http://blog.csdn.net/ddnosh
  */
 object SpUtil {
@@ -41,8 +40,10 @@ object SpUtil {
 
         val type = `object`.javaClass.simpleName
 
-        val sp = mContext.getSharedPreferences(file,
-            Context.MODE_PRIVATE)
+        val sp = mContext.getSharedPreferences(
+            file,
+            Context.MODE_PRIVATE
+        )
         val editor = sp.edit()
 
         if ("String" == type) {
@@ -78,8 +79,10 @@ object SpUtil {
         try {
             val type = defaultObject.javaClass.simpleName
 
-            val sp = mContext.getSharedPreferences(file,
-                Context.MODE_PRIVATE)
+            val sp = mContext.getSharedPreferences(
+                file,
+                Context.MODE_PRIVATE
+            )
 
             if ("String" == type) {
                 return sp.getString(key, defaultObject as String?)
@@ -109,8 +112,10 @@ object SpUtil {
 
     @JvmStatic
     fun remove(context: Context, file: String, key: String) {
-        val sp = context.getSharedPreferences(file,
-            Context.MODE_PRIVATE)
+        val sp = context.getSharedPreferences(
+            file,
+            Context.MODE_PRIVATE
+        )
         val editor = sp.edit()
         editor.remove(key)
         editor.apply()

@@ -2,7 +2,6 @@ package com.github.ddnosh.arabbit.util.handler
 
 import android.os.Handler
 import android.os.Message
-
 import java.lang.ref.WeakReference
 
 /**

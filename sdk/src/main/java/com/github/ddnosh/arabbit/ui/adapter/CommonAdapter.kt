@@ -3,13 +3,11 @@ package com.github.ddnosh.arabbit.ui.adapter
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
-
+import androidx.recyclerview.widget.RecyclerView
 import com.github.ddnosh.arabbit.util.LogUtil
 
-import androidx.recyclerview.widget.RecyclerView
-
 /**
- * @author  ddnosh
+ * @author ddnosh
  * @website http://blog.csdn.net/ddnosh
  */
 abstract class CommonAdapter<T>(protected var mContext: Context, protected var mLayoutId: Int, protected var mDatas: MutableList<T>) : RecyclerView.Adapter<CommonViewHolder>() {

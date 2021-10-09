@@ -7,14 +7,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
-
-import com.github.ddnosh.arabbit.R
-
 import androidx.annotation.FloatRange
 import androidx.annotation.LayoutRes
 import androidx.annotation.StyleRes
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
+import com.github.ddnosh.arabbit.R
 import com.github.ddnosh.arabbit.ui.dialog.ViewHolder
 import java.io.Serializable
 
@@ -27,11 +25,11 @@ abstract class BaseDialogFragment : DialogFragment() {
     @LayoutRes
     protected var mLayoutResId: Int = 0
 
-    private var mDimAmount = 0.5f//背景昏暗度
-    private var mShowBottomEnable: Boolean = false//是否底部显示
-    private var mMargin = 60//左右边距
-    private var mAnimStyle = 0//进入退出动画
-    private var mOutCancel = true//点击外部取消
+    private var mDimAmount = 0.5f // 背景昏暗度
+    private var mShowBottomEnable: Boolean = false // 是否底部显示
+    private var mMargin = 60 // 左右边距
+    private var mAnimStyle = 0 // 进入退出动画
+    private var mOutCancel = true // 点击外部取消
     private var mContext: Context? = null
     private var mWidth: Int = 0
     private var mHeight: Int = 0
@@ -57,33 +55,33 @@ abstract class BaseDialogFragment : DialogFragment() {
         initParams()
     }
 
-    //dialog style setting
+    // dialog style setting
     private fun initParams() {
         val window = dialog!!.window
         if (window != null) {
             val params = window.attributes
             params.dimAmount = mDimAmount
 
-            //设置dialog显示位置
+            // 设置dialog显示位置
             if (mShowBottomEnable) {
                 params.gravity = Gravity.BOTTOM
             }
 
-            //设置dialog宽度
+            // 设置dialog宽度
             if (mWidth == 0) {
                 params.width = getScreenWidth(context!!) - 2 * dp2px(context!!, mMargin.toFloat())
             } else {
                 params.width = dp2px(context!!, mWidth.toFloat())
             }
 
-            //设置dialog高度
+            // 设置dialog高度
             if (mHeight == 0) {
                 params.height = WindowManager.LayoutParams.WRAP_CONTENT
             } else {
                 params.height = dp2px(context!!, mHeight.toFloat())
             }
 
-            //设置dialog动画
+            // 设置dialog动画
             if (mAnimStyle != 0) {
                 window.setWindowAnimations(mAnimStyle)
             }
@@ -202,4 +200,3 @@ abstract class BaseDialogFragment : DialogFragment() {
         }
     }
 }
-

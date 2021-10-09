@@ -25,7 +25,7 @@ object ExceptionEngine {
         throwable?.let {
             when (it) {
                 is HttpException -> {
-                    ex = AppException(it.code(), it) //http异常有code
+                    ex = AppException(it.code(), it) // http异常有code
                 }
                 is SocketTimeoutException -> {
                     ex = AppException(Error.TIMEOUT)

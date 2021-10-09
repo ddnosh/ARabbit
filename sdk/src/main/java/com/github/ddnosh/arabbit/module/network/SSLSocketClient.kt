@@ -9,12 +9,12 @@ import javax.net.ssl.TrustManager
 import javax.net.ssl.X509TrustManager
 
 /**
- * @author  ddnosh
+ * @author ddnosh
  * @website http://blog.csdn.net/ddnosh
  */
 object SSLSocketClient {
 
-    //okhttp3不开启https证书校验
+    // okhttp3不开启https证书校验
     private val trustManager: Array<TrustManager> = arrayOf(
         object : X509TrustManager {
             override fun checkClientTrusted(chain: Array<X509Certificate>, authType: String) {}
@@ -25,7 +25,7 @@ object SSLSocketClient {
         }
     )
 
-    //okhttp3不开启https证书校验
+    // okhttp3不开启https证书校验
     val noSSLSocketFactory: SSLSocketFactory = try {
         val sslContext = SSLContext.getInstance("SSL")
         sslContext.init(null, trustManager, SecureRandom())
@@ -54,6 +54,6 @@ object SSLSocketClient {
 //    }
 //    //okhttp3开启https证书校验: 双向验证
 
-    //获取HostnameVerifier
+    // 获取HostnameVerifier
     val hostnameVerifier: HostnameVerifier = HostnameVerifier { hostname, session -> true }
 }

@@ -2,22 +2,17 @@ package com.github.ddnosh.arabbit.ui.view
 
 import android.app.Activity
 import android.content.Context
-import android.content.res.TypedArray
-import android.graphics.drawable.Drawable
 import android.text.TextUtils
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import android.view.ViewTreeObserver
 import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
-
 import com.github.ddnosh.arabbit.R
 
 /**
- * @author  ddnosh
+ * @author ddnosh
  * @website http://blog.csdn.net/ddnosh
  */
 class CommonToolBar(private val mContext: Context, attrs: AttributeSet) : RelativeLayout(mContext, attrs), View.OnClickListener {
@@ -50,19 +45,19 @@ class CommonToolBar(private val mContext: Context, attrs: AttributeSet) : Relati
         setBackgroundColor(typedArray.getColor(R.styleable.CommonToolBar_background, context.resources.getColor(R.color.blue_sky)))
         typedArray.recycle()
         LayoutInflater.from(context).inflate(R.layout.common_toolbar, this)
-        //左边图片
+        // 左边图片
         mImgLeft = findViewById<View>(R.id.img_left) as ImageView
-        //左边返回箭头
+        // 左边返回箭头
         mImgBack = findViewById<View>(R.id.img_back) as ImageView
-        //左边文字
+        // 左边文字
         mTvBack = findViewById<View>(R.id.tv_back) as TextView
-        //中间文字
+        // 中间文字
         mTvTitle = findViewById<View>(R.id.tv_title) as TextView
-        //中间图片
+        // 中间图片
         mImgTitle = findViewById<View>(R.id.img_title) as ImageView
-        //右边文字
+        // 右边文字
         mTvRight = findViewById<View>(R.id.tv_right) as TextView
-        //右边图片
+        // 右边图片
         mImgRight = findViewById<View>(R.id.img_right) as ImageView
         mLeftView = findViewById(R.id.rl_left)
         mRightView = findViewById(R.id.rl_right)

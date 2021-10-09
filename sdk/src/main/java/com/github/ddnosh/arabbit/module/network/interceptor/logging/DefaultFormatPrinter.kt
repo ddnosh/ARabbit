@@ -282,27 +282,33 @@ class DefaultFormatPrinter : FormatPrinter {
             val header = request.headers.toString()
             log =
                 METHOD_TAG + request.method + DOUBLE_SEPARATOR +
-                        if (isEmpty(header)) "" else HEADERS_TAG + LINE_SEPARATOR + dotHeaders(
-                            header
-                        )
+                if (isEmpty(header)) "" else HEADERS_TAG + LINE_SEPARATOR + dotHeaders(
+                    header
+                )
             return log.split(LINE_SEPARATOR!!).toTypedArray()
         }
 
         private fun getResponse(
-            header: String, tookMs: Long, code: Int, isSuccessful: Boolean,
-            segments: List<String?>, message: String
+            header: String,
+            tookMs: Long,
+            code: Int,
+            isSuccessful: Boolean,
+            segments: List<String?>,
+            message: String
         ): Array<String?> {
             val log: String
             val segmentString =
                 slashSegments(segments)
             log =
-                ((if (!TextUtils.isEmpty(segmentString)) "$segmentString - " else "") + "is success : "
-                        + isSuccessful + " - " + RECEIVED_TAG + tookMs + "ms" + DOUBLE_SEPARATOR + STATUS_CODE_TAG +
+                (
+                    (if (!TextUtils.isEmpty(segmentString)) "$segmentString - " else "") + "is success : " +
+                        isSuccessful + " - " + RECEIVED_TAG + tookMs + "ms" + DOUBLE_SEPARATOR + STATUS_CODE_TAG +
                         code + " / " + message + DOUBLE_SEPARATOR + if (isEmpty(
-                        header
+                            header
+                        )
+                    ) "" else HEADERS_TAG + LINE_SEPARATOR +
+                        dotHeaders(header)
                     )
-                ) "" else HEADERS_TAG + LINE_SEPARATOR +
-                        dotHeaders(header))
             return log.split(LINE_SEPARATOR!!).toTypedArray()
         }
 

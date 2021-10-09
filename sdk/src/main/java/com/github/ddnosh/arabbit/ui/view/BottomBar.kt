@@ -10,13 +10,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.ViewTreeObserver
 import android.view.animation.AccelerateDecelerateInterpolator
-import android.view.animation.Interpolator
 import android.widget.LinearLayout
-
-import java.util.ArrayList
-
 import androidx.core.view.ViewCompat
-
+import java.util.ArrayList
 
 /**
  * Created by YoKeyword on 16/6/3.
@@ -59,20 +55,22 @@ class BottomBar @JvmOverloads constructor(context: Context, attrs: AttributeSet?
     }
 
     fun addItem(tab: BottomBarTab): BottomBar {
-        tab.setOnClickListener(OnClickListener {
-            if (mListener == null) return@OnClickListener
+        tab.setOnClickListener(
+            OnClickListener {
+                if (mListener == null) return@OnClickListener
 
-            val pos = tab.tabPosition
-            if (currentItemPosition == pos) {
-                mListener!!.onTabReselected(pos)
-            } else {
-                mListener!!.onTabSelected(pos, currentItemPosition)
-                tab.isSelected = true
-                mListener!!.onTabUnselected(currentItemPosition)
-                mTabs[currentItemPosition].isSelected = false
-                currentItemPosition = pos
+                val pos = tab.tabPosition
+                if (currentItemPosition == pos) {
+                    mListener!!.onTabReselected(pos)
+                } else {
+                    mListener!!.onTabSelected(pos, currentItemPosition)
+                    tab.isSelected = true
+                    mListener!!.onTabUnselected(currentItemPosition)
+                    mTabs[currentItemPosition].isSelected = false
+                    currentItemPosition = pos
+                }
             }
-        })
+        )
         tab.tabPosition = mTabLayout!!.childCount
         tab.layoutParams = mTabParams
         mTabLayout!!.addView(tab)

@@ -4,7 +4,7 @@ import java.lang.reflect.InvocationTargetException
 import java.lang.reflect.Method
 
 /**
- * @author    ddnosh
+ * @author ddnosh
  * @website http://blog.csdn.net/ddnosh
  */
 object ReflectUtil {
@@ -19,8 +19,11 @@ object ReflectUtil {
 
             return cls
         } catch (e: ClassNotFoundException) {
-            LogUtil.d(TAG, "getClass->className:" + className
-                + "," + LOG_FAIL_REASON + e)
+            LogUtil.d(
+                TAG,
+                "getClass->className:" + className +
+                    "," + LOG_FAIL_REASON + e
+            )
             e.printStackTrace()
             return null
         }
@@ -73,7 +76,8 @@ object ReflectUtil {
 
     @JvmStatic
     fun getMethod(
-        owner: Class<*>, funcName: String,
+        owner: Class<*>,
+        funcName: String,
         vararg paramTypes: Class<*>
     ): Method? {
         try {

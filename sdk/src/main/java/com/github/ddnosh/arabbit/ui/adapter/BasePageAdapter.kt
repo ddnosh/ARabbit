@@ -7,9 +7,9 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 
 class BasePageAdapter(
-        fm: FragmentManager,
-        fragments: List<Fragment>,
-        titles: List<String>
+    fm: FragmentManager,
+    fragments: List<Fragment>,
+    titles: List<String>
 ) : FragmentPagerAdapter(fm) {
     private var fragmentList: List<Fragment>? = null
     private val title: List<String>
@@ -28,17 +28,17 @@ class BasePageAdapter(
 
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
         val fragment = super.instantiateItem(
-                container,
-                position
+            container,
+            position
         ) as Fragment
         fm.beginTransaction().show(fragment).commitAllowingStateLoss()
         return fragment
     }
 
     override fun destroyItem(
-            container: ViewGroup,
-            position: Int,
-            `object`: Any
+        container: ViewGroup,
+        position: Int,
+        `object`: Any
     ) {
         // super.destroyItem(container, position, object);
         fm.beginTransaction().hide(fragmentList!![position]).commitAllowingStateLoss()
@@ -54,8 +54,8 @@ class BasePageAdapter(
 
     @SuppressLint("CommitTransaction")
     private fun setFragment(
-            manager: FragmentManager,
-            fragments: List<Fragment>
+        manager: FragmentManager,
+        fragments: List<Fragment>
     ) {
         val transaction = manager.beginTransaction()
         if (fragmentList != null) {

@@ -8,20 +8,15 @@ import android.graphics.Color
 import android.os.Build
 import android.view.View
 import android.view.ViewGroup
-import android.view.Window
 import android.view.WindowManager
-
+import androidx.annotation.IntDef
 import java.lang.annotation.Retention
 import java.lang.annotation.RetentionPolicy
-import java.lang.reflect.Field
-import java.lang.reflect.Method
-
-import androidx.annotation.IntDef
 
 object StatusBarUtil {
     const val TYPE_MIUI = 0
     const val TYPE_FLYME = 1
-    const val TYPE_M = 3//6.0
+    const val TYPE_M = 3 // 6.0
 
     @IntDef(TYPE_MIUI, TYPE_FLYME, TYPE_M)
     @Retention(RetentionPolicy.SOURCE)
@@ -38,11 +33,11 @@ object StatusBarUtil {
             val window = activity.window
             window.statusBarColor = colorId
         } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            //使用SystemBarTintManager,需要先将状态栏设置为透明
+            // 使用SystemBarTintManager,需要先将状态栏设置为透明
             setTranslucentStatus(activity)
             val systemBarTintManager = SystemBarTintManager(activity)
-            systemBarTintManager.isStatusBarTintEnabled = true//显示状态栏
-            systemBarTintManager.setStatusBarTintColor(colorId)//设置状态栏颜色
+            systemBarTintManager.isStatusBarTintEnabled = true // 显示状态栏
+            systemBarTintManager.setStatusBarTintColor(colorId) // 设置状态栏颜色
         }
     }
 
@@ -53,22 +48,22 @@ object StatusBarUtil {
     @JvmStatic
     fun setTranslucentStatus(activity: Activity) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            //5.x开始需要把颜色设置透明，否则导航栏会呈现系统默认的浅灰色
+            // 5.x开始需要把颜色设置透明，否则导航栏会呈现系统默认的浅灰色
             val window = activity.window
             val decorView = window.decorView
-            //两个 flag 要结合使用，表示让应用的主体内容占用系统状态栏的空间
+            // 两个 flag 要结合使用，表示让应用的主体内容占用系统状态栏的空间
             val option = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
             decorView.systemUiVisibility = option
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
             window.statusBarColor = Color.TRANSPARENT
-            //导航栏颜色也可以正常设置
-            //window.setNavigationBarColor(Color.TRANSPARENT);
+            // 导航栏颜色也可以正常设置
+            // window.setNavigationBarColor(Color.TRANSPARENT);
         } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             val window = activity.window
             val attributes = window.attributes
             val flagTranslucentStatus = WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS
             attributes.flags = attributes.flags or flagTranslucentStatus
-            //int flagTranslucentNavigation = WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION; //attributes.flags |= flagTranslucentNavigation;
+            // int flagTranslucentNavigation = WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION; //attributes.flags |= flagTranslucentNavigation;
             window.attributes = attributes
         }
     }
@@ -103,7 +98,7 @@ object StatusBarUtil {
                 setStatusBarFontIconDark(activity, TYPE_MIUI, dark)
             } else if (OSUtils.isFlyme) {
                 setStatusBarFontIconDark(activity, TYPE_FLYME, dark)
-            } else {//其他情况
+            } else { // 其他情况
                 return false
             }
             return true
@@ -124,7 +119,7 @@ object StatusBarUtil {
         }
     }
 
-    //设置6.0 状态栏深色浅色切换
+    // 设置6.0 状态栏深色浅色切换
     @JvmStatic
     fun setCommonUI(activity: Activity, dark: Boolean): Boolean {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -145,7 +140,7 @@ object StatusBarUtil {
         return false
     }
 
-    //设置Flyme 状态栏深色浅色切换
+    // 设置Flyme 状态栏深色浅色切换
     @JvmStatic
     fun setFlymeUI(activity: Activity, dark: Boolean): Boolean {
         try {
@@ -171,7 +166,7 @@ object StatusBarUtil {
         }
     }
 
-    //设置MIUI 状态栏深色浅色切换
+    // 设置MIUI 状态栏深色浅色切换
     @JvmStatic
     fun setMiuiUI(activity: Activity, dark: Boolean): Boolean {
         try {
@@ -182,7 +177,7 @@ object StatusBarUtil {
             val darkModeFlag = field.getInt(layoutParams)
             val extraFlagField = clazz.getDeclaredMethod("setExtraFlags", Int::class.javaPrimitiveType, Int::class.javaPrimitiveType)
             extraFlagField.isAccessible = true
-            if (dark) {    //状态栏亮色且黑色字体.
+            if (dark) { // 状态栏亮色且黑色字体.
                 extraFlagField.invoke(window, darkModeFlag, darkModeFlag)
             } else {
                 extraFlagField.invoke(window, 0, darkModeFlag)
@@ -194,7 +189,7 @@ object StatusBarUtil {
         }
     }
 
-    //获取状态栏高度
+    // 获取状态栏高度
     @JvmStatic
     fun getStatusBarHeight(context: Context): Int {
         var result = 0

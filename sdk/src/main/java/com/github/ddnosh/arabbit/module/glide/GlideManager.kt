@@ -6,11 +6,6 @@ import android.graphics.drawable.Drawable
 import android.os.Handler
 import android.os.Looper
 import android.widget.ImageView
-
-import com.github.ddnosh.arabbit.module.glide.support.CircleBorderTransformation
-import com.github.ddnosh.arabbit.module.glide.support.ImageListener
-import com.github.ddnosh.arabbit.module.glide.support.LoadOption
-import com.github.ddnosh.arabbit.util.FileUtil
 import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestBuilder
 import com.bumptech.glide.load.DataSource
@@ -22,14 +17,17 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.Target
-
+import com.github.ddnosh.arabbit.module.glide.support.CircleBorderTransformation
+import com.github.ddnosh.arabbit.module.glide.support.ImageListener
+import com.github.ddnosh.arabbit.module.glide.support.LoadOption
+import com.github.ddnosh.arabbit.util.FileUtil
+import jp.wasabeef.glide.transformations.BlurTransformation
+import jp.wasabeef.glide.transformations.GrayscaleTransformation
+import jp.wasabeef.glide.transformations.RoundedCornersTransformation
 import java.io.File
 import java.util.ArrayList
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
-import jp.wasabeef.glide.transformations.BlurTransformation
-import jp.wasabeef.glide.transformations.GrayscaleTransformation
-import jp.wasabeef.glide.transformations.RoundedCornersTransformation
 
 /**
  * @author ddnosh
@@ -98,7 +96,7 @@ object GlideManager {
             try {
                 val sourceFile = Glide.with(context).asFile().load(url).submit().get()
                 if (FileUtil.copyFile(sourceFile, targetFile) && imageListener != null) {
-                    imageListener.onSuccess(targetFile)//回调在后台线程
+                    imageListener.onSuccess(targetFile) // 回调在后台线程
                 }
             } catch (exception: Exception) {
                 imageListener?.onFail(exception)
@@ -107,7 +105,7 @@ object GlideManager {
     }
 
     fun clearMemoryCache(mContext: Context) {
-        //Glide要求清除内存缓存需在主线程执行
+        // Glide要求清除内存缓存需在主线程执行
         if (Looper.myLooper() == Looper.getMainLooper()) {
             Glide.get(mContext).clearMemory()
         } else {
@@ -116,7 +114,7 @@ object GlideManager {
     }
 
     fun clearDiskCache(mContext: Context) {
-        //Glide要求清除内存缓存需在后台程执行
+        // Glide要求清除内存缓存需在后台程执行
         if (Looper.myLooper() == Looper.getMainLooper()) {
             Thread(Runnable { Glide.get(mContext).clearDiskCache() }).start()
         } else {
@@ -128,9 +126,8 @@ object GlideManager {
 
         val requestOptions = RequestOptions()
 
-        //使用全局的配置进行设置
+        // 使用全局的配置进行设置
         if (loadOption == null) {
-
         } else {
             if (loadOption.isShowTransition) {
                 requestBuilder.transition(DrawableTransitionOptions.withCrossFade(600))
@@ -181,7 +178,7 @@ object GlideManager {
             if (multiTransformation != null) {
                 requestOptions.transform(multiTransformation)
             }
-        }//使用临时的配置进行设置
+        } // 使用临时的配置进行设置
         return requestBuilder.apply(requestOptions)
     }
 

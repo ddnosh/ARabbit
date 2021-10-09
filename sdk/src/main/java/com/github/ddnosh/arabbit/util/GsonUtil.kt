@@ -1,15 +1,13 @@
 package com.github.ddnosh.arabbit.util
 
 import android.text.TextUtils
-
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-
 import org.json.JSONException
 import org.json.JSONObject
 
 /**
- * @author  ddnosh
+ * @author ddnosh
  * @website http://blog.csdn.net/ddnosh
  */
 object GsonUtil {

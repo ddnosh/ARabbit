@@ -8,14 +8,12 @@ import android.graphics.Canvas
 import android.graphics.Paint
 import android.graphics.Shader
 import com.bumptech.glide.load.Key
-
 import com.bumptech.glide.load.engine.bitmap_recycle.BitmapPool
-
-import java.security.MessageDigest
 import jp.wasabeef.glide.transformations.BitmapTransformation
+import java.security.MessageDigest
 
 /**
- * @author  ddnosh
+ * @author ddnosh
  * @website http://blog.csdn.net/ddnosh
  */
 class CircleBorderTransformation : BitmapTransformation {

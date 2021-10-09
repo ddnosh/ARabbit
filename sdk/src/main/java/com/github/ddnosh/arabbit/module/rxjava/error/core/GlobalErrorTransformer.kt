@@ -15,8 +15,11 @@ class GlobalErrorTransformer<T> constructor(
     private val onErrorResumeNext: OnErrorResumeNext<T> = { Observable.error(it) },
     private val onErrorRetrySupplier: OnErrorRetrySupplier = { RetryConfig.none() },
     private val onErrorConsumer: OnErrorConsumer = { }
-) : ObservableTransformer<T, T>, FlowableTransformer<T, T>, SingleTransformer<T, T>,
-    MaybeTransformer<T, T>, CompletableTransformer {
+) : ObservableTransformer<T, T>,
+    FlowableTransformer<T, T>,
+    SingleTransformer<T, T>,
+    MaybeTransformer<T, T>,
+    CompletableTransformer {
 
     override fun apply(upstream: Observable<T>): Observable<T> =
         upstream

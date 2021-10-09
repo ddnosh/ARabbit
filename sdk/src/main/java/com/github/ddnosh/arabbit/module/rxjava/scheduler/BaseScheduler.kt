@@ -18,10 +18,11 @@ import io.reactivex.SingleTransformer
 import org.reactivestreams.Publisher
 
 /**
- * @author  ddnosh
+ * @author ddnosh
  * @website http://blog.csdn.net/ddnosh
  */
-abstract class BaseScheduler<T> constructor(private val subscribeOnScheduler: Scheduler, private val observeOnScheduler: Scheduler) : ObservableTransformer<T, T>,
+abstract class BaseScheduler<T> constructor(private val subscribeOnScheduler: Scheduler, private val observeOnScheduler: Scheduler) :
+    ObservableTransformer<T, T>,
     SingleTransformer<T, T>,
     MaybeTransformer<T, T>,
     CompletableTransformer,

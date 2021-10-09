@@ -4,12 +4,10 @@ import android.content.Context
 import android.view.View
 import androidx.annotation.LayoutRes
 import com.github.ddnosh.arabbit.R
-
 import com.github.ddnosh.arabbit.ui.dialog.ViewHolder
-import java.io.Serializable
 
 /**
- * @author  ddnosh
+ * @author ddnosh
  * @website http://blog.csdn.net/ddnosh
  */
 class ADialog(mContext: Context) : BaseDialog(mContext, R.style.dialog_common_style) {
@@ -31,7 +29,7 @@ class ADialog(mContext: Context) : BaseDialog(mContext, R.style.dialog_common_st
     }
 
     override fun convertView(holder: ViewHolder, dialog: BaseDialog) {
-        //默认对话框UI配置
+        // 默认对话框UI配置
         if (mLayoutResId == R.layout.dialog_common) {
             holder.setOnClickListener(R.id.dialog_cancel, View.OnClickListener { dialog.dismiss() })
             holder.setOnClickListener(R.id.dialog_confirm, View.OnClickListener { dialog.dismiss() })

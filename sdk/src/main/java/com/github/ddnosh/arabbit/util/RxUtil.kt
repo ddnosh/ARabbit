@@ -1,7 +1,7 @@
 package com.github.ddnosh.arabbit.util
 
-import com.github.ddnosh.arabbit.module.rxjava.scheduler.IoMainScheduler
 import com.github.ddnosh.arabbit.module.rxjava.scheduler.ComputationMainScheduler
+import com.github.ddnosh.arabbit.module.rxjava.scheduler.IoMainScheduler
 import com.github.ddnosh.arabbit.module.rxjava.scheduler.NewThreadMainScheduler
 import com.github.ddnosh.arabbit.module.rxjava.scheduler.SingleMainScheduler
 import com.github.ddnosh.arabbit.module.rxjava.scheduler.TrampolineMainScheduler

@@ -7,7 +7,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 
 /**
- * @author  ddnosh
+ * @author ddnosh
  * @website http://blog.csdn.net/ddnosh
  */
 abstract class QuickDbFragment<DB : ViewDataBinding> : QuickFragment() {
@@ -17,11 +17,13 @@ abstract class QuickDbFragment<DB : ViewDataBinding> : QuickFragment() {
         var TAG = "QuickDbFragment"
     }
 
+    abstract override val contentViewLayoutID: Int
+
     protected lateinit var binding: DB
 
     override fun initContentView(layoutId: Int, inflater: LayoutInflater, container: ViewGroup?): View {
         return try {
-            binding = DataBindingUtil.inflate(inflater, layoutId, container, false)
+            binding = DataBindingUtil.inflate(inflater, contentViewLayoutID, container, false)
             binding.root
         } catch (e: NoClassDefFoundError) {
             inflater.inflate(layoutId, container, false)

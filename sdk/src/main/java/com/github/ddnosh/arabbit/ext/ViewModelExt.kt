@@ -3,9 +3,9 @@ package com.github.ddnosh.arabbit.ext
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.github.ddnosh.arabbit.jetpack.viewmodel.BaseViewModel
 import com.github.ddnosh.arabbit.function.exception.AppException
 import com.github.ddnosh.arabbit.function.exception.ExceptionEngine
+import com.github.ddnosh.arabbit.jetpack.viewmodel.BaseViewModel
 import com.github.ddnosh.arabbit.module.network.BaseResponse
 import com.github.ddnosh.arabbit.module.network.state.ResultState
 import com.github.ddnosh.arabbit.module.network.state.paresException
@@ -23,10 +23,10 @@ import kotlinx.coroutines.*
  *
  */
 fun <T> QuickActivity.parseState(
-        resultState: ResultState<T>,
-        onSuccess: (T) -> Unit,
-        onError: ((AppException) -> Unit)? = null,
-        onLoading: (() -> Unit)? = null,
+    resultState: ResultState<T>,
+    onSuccess: (T) -> Unit,
+    onError: ((AppException) -> Unit)? = null,
+    onLoading: (() -> Unit)? = null,
 ) {
     when (resultState) {
         is ResultState.Loading -> {
@@ -53,10 +53,10 @@ fun <T> QuickActivity.parseState(
  *
  */
 fun <T> QuickFragment.parseState(
-        resultState: ResultState<T>,
-        onSuccess: (T) -> Unit,
-        onError: ((AppException) -> Unit)? = null,
-        onLoading: (() -> Unit)? = null,
+    resultState: ResultState<T>,
+    onSuccess: (T) -> Unit,
+    onError: ((AppException) -> Unit)? = null,
+    onLoading: (() -> Unit)? = null,
 ) {
     when (resultState) {
         is ResultState.Loading -> {
@@ -74,7 +74,6 @@ fun <T> QuickFragment.parseState(
     }
 }
 
-
 /**
  * net request 不校验请求结果数据是否是成功
  * @param block 请求体方法
@@ -83,15 +82,15 @@ fun <T> QuickFragment.parseState(
  * @param loadingMessage 加载框提示内容
  */
 fun <T> BaseViewModel.request(
-        block: suspend () -> BaseResponse<T>,
-        resultState: MutableLiveData<ResultState<T>>,
-        isShowDialog: Boolean = false,
-        loadingMessage: String = "请求网络中...",
+    block: suspend () -> BaseResponse<T>,
+    resultState: MutableLiveData<ResultState<T>>,
+    isShowDialog: Boolean = false,
+    loadingMessage: String = "请求网络中...",
 ): Job {
     return viewModelScope.launch {
         runCatching {
             if (isShowDialog) resultState.value = ResultState.onAppLoading(loadingMessage)
-            //请求体
+            // 请求体
             block()
         }.onSuccess {
             resultState.paresResult(it)
@@ -110,15 +109,15 @@ fun <T> BaseViewModel.request(
  * @param loadingMessage 加载框提示内容
  */
 fun <T> BaseViewModel.requestNoCheck(
-        block: suspend () -> T,
-        resultState: MutableLiveData<ResultState<T>>,
-        isShowDialog: Boolean = false,
-        loadingMessage: String = "请求网络中...",
+    block: suspend () -> T,
+    resultState: MutableLiveData<ResultState<T>>,
+    isShowDialog: Boolean = false,
+    loadingMessage: String = "请求网络中...",
 ): Job {
     return viewModelScope.launch {
         runCatching {
             if (isShowDialog) resultState.value = ResultState.onAppLoading(loadingMessage)
-            //请求体
+            // 请求体
             block()
         }.onSuccess {
             resultState.paresResult(it)
@@ -138,38 +137,38 @@ fun <T> BaseViewModel.requestNoCheck(
  * @param loadingMessage 加载框提示内容
  */
 fun <T> BaseViewModel.request(
-        block: suspend () -> BaseResponse<T>,
-        success: (T) -> Unit,
-        error: (AppException) -> Unit = {},
-        isShowDialog: Boolean = false,
-        loadingMessage: String = "请求网络中...",
+    block: suspend () -> BaseResponse<T>,
+    success: (T) -> Unit,
+    error: (AppException) -> Unit = {},
+    isShowDialog: Boolean = false,
+    loadingMessage: String = "请求网络中...",
 ): Job {
-    //如果需要弹窗 通知Activity/fragment弹窗
+    // 如果需要弹窗 通知Activity/fragment弹窗
     return viewModelScope.launch {
         runCatching {
             if (isShowDialog) loadingChange.showDialog.postValue(loadingMessage)
-            //请求体
+            // 请求体
             block()
         }.onSuccess {
-            //网络请求成功 关闭弹窗
+            // 网络请求成功 关闭弹窗
             loadingChange.dismissDialog.postValue(false)
             runCatching {
-                //校验请求结果码是否正确，不正确会抛出异常走下面的onFailure
+                // 校验请求结果码是否正确，不正确会抛出异常走下面的onFailure
                 executeResponse(it) { t ->
                     success(t)
                 }
             }.onFailure { e ->
-                //打印错误消息
+                // 打印错误消息
                 e.message?.loge()
-                //失败回调
+                // 失败回调
                 error(ExceptionEngine.handleException(e))
             }
         }.onFailure {
-            //网络请求异常 关闭弹窗
+            // 网络请求异常 关闭弹窗
             loadingChange.dismissDialog.postValue(false)
-            //打印错误消息
+            // 打印错误消息
             it.message?.loge()
-            //失败回调
+            // 失败回调
             error(ExceptionEngine.handleException(it))
         }
     }
@@ -184,29 +183,29 @@ fun <T> BaseViewModel.request(
  * @param loadingMessage 加载框提示内容
  */
 fun <T> BaseViewModel.requestNoCheck(
-        block: suspend () -> T,
-        success: (T) -> Unit,
-        error: (AppException) -> Unit = {},
-        isShowDialog: Boolean = false,
-        loadingMessage: String = "请求网络中...",
+    block: suspend () -> T,
+    success: (T) -> Unit,
+    error: (AppException) -> Unit = {},
+    isShowDialog: Boolean = false,
+    loadingMessage: String = "请求网络中...",
 ): Job {
-    //如果需要弹窗 通知Activity/fragment弹窗
+    // 如果需要弹窗 通知Activity/fragment弹窗
     if (isShowDialog) loadingChange.showDialog.postValue(loadingMessage)
     return viewModelScope.launch {
         runCatching {
-            //请求体
+            // 请求体
             block()
         }.onSuccess {
-            //网络请求成功 关闭弹窗
+            // 网络请求成功 关闭弹窗
             loadingChange.dismissDialog.postValue(false)
-            //成功回调
+            // 成功回调
             success(it)
         }.onFailure {
-            //网络请求异常 关闭弹窗
+            // 网络请求异常 关闭弹窗
             loadingChange.dismissDialog.postValue(false)
-            //打印错误消息
+            // 打印错误消息
             it.message?.loge()
-            //失败回调
+            // 失败回调
             error(ExceptionEngine.handleException(it))
         }
     }
@@ -216,8 +215,8 @@ fun <T> BaseViewModel.requestNoCheck(
  * 请求结果过滤，判断请求服务器请求结果是否成功，不成功则会抛出异常
  */
 suspend fun <T> executeResponse(
-        response: BaseResponse<T>,
-        success: suspend CoroutineScope.(T) -> Unit,
+    response: BaseResponse<T>,
+    success: suspend CoroutineScope.(T) -> Unit,
 ) {
     coroutineScope {
         when {
@@ -226,8 +225,8 @@ suspend fun <T> executeResponse(
             }
             else -> {
                 throw AppException(
-                        response.getResponseCode(),
-                        response.getResponseMsg()
+                    response.getResponseCode(),
+                    response.getResponseMsg()
                 )
             }
         }
@@ -241,9 +240,9 @@ suspend fun <T> executeResponse(
  * @param error 失败回调 可不给
  */
 fun <T> BaseViewModel.launch(
-        block: () -> T,
-        success: (T) -> Unit,
-        error: (Throwable) -> Unit = {},
+    block: () -> T,
+    success: (T) -> Unit,
+    error: (Throwable) -> Unit = {},
 ) {
     viewModelScope.launch {
         kotlin.runCatching {
@@ -259,8 +258,8 @@ fun <T> BaseViewModel.launch(
 }
 
 fun ViewModel.launchIO(
-        block: suspend (CoroutineScope) -> Unit,
-        error: (suspend (Throwable) -> Unit)? = null,
+    block: suspend (CoroutineScope) -> Unit,
+    error: (suspend (Throwable) -> Unit)? = null,
 ) {
     viewModelScope.launch(Dispatchers.IO) {
         try {

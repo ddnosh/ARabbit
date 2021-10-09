@@ -9,11 +9,11 @@ class ZipHelper private constructor() {
     companion object {
         @JvmStatic
         @JvmOverloads
-        fun decompressToStringForZlib(bytesToDecompress: ByteArray,charsetName: String = "UTF-8"): String? {
+        fun decompressToStringForZlib(bytesToDecompress: ByteArray, charsetName: String = "UTF-8"): String? {
             val bytesDecompressed = decompressForZlib(bytesToDecompress)
             var returnValue: String? = null
             try {
-                returnValue = String(bytesDecompressed,0, bytesDecompressed.size, Charset.forName(charsetName))
+                returnValue = String(bytesDecompressed, 0, bytesDecompressed.size, Charset.forName(charsetName))
             } catch (uee: UnsupportedEncodingException) {
                 uee.printStackTrace()
             }

@@ -1,9 +1,7 @@
 package com.github.ddnosh.arabbit.ui.view
 
 import android.content.Context
-import android.content.res.TypedArray
 import android.graphics.Color
-import android.graphics.drawable.Drawable
 import android.text.TextUtils
 import android.util.AttributeSet
 import android.util.TypedValue
@@ -14,11 +12,9 @@ import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
-
-import com.github.ddnosh.arabbit.R
-
 import androidx.annotation.DrawableRes
 import androidx.core.content.ContextCompat
+import com.github.ddnosh.arabbit.R
 
 /**
  * Created by YoKeyword on 16/6/3.

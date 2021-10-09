@@ -29,7 +29,7 @@ class FDialog : BaseDialogFragment() {
     }
 
     override fun convertView(holder: ViewHolder, dialog: BaseDialogFragment) {
-        //默认对话框UI配置
+        // 默认对话框UI配置
         if (mLayoutResId == R.layout.dialogfragment_confirm) {
             holder.setOnClickListener(R.id.df_cancel, View.OnClickListener { dialog.dismiss() })
             holder.setOnClickListener(R.id.df_confirm, View.OnClickListener { dialog.dismiss() })

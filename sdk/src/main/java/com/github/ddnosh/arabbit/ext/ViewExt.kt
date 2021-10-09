@@ -18,9 +18,9 @@ var <T : View> T.getClickTime: Long?
     set(value) = setTag(100, System.currentTimeMillis())
 
 fun ViewPager2.setDefaultAdapter(
-        fragmentActivity: FragmentActivity,
-        fragmentList: MutableList<Fragment>,
-        selectAction: ((position: Int) -> Unit)? = null
+    fragmentActivity: FragmentActivity,
+    fragmentList: MutableList<Fragment>,
+    selectAction: ((position: Int) -> Unit)? = null
 ): FragmentStateAdapter {
     val defaultAdapter = object : FragmentStateAdapter(fragmentActivity) {
         override fun getItemCount() = fragmentList.size

@@ -4,7 +4,7 @@ import android.content.Context
 import android.widget.Toast
 
 /**
- * @author  ddnosh
+ * @author ddnosh
  * @website http://blog.csdn.net/ddnosh
  */
 object ToastUtil {

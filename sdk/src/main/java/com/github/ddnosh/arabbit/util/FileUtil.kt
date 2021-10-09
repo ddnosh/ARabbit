@@ -12,7 +12,6 @@ import android.webkit.CookieManager
 import android.webkit.CookieSyncManager
 import android.webkit.MimeTypeMap
 import android.widget.Toast
-
 import java.io.BufferedReader
 import java.io.File
 import java.io.FileInputStream
@@ -26,7 +25,7 @@ import java.io.OutputStream
 import java.util.ArrayList
 
 /**
- * @author  ddnosh
+ * @author ddnosh
  * @website http://blog.csdn.net/ddnosh
  */
 object FileUtil {
@@ -71,7 +70,8 @@ object FileUtil {
     @JvmStatic
     fun createSDCardDir(): String? {
         if (Environment.MEDIA_MOUNTED == Environment
-                .getExternalStorageState()) {
+            .getExternalStorageState()
+        ) {
             val sdcardDir = Environment.getExternalStorageDirectory()
             val path = sdcardDir.path + File.separator + DIR
             val path1 = File(path)
@@ -82,7 +82,6 @@ object FileUtil {
         }
         return null
     }
-
 
     /**
      * 判断文件是否存在
@@ -105,10 +104,10 @@ object FileUtil {
     @JvmStatic
     fun ReadPropertiesFile(strFilePath: String, key: String): String {
         val path = strFilePath + File.separator + "setting.properties"
-        var content = "" //文件内容字符串
-        //打开文件
+        var content = "" // 文件内容字符串
+        // 打开文件
         val file = File(path)
-        //如果path是传递过来的参数，可以做一个非目录的判断
+        // 如果path是传递过来的参数，可以做一个非目录的判断
         if (file.isDirectory) {
             LogUtil.d(TAG, "The File doesn't not exist.")
         } else {
@@ -118,8 +117,8 @@ object FileUtil {
                     val inputreader = InputStreamReader(instream)
                     val buffreader = BufferedReader(inputreader)
                     var line: String? = null
-                    //分行读取
-                    while (({ line = buffreader.readLine();line }) != null) {
+                    // 分行读取
+                    while (({ line = buffreader.readLine(); line }) != null) {
                         content += line + "\n"
                     }
                     instream.close()
@@ -148,10 +147,10 @@ object FileUtil {
      */
     @JvmStatic
     fun ReadPropertiesFile(strFilePath: String): String {
-        var content = "" //文件内容字符串
-        //打开文件
+        var content = "" // 文件内容字符串
+        // 打开文件
         val file = File(strFilePath)
-        //如果path是传递过来的参数，可以做一个非目录的判断
+        // 如果path是传递过来的参数，可以做一个非目录的判断
         if (file.isDirectory) {
             LogUtil.d("TestFile", "The File doesn't not exist.")
         } else {
@@ -161,8 +160,8 @@ object FileUtil {
                     val inputreader = InputStreamReader(instream)
                     val buffreader = BufferedReader(inputreader)
                     var line: String? = null
-                    //分行读取
-                    while (({ line = buffreader.readLine();line }) != null) {
+                    // 分行读取
+                    while (({ line = buffreader.readLine(); line }) != null) {
                         content += line + "\n"
                     }
                     instream.close()
@@ -229,7 +228,7 @@ object FileUtil {
     @JvmStatic
     fun assetsDataToSD(context: Context, assetsDataName: String, fileName: String) {
         val myInput: InputStream
-        //文件夹
+        // 文件夹
         LogUtil.d(TAG, "path--> $fileName")
         if (!File(fileName).parentFile!!.exists()) {
             File(fileName).parentFile!!.mkdirs()
@@ -326,7 +325,6 @@ object FileUtil {
      */
     val URI_TYPE_FILE = "file"
 
-
     /**
      * read file
      *
@@ -348,10 +346,11 @@ object FileUtil {
         var reader: BufferedReader? = null
         try {
             val `is` = InputStreamReader(
-                FileInputStream(file), charsetName)
+                FileInputStream(file), charsetName
+            )
             reader = BufferedReader(`is`)
             var line: String? = null
-            while (({ line = reader.readLine();line }) != null) {
+            while (({ line = reader.readLine(); line }) != null) {
                 if (fileContent.toString() != "") {
                     fileContent.append("\r\n")
                 }
@@ -364,7 +363,6 @@ object FileUtil {
             IOUtil.close(reader)
         }
     }
-
 
     /**
      * write file
@@ -396,7 +394,6 @@ object FileUtil {
             IOUtil.close(fileWriter)
         }
     }
-
 
     /**
      * write file
@@ -435,7 +432,6 @@ object FileUtil {
         }
     }
 
-
     /**
      * write file
      *
@@ -451,10 +447,11 @@ object FileUtil {
     @JvmStatic
     fun writeFile(filePath: String?, stream: InputStream, append: Boolean = false): Boolean {
 
-        return writeFile(if (filePath != null) File(filePath) else null, stream,
-            append)
+        return writeFile(
+            if (filePath != null) File(filePath) else null, stream,
+            append
+        )
     }
-
 
     /**
      * write file
@@ -518,7 +515,6 @@ object FileUtil {
         `in`.close()
     }
 
-
     /**
      * move file
      *
@@ -530,11 +526,11 @@ object FileUtil {
 
         if (TextUtils.isEmpty(sourceFilePath) || TextUtils.isEmpty(destFilePath)) {
             throw RuntimeException(
-                "Both sourceFilePath and destFilePath cannot be null.")
+                "Both sourceFilePath and destFilePath cannot be null."
+            )
         }
         moveFile(File(sourceFilePath), File(destFilePath))
     }
-
 
     /**
      * move file
@@ -551,7 +547,6 @@ object FileUtil {
             deleteFile(srcFile.absolutePath)
         }
     }
-
 
     /**
      * copy file
@@ -575,7 +570,6 @@ object FileUtil {
         return writeFile(destFilePath, inputStream)
     }
 
-
     /**
      * read file to string list, a element of list is a line
      *
@@ -597,10 +591,11 @@ object FileUtil {
         var reader: BufferedReader? = null
         try {
             val `is` = InputStreamReader(
-                FileInputStream(file), charsetName)
+                FileInputStream(file), charsetName
+            )
             reader = BufferedReader(`is`)
             var line: String = ""
-            while (({ line = reader.readLine();line }) != null) {
+            while (({ line = reader.readLine(); line }) != null) {
                 fileContent.add(line)
             }
             return fileContent
@@ -611,14 +606,12 @@ object FileUtil {
         }
     }
 
-
     /**
      * @param filePath 文件的路径
      * @return 返回文件的信息
      */
     @JvmStatic
     fun getFileNameWithoutExtension(filePath: String): String? {
-
 
         if (StringUtil.isEmpty(filePath)) {
             return filePath
@@ -636,12 +629,13 @@ object FileUtil {
             return filePath.substring(filePosi + 1)
         }
         return if (filePosi < extenPosi)
-            filePath.substring(filePosi + 1,
-                extenPosi)
+            filePath.substring(
+                filePosi + 1,
+                extenPosi
+            )
         else
             filePath.substring(filePosi + 1)
     }
-
 
     /**
      * get file name from path, include suffix
@@ -660,7 +654,7 @@ object FileUtil {
      * getFileName("c:a.txt\\a")        =   "a"
      * getFileName("/home/admin")      =   "admin"
      * getFileName("/home/admin/a.txt/b.mp3")  =   "b.mp3"
-    </pre> *
+     </pre> *
      *
      * @param filePath 路径
      * @return file name from path, include suffix
@@ -675,7 +669,6 @@ object FileUtil {
         val filePosi = filePath.lastIndexOf(File.separator)
         return if (filePosi == -1) filePath else filePath.substring(filePosi + 1)
     }
-
 
     /**
      * get folder name from path
@@ -695,14 +688,13 @@ object FileUtil {
      * getFolderName("c:a\\b\\c\\d.txt")    =   "c:a\\b\\c"
      * getFolderName("/home/admin")      =   "/home"
      * getFolderName("/home/admin/a.txt/b.mp3")  =   "/home/admin/a.txt"
-    </pre> *
+     </pre> *
      *
      * @param filePath 路径
      * @return file name from path, include suffix
      */
     @JvmStatic
     fun getFolderName(filePath: String?): String? {
-
 
         if (StringUtil.isEmpty(filePath)) {
             return filePath
@@ -711,7 +703,6 @@ object FileUtil {
         val filePosi = filePath?.lastIndexOf(File.separator)
         return if (filePosi == -1) "" else filePosi?.let { filePath?.substring(0, it) }
     }
-
 
     /**
      * get suffix of file from path
@@ -731,7 +722,7 @@ object FileUtil {
      * getFileExtension("/home/admin")      =   ""
      * getFileExtension("/home/admin/a.txt/b")  =   ""
      * getFileExtension("/home/admin/a.txt/b.mp3")  =   "mp3"
-    </pre> *
+     </pre> *
      *
      * @param filePath 路径
      * @return 信息
@@ -750,7 +741,6 @@ object FileUtil {
         }
         return if (filePosi >= extenPosi) "" else filePath.substring(extenPosi + 1)
     }
-
 
     /**
      * @param filePath 路径
@@ -771,7 +761,6 @@ object FileUtil {
             folder.mkdirs()
     }
 
-
     /**
      * @param filePath 路径
      * @return 是否创建成功
@@ -780,7 +769,6 @@ object FileUtil {
     fun makeFolders(filePath: String): Boolean {
         return makeDirs(filePath)
     }
-
 
     /**
      * @param filePath 路径
@@ -796,7 +784,6 @@ object FileUtil {
         return file.exists() && file.isFile
     }
 
-
     /**
      * @param directoryPath 路径
      * @return 是否有文件夹
@@ -811,7 +798,6 @@ object FileUtil {
         val dire = File(directoryPath)
         return dire.exists() && dire.isDirectory
     }
-
 
     /**
      * @param path 路径
@@ -844,7 +830,6 @@ object FileUtil {
         return file.delete()
     }
 
-
     /**
      * @param path 路径
      * @return 返回文件大小
@@ -859,7 +844,6 @@ object FileUtil {
         val file = File(path)
         return if (file.exists() && file.isFile) file.length() else -1
     }
-
 
     /**
      * 保存多媒体数据为文件.
@@ -895,7 +879,6 @@ object FileUtil {
         }
     }
 
-
     /**
      * 读取文件的字节数组.
      *
@@ -925,12 +908,10 @@ object FileUtil {
                 try {
                     fis.close()
                 } catch (e: IOException) {
-
                 }
             }
         }
     }
-
 
     /**
      * 读取文本文件内容，以行的形式读取
@@ -948,7 +929,6 @@ object FileUtil {
 
         return null
     }
-
 
     /**
      * 读取文本文件内容，以行的形式读取
@@ -1000,7 +980,6 @@ object FileUtil {
         return str.toString()
     }
 
-
     /**
      * 把Assets里的文件拷贝到sd卡上
      *
@@ -1033,7 +1012,6 @@ object FileUtil {
         return true
     }
 
-
     /**
      * 调用系统方式打开文件.
      *
@@ -1047,17 +1025,21 @@ object FileUtil {
             // 调用系统程序打开文件.
             val intent = Intent(Intent.ACTION_VIEW)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-            intent.setDataAndType(Uri.fromFile(file), MimeTypeMap.getSingleton()
-                .getMimeTypeFromExtension(
-                    MimeTypeMap
-                        .getFileExtensionFromUrl(
-                            file.path)))
+            intent.setDataAndType(
+                Uri.fromFile(file),
+                MimeTypeMap.getSingleton()
+                    .getMimeTypeFromExtension(
+                        MimeTypeMap
+                            .getFileExtensionFromUrl(
+                                file.path
+                            )
+                    )
+            )
             context.startActivity(intent)
         } catch (ex: Exception) {
             Toast.makeText(context, "打开失败.", Toast.LENGTH_SHORT).show()
         }
     }
-
 
     /**
      * 根据文件路径，检查文件是否不大于指定大小
@@ -1076,7 +1058,6 @@ object FileUtil {
         return file.length() <= maxSize * 1024
     }
 
-
     /**
      * @param context 上下文
      * @param file    文件对象
@@ -1086,13 +1067,13 @@ object FileUtil {
 
         if (file.name.endsWith(".png") ||
             file.name.endsWith(".jpg") ||
-            file.name.endsWith(".jpeg")) {
+            file.name.endsWith(".jpeg")
+        ) {
             viewPhoto(context, file)
         } else {
             openFile(context, file)
         }
     }
-
 
     /**
      * 打开多媒体文件.
@@ -1106,7 +1087,6 @@ object FileUtil {
         viewPhoto(context, File(file))
     }
 
-
     /**
      * 打开照片
      *
@@ -1119,14 +1099,13 @@ object FileUtil {
         try {
             // 调用系统程序打开文件.
             val intent = Intent(Intent.ACTION_VIEW)
-            //			intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            // 			intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             intent.setDataAndType(Uri.fromFile(file), "image/*")
             context.startActivity(intent)
         } catch (ex: Exception) {
             Toast.makeText(context, "打开失败.", Toast.LENGTH_SHORT).show()
         }
     }
-
 
     /**
      * 将字符串以charsetName编码保存到文件中
@@ -1175,7 +1154,6 @@ object FileUtil {
         }
     }
 
-
     /**
      * 将content://形式的uri转为实际文件路径
      *
@@ -1194,8 +1172,11 @@ object FileUtil {
             cursor = context.contentResolver
                 .query(uri, null, null, null, null)
             if (cursor!!.moveToFirst()) {
-                return cursor.getString(cursor.getColumnIndex(
-                    MediaStore.Images.Media.DATA)) //图片文件路径
+                return cursor.getString(
+                    cursor.getColumnIndex(
+                        MediaStore.Images.Media.DATA
+                    )
+                ) // 图片文件路径
             }
         } catch (e: Exception) {
             if (null != cursor) {
@@ -1207,7 +1188,6 @@ object FileUtil {
 
         return null
     }
-
 
     /**
      * 打开多媒体文件.
@@ -1221,7 +1201,6 @@ object FileUtil {
         playSound(context, File(file))
     }
 
-
     /**
      * 打开多媒体文件.
      *
@@ -1234,15 +1213,14 @@ object FileUtil {
         try {
             // 调用系统程序打开文件.
             val intent = Intent(Intent.ACTION_VIEW)
-            //			intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            //			intent.setClassName("com.android.music", "com.android.music.MediaPlaybackActivity");
+            // 			intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            // 			intent.setClassName("com.android.music", "com.android.music.MediaPlaybackActivity");
             intent.setDataAndType(Uri.fromFile(file), "audio/*")
             context.startActivity(intent)
         } catch (ex: Exception) {
             Toast.makeText(context, "打开失败.", Toast.LENGTH_SHORT).show()
         }
     }
-
 
     /**
      * 打开视频文件.
@@ -1256,7 +1234,6 @@ object FileUtil {
         playVideo(context, File(file))
     }
 
-
     /**
      * 打开视频文件.
      *
@@ -1268,14 +1245,13 @@ object FileUtil {
         try {
             // 调用系统程序打开文件.
             val intent = Intent(Intent.ACTION_VIEW)
-            //			intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            // 			intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             intent.setDataAndType(Uri.fromFile(file), "video/*")
             context.startActivity(intent)
         } catch (ex: Exception) {
             Toast.makeText(context, "打开失败.", Toast.LENGTH_SHORT).show()
         }
     }
-
 
     /**
      * 文件重命名
@@ -1287,8 +1263,9 @@ object FileUtil {
     fun renameFile(oldPath: String, newPath: String) {
 
         try {
-            if (!TextUtils.isEmpty(oldPath) && !TextUtils.isEmpty(newPath)
-                && oldPath != newPath) {
+            if (!TextUtils.isEmpty(oldPath) && !TextUtils.isEmpty(newPath) &&
+                oldPath != newPath
+            ) {
                 val fileOld = File(oldPath)
                 val fileNew = File(newPath)
                 fileOld.renameTo(fileNew)

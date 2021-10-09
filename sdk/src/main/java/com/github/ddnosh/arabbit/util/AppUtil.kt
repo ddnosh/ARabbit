@@ -3,11 +3,10 @@ package com.github.ddnosh.arabbit.util
 import android.app.Activity
 import android.content.Context
 import android.content.pm.PackageInfo
-import android.content.pm.PackageManager
 import android.content.pm.PackageManager.NameNotFoundException
 
 /**
- * @author  ddnosh
+ * @author ddnosh
  * @website http://blog.csdn.net/ddnosh
  */
 object AppUtil {

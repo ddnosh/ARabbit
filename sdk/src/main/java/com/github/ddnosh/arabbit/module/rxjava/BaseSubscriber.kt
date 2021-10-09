@@ -6,7 +6,7 @@ import org.reactivestreams.Subscriber
 import org.reactivestreams.Subscription
 
 /**
- * @author  ddnosh
+ * @author ddnosh
  * @website http://blog.csdn.net/ddnosh
  */
 abstract class BaseSubscriber<T> : Subscriber<T> {

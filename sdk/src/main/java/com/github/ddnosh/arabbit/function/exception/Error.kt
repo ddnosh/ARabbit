@@ -6,7 +6,7 @@ package com.github.ddnosh.arabbit.function.exception
  */
 enum class Error(private val errorCode: Int, private val errorString: String) {
     SUCCESS(0, "请求成功"),
-    //for http exception
+    // for http exception
     UNAUTHORIZED(401, "当前请求需要用户验证"),
     FORBIDDEN(403, "服务器已经理解请求，但是拒绝执行它"),
     NOT_FOUND(404, "服务器异常，请稍后再试"),
@@ -27,7 +27,6 @@ enum class Error(private val errorCode: Int, private val errorString: String) {
 
     RUN_TIME(1200, "很抱歉,程序运行出现了错误"),
     UNKNOWN(1000, "未知错误");
-
 
     fun getValue(): String {
         return errorString

@@ -1,7 +1,9 @@
-apply plugin: 'com.android.library'
-apply plugin: 'maven'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
+plugins {
+    id 'com.android.library'
+    id 'maven'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+}
 
 android {
     compileSdkVersion rootProject.ext.android.compileSdkVersion
@@ -30,8 +32,8 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
-    dataBinding {
-        enabled = true
+    buildFeatures {
+        dataBinding true
     }
 }
 
@@ -39,17 +41,13 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
 
     api rootProject.ext.dependencies.values()
+    //lifecycle
+    api "androidx.lifecycle:lifecycle-common:2.3.1"
     //rxjava2
     api "io.reactivex.rxjava2:rxjava:2.2.21"
     api "io.reactivex.rxjava2:rxandroid:2.1.1"
-    //rxlifecycle
-    api 'com.trello.rxlifecycle3:rxlifecycle:3.0.0'
-    api 'com.trello.rxlifecycle3:rxlifecycle-android:3.0.0'
-    api 'com.trello.rxlifecycle3:rxlifecycle-android-lifecycle:3.0.0'
-    api 'com.trello.rxlifecycle3:rxlifecycle-kotlin:3.0.0'
     //retrofit2
     api 'com.squareup.retrofit2:retrofit:2.9.0'
-    api 'com.github.franmontiel:PersistentCookieJar:v1.0.1'
     //okhttp3
     api 'com.squareup.okhttp3:okhttp:5.0.0-alpha.2'
     api 'com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.2'
@@ -57,10 +55,16 @@ dependencies {
     api 'com.google.code.gson:gson:2.8.6'
     //glide
     api 'com.github.bumptech.glide:glide:4.12.0'
-    api 'jp.wasabeef:glide-transformations:4.1.0@aar'
+    api 'jp.wasabeef:glide-transformations:4.3.0'
     //ktx
     api 'androidx.activity:activity-ktx:1.2.2'
     api 'androidx.fragment:fragment-ktx:1.3.2'
+    //dagger2
+    implementation 'com.google.dagger:dagger:2.23'
+    implementation 'com.google.dagger:dagger-android:2.23'
+    implementation 'com.google.dagger:dagger-android-support:2.23'
+    kapt 'com.google.dagger:dagger-compiler:2.23'
+    kapt 'com.google.dagger:dagger-android-processor:2.23'
 }
 
 ext {

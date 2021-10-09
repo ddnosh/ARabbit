@@ -3,7 +3,6 @@ package com.github.ddnosh.arabbit.ui.dialog
 import android.util.SparseArray
 import android.view.View
 import android.widget.TextView
-
 import androidx.annotation.IdRes
 
 /**
@@ -18,7 +17,7 @@ class ViewHolder private constructor(private val convertView: View) {
      * @param viewId
      * @param <T>
      * @return
-    </T> */
+     </T> */
     private fun <T : View> getView(@IdRes viewId: Int): T {
         var view: View? = views.get(viewId)
         if (view == null) {

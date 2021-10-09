@@ -6,7 +6,7 @@ import com.github.ddnosh.arabbit.util.LogUtil
 import com.github.ddnosh.arabbit.util.ReflectUtil
 
 /**
- * @author  ddnosh
+ * @author ddnosh
  * @website http://blog.csdn.net/ddnosh
  */
 class FrameActivity : QuickActivity() {

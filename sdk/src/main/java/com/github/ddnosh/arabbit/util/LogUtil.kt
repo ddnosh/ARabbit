@@ -3,7 +3,7 @@ package com.github.ddnosh.arabbit.util
 import android.util.Log
 
 /**
- * @author  ddnosh
+ * @author ddnosh
  * @website http://blog.csdn.net/ddnosh
  */
 object LogUtil {

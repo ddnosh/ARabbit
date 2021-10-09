@@ -3,11 +3,10 @@ package com.github.ddnosh.arabbit.util
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkInfo
-
 import java.util.Locale
 
 /**
- * @author    ddnosh
+ * @author ddnosh
  * @website http://blog.csdn.net/ddnosh
  */
 object NetUtil {

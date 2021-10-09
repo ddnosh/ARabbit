@@ -2,7 +2,6 @@ package com.github.ddnosh.arabbit.util.immersion
 
 import android.os.Build
 import android.text.TextUtils
-
 import java.io.BufferedReader
 import java.io.IOException
 import java.io.InputStreamReader

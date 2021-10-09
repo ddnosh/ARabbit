@@ -3,7 +3,7 @@ package com.github.ddnosh.arabbit.util
 import java.text.DecimalFormat
 
 /**
- * @author  ddnosh
+ * @author ddnosh
  * @website http://blog.csdn.net/ddnosh
  */
 object StringUtil {
@@ -64,16 +64,13 @@ object StringUtil {
         val var2 = DecimalFormat("###.00")
         return if (var0 < 1024L)
             var0.toString() + "bytes"
+        else if (var0 < 1048576L)
+            var2.format((var0.toFloat() / 1024.0f).toDouble()) + "KB"
+        else if (var0 < 1073741824L)
+            var2.format((var0.toFloat() / 1024.0f / 1024.0f).toDouble()) + "MB"
+        else if (var0 < 0L)
+            var2.format((var0.toFloat() / 1024.0f / 1024.0f / 1024.0f).toDouble()) + "GB"
         else
-            if (var0 < 1048576L)
-                var2.format((var0.toFloat() / 1024.0f).toDouble()) + "KB"
-            else
-                if (var0 < 1073741824L)
-                    var2.format((var0.toFloat() / 1024.0f / 1024.0f).toDouble()) + "MB"
-                else
-                    if (var0 < 0L)
-                        var2.format((var0.toFloat() / 1024.0f / 1024.0f / 1024.0f).toDouble()) + "GB"
-                    else
-                        "error"
+            "error"
     }
 }

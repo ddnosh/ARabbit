@@ -1,7 +1,7 @@
 package com.github.ddnosh.arabbit.module.network
 
 /**
- * @author  ddnosh
+ * @author ddnosh
  * @website http://blog.csdn.net/ddnosh
  */
 import kotlinx.coroutines.CompletableDeferred
@@ -27,7 +27,8 @@ class CoroutineCallAdapterFactory private constructor() : CallAdapter.Factory() 
         }
         if (returnType !is ParameterizedType) {
             throw IllegalStateException(
-                "Deferred return type must be parameterized as Deferred<Foo> or Deferred<out Foo>")
+                "Deferred return type must be parameterized as Deferred<Foo> or Deferred<out Foo>"
+            )
         }
         val responseType = getParameterUpperBound(0, returnType)
 
@@ -35,7 +36,8 @@ class CoroutineCallAdapterFactory private constructor() : CallAdapter.Factory() 
         return if (rawDeferredType == Response::class.java) {
             if (responseType !is ParameterizedType) {
                 throw IllegalStateException(
-                    "Response must be parameterized as Response<Foo> or Response<out Foo>")
+                    "Response must be parameterized as Response<Foo> or Response<out Foo>"
+                )
             }
             ResponseCallAdapter<Any>(getParameterUpperBound(0, responseType))
         } else {

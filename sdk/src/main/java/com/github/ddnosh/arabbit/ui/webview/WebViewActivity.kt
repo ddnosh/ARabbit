@@ -8,7 +8,6 @@ import android.webkit.WebChromeClient
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.ProgressBar
-
 import com.github.ddnosh.arabbit.R
 import com.github.ddnosh.arabbit.ui.base.QuickActivity
 import com.github.ddnosh.arabbit.util.StringUtil
@@ -76,10 +75,10 @@ class WebViewActivity : QuickActivity() {
             }
         }
 
-        wvWebView.loadUrl(url)
+        url?.let { wvWebView.loadUrl(it) }
     }
 
-    //系统自带监听方法<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    // 系统自带监听方法<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     override fun onBackPressed() {
         if (wvWebView.canGoBack()) {
             wvWebView.goBack()
@@ -89,7 +88,7 @@ class WebViewActivity : QuickActivity() {
         super.onBackPressed()
     }
 
-    //类相关监听<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    // 类相关监听<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     override fun onPause() {
         super.onPause()
         wvWebView.onPause()

@@ -1,11 +1,10 @@
 package com.github.ddnosh.arabbit.util.manager
 
 import android.app.Activity
-
 import java.util.LinkedList
 
 /**
- * @author  ddnosh
+ * @author ddnosh
  * @website http://blog.csdn.net/ddnosh
  */
 object QActivity {

@@ -6,7 +6,7 @@ import java.io.FileOutputStream
 import java.io.IOException
 
 /**
- * @author  ddnosh
+ * @author ddnosh
  * @website http://blog.csdn.net/ddnosh
  */
 object IOUtil {
@@ -27,7 +27,6 @@ object IOUtil {
         }
     }
 
-
     /**
      * Close closable and hide possible [IOException]
      *
@@ -44,13 +43,12 @@ object IOUtil {
         }
     }
 
-
     /**
      * 保存文本
      * @param fileName  文件名字
      * @param content  内容
      * @param append  是否累加
-     * @return  是否成功
+     * @return 是否成功
      */
     @JvmStatic
     fun saveTextValue(fileName: String, content: String, append: Boolean): Boolean {
@@ -68,7 +66,6 @@ object IOUtil {
 
         return true
     }
-
 
     /**
      * 删除目录下所有文件

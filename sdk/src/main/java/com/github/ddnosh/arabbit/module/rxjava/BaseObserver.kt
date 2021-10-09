@@ -1,9 +1,9 @@
 package com.github.ddnosh.arabbit.module.rxjava
 
-import io.reactivex.Observer
-import io.reactivex.disposables.Disposable
 import com.github.ddnosh.arabbit.function.exception.AppException
 import com.github.ddnosh.arabbit.function.exception.ExceptionEngine
+import io.reactivex.Observer
+import io.reactivex.disposables.Disposable
 
 /** RxJava订阅者封装,包括Exception
  * @author ddnosh

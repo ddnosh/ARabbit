@@ -2,7 +2,6 @@ package com.github.ddnosh.arabbit.module.glide.support
 
 import android.os.Build
 import android.util.Log
-
 import com.bumptech.glide.Priority
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.HttpException
@@ -10,16 +9,15 @@ import com.bumptech.glide.load.data.DataFetcher
 import com.bumptech.glide.load.model.GlideUrl
 import com.bumptech.glide.util.ContentLengthInputStream
 import com.bumptech.glide.util.Synthetic
-
-import java.io.IOException
-import java.io.InputStream
 import okhttp3.Call
 import okhttp3.Request
 import okhttp3.Response
 import okhttp3.ResponseBody
+import java.io.IOException
+import java.io.InputStream
 
 /**
- * @author  ddnosh
+ * @author ddnosh
  * @website http://blog.csdn.net/ddnosh
  */
 class OkHttpStreamFetcher(private val client: Call.Factory, private val url: GlideUrl) : DataFetcher<InputStream>, okhttp3.Callback {

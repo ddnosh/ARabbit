@@ -7,19 +7,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
-import androidx.databinding.ViewDataBinding
-
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.lifecycle.Lifecycle
 import com.github.ddnosh.arabbit.util.StringUtil
 import com.google.android.material.snackbar.Snackbar
-import com.trello.lifecycle2.android.lifecycle.AndroidLifecycle
-import com.trello.rxlifecycle3.LifecycleProvider
 
 /**
- * @author  ddnosh
+ * @author ddnosh
  * @website http://blog.csdn.net/ddnosh
  */
 abstract class QuickFragment : Fragment() {
@@ -29,6 +22,8 @@ abstract class QuickFragment : Fragment() {
         var TAG = "QuickFragment"
     }
 
+    open var isUseViewBinding = false
+
     protected lateinit var mContext: Context
 
     private var isFirstResume = true
@@ -36,9 +31,7 @@ abstract class QuickFragment : Fragment() {
     private var isFirstInvisible = true
     private var isPrepared: Boolean = false
 
-    protected abstract val contentViewLayoutID: Int
-
-    protected lateinit var lifecycleProvider: LifecycleProvider<Lifecycle.Event>
+    open val contentViewLayoutID: Int = 0
 
     override fun onAttach(activity: Activity) {
         super.onAttach(activity)
@@ -46,11 +39,14 @@ abstract class QuickFragment : Fragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val layoutId = contentViewLayoutID
-        return if (layoutId != 0) {
-            initContentView(layoutId, inflater, container)
+        return if (isUseViewBinding) {
+            initViewBinding(container)
         } else {
-            super.onCreateView(inflater, container, savedInstanceState)
+            if (contentViewLayoutID != 0) {
+                initContentView(contentViewLayoutID, inflater, container)
+            } else {
+                super.onCreateView(inflater, container, savedInstanceState)
+            }
         }
     }
 
@@ -58,11 +54,8 @@ abstract class QuickFragment : Fragment() {
         return inflater.inflate(layoutId, container, false)
     }
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        // init lifecycleprovider
-        lifecycleProvider = AndroidLifecycle.createLifecycleProvider(this)
         initViewsAndEvents(savedInstanceState)
     }
 
@@ -131,6 +124,10 @@ abstract class QuickFragment : Fragment() {
         } else {
             isPrepared = true
         }
+    }
+
+    open fun initViewBinding(viewContainer: ViewGroup?): View? {
+        return null
     }
 
     /**

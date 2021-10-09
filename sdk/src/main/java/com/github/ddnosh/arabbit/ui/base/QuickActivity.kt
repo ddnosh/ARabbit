@@ -1,25 +1,9 @@
-/**
- * @Description: Activity的一个基类, 提供丰富的功能, 旨在开发一款新APP应用的时候直接继承使用
- * @Detail:
- * 1.   默认提供六种转场动画, 如需自定义, 请在子类调用父类的onCreate后添加overridePendingTransition
- * 2.   封装页面跳转传参
- * 3.   EventBus事件总线
- * 4.   管理所有启动的activity
- * 5.   设备屏幕信息
- * 6.   监听网络状态变化
- * 7.   页面跳转: readyGo, readyGoThenKill, readyGoForResult
- * 8.   提供页面状态展示: loading, network error, error, empty
- * @author ddnosh
- * @website http://blog.csdn.net/ddnosh
- */
-
 package com.github.ddnosh.arabbit.ui.base
 
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import androidx.lifecycle.Lifecycle
 import com.github.ddnosh.arabbit.R
 import com.github.ddnosh.arabbit.function.exception.ExceptionEngine
 import com.github.ddnosh.arabbit.ui.dialog.ViewHolder
@@ -29,9 +13,6 @@ import com.github.ddnosh.arabbit.util.LogUtil
 import com.github.ddnosh.arabbit.util.ToastUtil
 import com.github.ddnosh.arabbit.util.immersion.StatusBarUtil
 import com.github.ddnosh.arabbit.util.manager.QActivity
-import com.trello.lifecycle2.android.lifecycle.AndroidLifecycle
-import com.trello.rxlifecycle3.LifecycleProvider
-import java.util.*
 
 /**
  * @author ddnosh
@@ -44,21 +25,25 @@ abstract class QuickActivity : AppCompatActivity() {
         var TAG = "QuickActivity"
     }
 
+    open var isUseViewBinding = false
+
     private var mLoadingDialog: ADialog? = null
 
-    protected abstract val contentViewLayoutID: Int
-
-    protected lateinit var lifecycleProvider: LifecycleProvider<Lifecycle.Event>
+    open val contentViewLayoutID: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // activity manager
         QActivity.addActivity(this)
         // layout
-        if (contentViewLayoutID != 0) {
-            initContentView(contentViewLayoutID)
+        if (isUseViewBinding) {
+            initViewBinding()
         } else {
-            throw IllegalArgumentException("You must return a right contentView layout resource id")
+            if (contentViewLayoutID != 0) {
+                initContentView(contentViewLayoutID)
+            } else {
+                throw IllegalArgumentException("You must return a right contentView layout resource id")
+            }
         }
         // system status bar immersion
         StatusBarUtil.setRootViewFitsSystemWindows(this, true)
@@ -66,8 +51,6 @@ abstract class QuickActivity : AppCompatActivity() {
         if (!StatusBarUtil.setStatusBarDarkTheme(this, true)) {
             StatusBarUtil.setStatusBarColor(this, 0x55000000)
         }
-        // init lifecycleprovider
-        lifecycleProvider = AndroidLifecycle.createLifecycleProvider(this)
         // init view & event
         initViewsAndEvents(savedInstanceState)
     }
@@ -98,6 +81,8 @@ abstract class QuickActivity : AppCompatActivity() {
         super.onDestroy()
         dismissLoadingDialog()
     }
+
+    open fun initViewBinding() {}
 
     protected abstract fun initViewsAndEvents(savedInstanceState: Bundle?)
 
@@ -175,12 +160,12 @@ abstract class QuickActivity : AppCompatActivity() {
                     mLoadingDialog!!.show()
                 } ?: mLoadingDialog.run {
                     mLoadingDialog = ADialog(this@QuickActivity)
-                            .setDialogLayout(R.layout.dialog_loading)
-                            .setConvertListener(object : BaseDialog.ViewConvertListener {
-                                override fun convertView(holder: ViewHolder, dialog: BaseDialog) {
-                                    holder.setText(R.id.tip, "正在努力加载...");
-                                }
-                            })
+                        .setDialogLayout(R.layout.dialog_loading)
+                        .setConvertListener(object : BaseDialog.ViewConvertListener {
+                            override fun convertView(holder: ViewHolder, dialog: BaseDialog) {
+                                holder.setText(R.id.tip, tips ?: "加载中...")
+                            }
+                        })
                     mLoadingDialog!!.show()
                 }
             } catch (e: Throwable) {
