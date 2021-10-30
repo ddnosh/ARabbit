@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import com.github.ddnosh.arabbit.ext.launchIO
 import com.github.ddnosh.arabbit.jetpack.viewmodel.BaseAndroidViewModel
 import com.github.ddnosh.arabbit.module.rxbus.RxBus
-import com.github.ddnosh.arabbit.sample.module.rxbus.TestEvent
+import com.github.ddnosh.arabbit.sample.module.communication.rxbus.TestEvent
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext

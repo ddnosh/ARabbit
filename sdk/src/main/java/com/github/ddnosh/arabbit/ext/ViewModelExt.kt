@@ -1,8 +1,12 @@
 package com.github.ddnosh.arabbit.ext
 
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
+import com.github.ddnosh.arabbit.BaseApplication
 import com.github.ddnosh.arabbit.function.exception.AppException
 import com.github.ddnosh.arabbit.function.exception.ExceptionEngine
 import com.github.ddnosh.arabbit.jetpack.viewmodel.BaseViewModel
@@ -13,6 +17,7 @@ import com.github.ddnosh.arabbit.module.network.state.paresResult
 import com.github.ddnosh.arabbit.ui.base.QuickActivity
 import com.github.ddnosh.arabbit.ui.base.QuickFragment
 import kotlinx.coroutines.*
+import javax.inject.Inject
 
 /**
  * 显示页面状态，这里有个技巧，成功回调在第一个，其后两个带默认值的回调可省

@@ -13,10 +13,10 @@ import com.github.ddnosh.arabbit.sample.jetpack.livedata.LiveDataActivity
 import com.github.ddnosh.arabbit.sample.jetpack.navigation.NavigationFragment
 import com.github.ddnosh.arabbit.sample.jetpack.room_paging.RoomFragment
 import com.github.ddnosh.arabbit.sample.jetpack.viewmodel.LoginActivity
+import com.github.ddnosh.arabbit.sample.module.communication.rxbus.RxBusFragment
 import com.github.ddnosh.arabbit.sample.module.image.GlideFragment
 import com.github.ddnosh.arabbit.sample.module.ioc.dagger2.Dagger2Fragment
 import com.github.ddnosh.arabbit.sample.module.network.NetworkFragment
-import com.github.ddnosh.arabbit.sample.module.rxbus.RxBusFragment
 import com.github.ddnosh.arabbit.sample.ui.dialog.DialogFragment
 import com.github.ddnosh.arabbit.sample.ui.multiplestatusview.MultipleViewStateFragment
 import com.github.ddnosh.arabbit.sample.ui.toolbar.ToolBarFragment

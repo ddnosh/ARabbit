@@ -2,6 +2,8 @@ package com.github.ddnosh.arabbit.sample.module.ioc.dagger2
 
 import android.os.Bundle
 import android.view.ViewGroup
+import androidx.activity.viewModels
+import androidx.fragment.app.viewModels
 import androidx.viewbinding.ViewBinding
 import com.github.ddnosh.arabbit.ext.parseState
 import com.github.ddnosh.arabbit.sample.base.BaseFragment
@@ -18,7 +20,7 @@ class Dagger2Fragment : BaseFragment() {
 
     @Inject
     lateinit var user: User
-    private val dagger2ViewModel by viewModel<Dagger2ViewModel>()
+    private val dagger2ViewModel by viewModels<Dagger2ViewModel>()
 
     private val binding by binding<FragmentDaggerBinding>()
     override fun attachViewBinding(viewContainer: ViewGroup?): ViewBinding {

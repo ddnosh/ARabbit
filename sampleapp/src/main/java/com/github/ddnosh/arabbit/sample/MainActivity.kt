@@ -8,7 +8,7 @@ import com.github.ddnosh.arabbit.ext.setDefaultAdapter
 import com.github.ddnosh.arabbit.module.rxbus.RxBus
 import com.github.ddnosh.arabbit.sample.base.BaseActivity
 import com.github.ddnosh.arabbit.sample.databinding.ActivityMainBinding
-import com.github.ddnosh.arabbit.sample.module.rxbus.TestEvent
+import com.github.ddnosh.arabbit.sample.module.communication.rxbus.TestEvent
 import com.github.ddnosh.arabbit.sample.util.TimeUtils
 import com.github.ddnosh.arabbit.util.LogUtil
 import com.google.android.material.tabs.TabLayout

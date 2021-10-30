@@ -9,8 +9,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import androidx.viewbinding.ViewBinding
+import com.github.ddnosh.arabbit.BaseApplication
 import com.github.ddnosh.arabbit.ui.base.QuickFragment
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
@@ -26,11 +26,6 @@ abstract class BaseFragment : QuickFragment(), HasSupportFragmentInjector {
 
     override var isUseViewBinding = true
 
-    @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
-    inline fun <reified T : ViewModel> viewModel() =
-        lazy { ViewModelProviders.of(this, viewModelFactory).get(T::class.java) }
-
     abstract fun attachViewBinding(viewContainer: ViewGroup?): ViewBinding
     inline fun <reified T : ViewBinding> binding() = lazy {
         T::class.java.getMethod("inflate", LayoutInflater::class.java)
@@ -40,6 +35,34 @@ abstract class BaseFragment : QuickFragment(), HasSupportFragmentInjector {
     override fun initViewBinding(viewContainer: ViewGroup?): View {
         return attachViewBinding(viewContainer).root
     }
+
+    // application's viewModel
+    inline fun <reified T : ViewModel> viewModelApplication() =
+        lazy {
+            (requireActivity().application as? BaseApplication).let {
+                it?.getAppViewModelProvider()?.get(T::class.java)
+                    ?: throw NullPointerException("Your application should extends BaseApplication")
+            }
+        }
+
+    // activity's viewModel
+    @Inject
+    lateinit var viewModelFactoryActivity: ViewModelProvider.Factory
+    inline fun <reified T : ViewModel> viewModelActivity() =
+        lazy {
+            activity?.let {
+                ViewModelProvider(
+                    it,
+                    viewModelFactoryActivity
+                ).get(T::class.java)
+            }
+        }
+
+    // fragment's viewModel
+    @Inject
+    lateinit var viewModelFactoryFragment: ViewModelProvider.Factory
+    inline fun <reified T : ViewModel> viewModelFragment() =
+        lazy { ViewModelProvider(this, viewModelFactoryFragment).get(T::class.java) }
 
     override fun onFirstUserVisible() {}
     override fun onUserVisible() {}

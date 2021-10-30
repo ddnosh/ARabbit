@@ -38,7 +38,7 @@ ARabbit名字的含义：A代表Android，Rabbit是兔子的意思，象征着�
 4.3 manager：存放管理类；  
 ## App功能
 1. MVVM架构(简化版，只有View + ViewModel，通过CompositeDisposable解决RxJava内存泄漏问题)；  
-2. 改进型LiveData，保证LiveData不丢失，LiveData在激活时回调，没有内存泄漏，SingleLiveData保证只被调用一次；  
+2. 改进型LiveData，保证LiveData不丢失，LiveData在激活时回调，没有内存泄漏；  
 3. Coroutine，Kotlin协程代码实例； 
 4. 网络连接（retrofit + okhttp，rxjava通过rxlifecycle绑定生命周期，RxJava异常处理）
 5. 加载图片：Glide

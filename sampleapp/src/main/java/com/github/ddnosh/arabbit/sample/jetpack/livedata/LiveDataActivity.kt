@@ -1,15 +1,17 @@
 package com.github.ddnosh.arabbit.sample.jetpack.livedata
 
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import androidx.viewbinding.ViewBinding
 import com.github.ddnosh.arabbit.sample.R
+import com.github.ddnosh.arabbit.sample.appViewModel
 import com.github.ddnosh.arabbit.sample.base.BaseActivity
 import com.github.ddnosh.arabbit.sample.databinding.ActivityLivedataBinding
 import com.github.ddnosh.arabbit.sample.jetpack.livedata.singelivedata.AFragment
 import com.github.ddnosh.arabbit.sample.jetpack.livedata.singelivedata.BFragment
-import com.github.ddnosh.arabbit.util.LogUtil
+import com.github.ddnosh.arabbit.util.ToastUtil
 
 /**
  * @author ddnosh
@@ -18,7 +20,7 @@ import com.github.ddnosh.arabbit.util.LogUtil
 class LiveDataActivity : BaseActivity() {
     private val TAG = "LiveDataActivity"
 
-    private val mViewModel by viewModel<LiveDataViewModel>()
+    private val mViewModel by viewModels<LiveDataViewModel>()
 
     private val binding by binding<ActivityLivedataBinding>()
     override fun attachViewBinding(): ViewBinding {
@@ -27,16 +29,19 @@ class LiveDataActivity : BaseActivity() {
 
     override fun initViewsAndEvents(savedInstanceState: Bundle?) {
         mViewModel.liveData.observe(this, {
-            LogUtil.d(TAG, it)
+            ToastUtil.showToast("LiveDataActivity $it " + System.currentTimeMillis().toString())
         })
 
         binding.button1.setOnClickListener {
-            mViewModel.test()
+            appViewModel.info.value = System.currentTimeMillis().toString()
         }
         binding.button2.setOnClickListener {
+            mViewModel.test()
+        }
+        binding.buttonA.setOnClickListener {
             switchFragment(aFragment)
         }
-        binding.button3.setOnClickListener {
+        binding.buttonB.setOnClickListener {
             switchFragment(bFragment)
         }
     }

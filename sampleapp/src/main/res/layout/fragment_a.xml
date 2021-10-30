@@ -6,12 +6,39 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/tvA"
+        android:id="@+id/tvA1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="A Fragment"
+        android:text="Waiting for Application ViewModel"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvA2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Waiting for Application ViewModel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvA1"/>
+
+    <TextView
+        android:id="@+id/tvA3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Waiting for Activity ViewModel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvA2"/>
+
+    <TextView
+        android:id="@+id/tvA4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Waiting for Fragment ViewModel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvA3"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

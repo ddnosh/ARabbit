@@ -2,6 +2,8 @@ package com.github.ddnosh.arabbit.sample.module.network.coroutine
 
 import android.os.Bundle
 import android.view.ViewGroup
+import androidx.activity.viewModels
+import androidx.fragment.app.viewModels
 import androidx.viewbinding.ViewBinding
 import com.github.ddnosh.arabbit.ext.parseState
 import com.github.ddnosh.arabbit.sample.base.BaseFragment
@@ -16,7 +18,7 @@ import com.github.ddnosh.arabbit.util.ToastUtil
  */
 class Network1Fragment : BaseFragment() {
 
-    private val requestProjectViewModel by viewModel<RequestProjectViewModel>()
+    private val requestProjectViewModel by viewModels<RequestProjectViewModel>()
 
     private val binding by binding<ActivityNetworkBinding>()
     override fun attachViewBinding(viewContainer: ViewGroup?): ViewBinding {

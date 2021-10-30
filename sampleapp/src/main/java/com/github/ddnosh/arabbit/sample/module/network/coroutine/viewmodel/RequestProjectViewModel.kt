@@ -12,11 +12,11 @@ import javax.inject.Inject
 
 class RequestProjectViewModel @Inject constructor() : BaseViewModel() {
 
-    var pageNo = 1
+    private var pageNo = 1
 
     var titleData = MutableLiveData<ResultState<ArrayList<ClassifyResponse>>>()
 
-    var projectDataState = MutableLiveData<ListDataUiState<ArticleResponse>>()
+    private var projectDataState = MutableLiveData<ListDataUiState<ArticleResponse>>()
 
     fun getProjectTitleData() {
         request({

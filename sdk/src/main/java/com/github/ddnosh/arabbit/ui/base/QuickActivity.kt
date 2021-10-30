@@ -4,6 +4,9 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import com.github.ddnosh.arabbit.BaseApplication
 import com.github.ddnosh.arabbit.R
 import com.github.ddnosh.arabbit.function.exception.ExceptionEngine
 import com.github.ddnosh.arabbit.ui.dialog.ViewHolder
@@ -13,6 +16,7 @@ import com.github.ddnosh.arabbit.util.LogUtil
 import com.github.ddnosh.arabbit.util.ToastUtil
 import com.github.ddnosh.arabbit.util.immersion.StatusBarUtil
 import com.github.ddnosh.arabbit.util.manager.QActivity
+import javax.inject.Inject
 
 /**
  * @author ddnosh

@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
+import com.github.ddnosh.arabbit.R
 
 var <T : View> T.getClickTime: Long?
     get() {
@@ -40,4 +41,35 @@ fun ViewPager2.setDefaultAdapter(
     }
 
     return defaultAdapter
+}
+
+private var <T : View>T.lastTimeTrigger: Long
+    get() = if (getTag(R.id.lastTimeTriggerKey) != null) getTag(R.id.lastTimeTriggerKey) as Long else 0
+    set(value) {
+        setTag(R.id.lastTimeTriggerKey, value)
+    }
+
+private var <T : View> T.delayTrigger: Long
+    get() = if (getTag(R.id.delayTriggerKey) != null) getTag(R.id.delayTriggerKey) as Long else -1
+    set(value) {
+        setTag(R.id.delayTriggerKey, value)
+    }
+
+private fun <T : View> T.clickable(): Boolean {
+    var clickable = false
+    val currentClickTime = System.currentTimeMillis()
+    if (currentClickTime - lastTimeTrigger >= delayTrigger) {
+        clickable = true
+    }
+    lastTimeTrigger = currentClickTime
+    return clickable
+}
+
+fun <T : View> T.clickWithDelay(delay: Long = 500, block: (T) -> Unit) {
+    delayTrigger = delay
+    setOnClickListener {
+        if (clickable()) {
+            block(this)
+        }
+    }
 }

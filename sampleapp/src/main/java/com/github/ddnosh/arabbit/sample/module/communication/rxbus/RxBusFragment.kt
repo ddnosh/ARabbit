@@ -1,4 +1,4 @@
-package com.github.ddnosh.arabbit.sample.module.rxbus
+package com.github.ddnosh.arabbit.sample.module.communication.rxbus
 
 import android.annotation.SuppressLint
 import android.os.Bundle

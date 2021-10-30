@@ -38,7 +38,11 @@ abstract class QuickFragment : Fragment() {
         mContext = activity
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         return if (isUseViewBinding) {
             initViewBinding(container)
         } else {
@@ -188,7 +192,8 @@ abstract class QuickFragment : Fragment() {
      */
     protected fun showToast(msg: String?) {
         if (null != msg && !StringUtil.isEmpty(msg)) {
-            Snackbar.make((mContext as Activity).window.decorView, msg, Snackbar.LENGTH_SHORT).show()
+            Snackbar.make((mContext as Activity).window.decorView, msg, Snackbar.LENGTH_SHORT)
+                .show()
         }
     }
 
