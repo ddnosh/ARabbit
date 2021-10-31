@@ -17,6 +17,7 @@ import com.github.ddnosh.arabbit.sample.module.network.NetworkFragment
 import com.github.ddnosh.arabbit.sample.module.network.coroutine.Network1Fragment
 import com.github.ddnosh.arabbit.sample.module.network.rxjava.Network2Fragment
 import com.github.ddnosh.arabbit.sample.ui.multiplestatusview.MultipleViewStateFragment
+import com.github.ddnosh.arabbit.sample.ui.toolbar.ToolBarFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -72,4 +73,7 @@ abstract class BindFragmentModule {
 
     @ContributesAndroidInjector
     abstract fun bindNetwork2Fragment(): Network2Fragment
+
+    @ContributesAndroidInjector
+    abstract fun bindToolBarFragment(): ToolBarFragment
 }

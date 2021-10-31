@@ -59,15 +59,15 @@ class LoginActivity : BaseActivity() {
                 ) { ToastUtil.showToast("[RxJava + RxLifecycle] Error") }
         }
 
-        binding.logout.setOnClickListener {
-            logoutViewModel.logout().observe(this, {
-                logoutSuccess(it)
-            })
-        }
-
         binding.register.setOnClickListener {
             registerViewModel.register().observe(this, {
                 registerSuccess(it)
+            })
+        }
+
+        binding.logout.setOnClickListener {
+            logoutViewModel.logout().observe(this, {
+                logoutSuccess(it)
             })
         }
     }

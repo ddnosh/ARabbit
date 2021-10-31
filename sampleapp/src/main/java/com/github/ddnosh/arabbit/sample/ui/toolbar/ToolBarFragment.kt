@@ -1,32 +1,27 @@
 package com.github.ddnosh.arabbit.sample.ui.toolbar
 
 import android.os.Bundle
-import com.github.ddnosh.arabbit.sample.R
+import android.view.ViewGroup
+import androidx.viewbinding.ViewBinding
+import com.github.ddnosh.arabbit.ext.initClose
+import com.github.ddnosh.arabbit.sample.base.BaseFragment
 import com.github.ddnosh.arabbit.sample.databinding.FragmentToolbarBinding
-import com.github.ddnosh.arabbit.sample.other.Title
-import com.github.ddnosh.arabbit.ui.base.QuickDbFragment
 
 /**
  * @author ddnosh
  * @website http://blog.csdn.net/ddnosh
  */
-class ToolBarFragment : QuickDbFragment<FragmentToolbarBinding>() {
+class ToolBarFragment : BaseFragment() {
 
-    override val contentViewLayoutID: Int = R.layout.fragment_toolbar
+    private val binding by binding<FragmentToolbarBinding>()
 
-    override fun onFirstUserVisible() {
-    }
-
-    override fun onUserVisible() {
-    }
-
-    override fun onUserInvisible() {
+    override fun attachViewBinding(viewContainer: ViewGroup?): ViewBinding {
+        return binding
     }
 
     override fun initViewsAndEvents(savedInstanceState: Bundle?) {
-        binding.run {
-            title =
-                Title(R.string.toolbar, R.drawable.icon_arrow_back) { activity?.onBackPressed() }
+        binding.include.mToolbar.initClose("title") {
+            activity?.onBackPressed()
         }
     }
 }

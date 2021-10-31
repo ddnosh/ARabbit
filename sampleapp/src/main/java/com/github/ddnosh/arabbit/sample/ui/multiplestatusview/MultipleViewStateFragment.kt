@@ -27,6 +27,5 @@ class MultipleViewStateFragment : BaseFragment() {
         binding.btnUiPagestatusNetworkerror.setOnClickListener {
             binding.multipleStatusView.showNoNetwork()
         }
-
     }
 }

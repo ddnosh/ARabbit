@@ -4,6 +4,10 @@ import android.app.Activity
 import android.content.Context
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager.NameNotFoundException
+import android.graphics.Color
+import android.preference.PreferenceManager
+import androidx.core.content.ContextCompat
+import com.github.ddnosh.arabbit.R
 
 /**
  * @author ddnosh
@@ -70,5 +74,16 @@ object AppUtil {
             }
         }
         return true
+    }
+
+    fun getColor(context: Context): Int {
+        val setting = PreferenceManager.getDefaultSharedPreferences(context)
+        val defaultColor = ContextCompat.getColor(context, R.color.colorPrimary)
+        val color = setting.getInt("color", defaultColor)
+        return if (color != 0 && Color.alpha(color) != 255) {
+            defaultColor
+        } else {
+            color
+        }
     }
 }

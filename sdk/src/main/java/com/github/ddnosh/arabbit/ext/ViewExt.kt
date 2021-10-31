@@ -1,11 +1,13 @@
 package com.github.ddnosh.arabbit.ext
 
 import android.view.View
+import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.github.ddnosh.arabbit.R
+import com.github.ddnosh.arabbit.util.AppUtil
 
 var <T : View> T.getClickTime: Long?
     get() {
@@ -72,4 +74,16 @@ fun <T : View> T.clickWithDelay(delay: Long = 500, block: (T) -> Unit) {
             block(this)
         }
     }
+}
+
+fun Toolbar.initClose(
+    titleStr: String = "",
+    backImg: Int = R.drawable.ic_back,
+    onBack: (toolbar: Toolbar) -> Unit
+): Toolbar {
+    setBackgroundColor(AppUtil.getColor(context))
+    title = titleStr.toHtml()
+    setNavigationIcon(backImg)
+    setNavigationOnClickListener { onBack.invoke(this) }
+    return this
 }

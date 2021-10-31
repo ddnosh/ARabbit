@@ -8,9 +8,12 @@
 
     <Button
         android:id="@+id/login"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:textAlignment="textStart"
         android:text="1. 登录--使用RxJava+RxLifecycle"
         android:textAllCaps="false"
         app:layout_constraintEnd_toEndOf="parent"
@@ -19,8 +22,11 @@
 
     <Button
         android:id="@+id/register"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:textAlignment="textStart"
         android:text="2. 注册--使用RxJava+AutoDispose(ViewModel中)"
         android:textAllCaps="false"
         app:layout_constraintEnd_toEndOf="parent"
@@ -29,8 +35,11 @@
 
     <Button
         android:id="@+id/logout"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:textAlignment="textStart"
         android:text="3. 登出--使用JetPack自带生命周期感知的LiveData"
         android:textAllCaps="false"
         app:layout_constraintEnd_toEndOf="parent"
